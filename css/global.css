@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+MX+Guides&display=swap');
+
+body {
+    margin: 100px 60px;
+}
+
+body::-webkit-scrollbar {
+    width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(37, 37, 237);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: red;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: rgb(30, 29, 29);
+}
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.stair {
+    flex: 1;
+    background-color: rgb(37, 37, 237);
+    transform: translateX(100);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+p,
+#hour,
+.primaryBtn,
+.secondaryBtn {
+    font-family: Geologica;
+}
+
+h1 {
+    color: #000;
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0;
+}
+
+h6 {
+    color: #000;
+    font-size: 7rem;
+    font-style: normal;
+    font-weight: 500;
+
+    margin: 0;
+}
+
+.paragraphsup{
+    color: #000;
+    font-family: Geologica;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.styeLink {
+    text-decoration: none;
+}
+
+.styleText {
+    color: #000;
+    text-align: center;
+    font-family: Geologica;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+.styleAlternative {
+    display: inline-flex;
+    padding: 0.625rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 2.5rem;
+    background: #F00;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* Menu */
+
+#svgMenuOpen {
+    display: none;
+}
+
+#menuToggle {
+    display: none;
+}
+
+.footerMenuMobile {
+    display: none;
+}
+
+header {
+    position: fixed;
+    top: 30px;
+    left: 60px;
+    right: 60px;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav,
+ul {
+    list-style: none;
+}
+
+.positionItemMenu {
+    display: flex;
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+}
+
+.itemMenu,
+li,
+.menuItem {
+    text-decoration: none;
+    color: #000000;
+
+}
+
+.menuItem {
+    border-radius: 20px;
+    padding: 20px 30px;
+    background-color: #FFF;
+    color: #000000;
+    transition: all 0.4s ease;
+}
+
+.menuItem:hover {
+    background-color: #0015ff;
+    color: #ffffff;
+}
+
+/* Hero */
+
+.heroSection {
+    position: relative;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Main */
+
+main {
+    padding: 100px 0;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 10px;
+}
+
+.cardGrid {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+.cardGrid img {
+    width: 100%;
+    height: 130%;
+    border-radius: 20px;
+    object-fit: cover;
+    transition: all 0.4s ease;
+    will-change: transform, filter;
+    transition: filter 0.01s ease;
+}
+
+.titleCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    border-radius: 0 0 20px 0;
+    background-color: rgb(37, 37, 237);
+    color: #ffffff;
+    z-index: 998;
+}
+
+.yearContent {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border-radius: 20px 0 0 0;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.468);
+}
+
+/* Ferramentas */
+
+.myTools {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(230, 222, 222);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.floatingObjects {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.sizeToolImg {
+    width: 300px;
+    position: absolute;
+    transform: scale(0.3);
+}
+
+.figma {
+    left: 40%;
+    bottom: 50%;
+    transition: opacity 0.3s ease-in, transform 0.30s ease-out;
+}
+
+.blender {
+    right: 50%;
+    bottom: 20%;
+    transition: opacity 0.3s ease-in, transform 0.30s ease-out;
+}
+
+.protopie {
+    left: 20%;
+    bottom: 60%;
+    transition: opacity 0.3s ease-in, transform 0.30s ease-out;
+}
+
+.photoshop {
+    right: 10%;
+    bottom: 10%;
+    transition: opacity 0.3s ease-in, transform 0.30s ease-out;
+}
+
+.unreal {
+    bottom: 20%;
+    transition: opacity 0.3s ease-in, transform 0.30s ease-out;
+}
+
+.figma:hover,
+.blender:hover,
+.protopie:hover,
+.photoshop:hover,
+.unreal:hover {
+    transform: scale(0.4);
+}
+
+.blenderProject {
+    image-rendering: pixelated;
+}
+
+.headingTools {
+    font-size: 100px;
+    letter-spacing: -4px;
+    text-align: center;
+    mix-blend-mode: color-dodge;
+    color: #030303;
+    pointer-events: none;
+}
+
+.positionTools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagesTools {
+    position: absolute;
+
+}
+
+.pixelGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1280px;
+    height: 720px;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.pixelGrid div {
+    mix-blend-mode: color-dodge;
+}
+
+footer,
+.footerElement {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #0015ff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.content1 {
+    width: 100%;
+}
+
+.footerHeading {
+    text-align: center;
+    color: #FFF;
+}
+
+.contantMe {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.footerLinks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    gap: 100px;
+    border-top: 0;
+    color: #FFF;
+    border: 1px solid rgb(3, 3, 255);
+    transition: all 0.4s ease;
+}
+
+
+.footerLinks:hover {
+    border: 1px solid rgb(229, 213, 226);
+    background-color: #ffffff;
+    color: black;
+}
+
+.icon {
+    height: 24px;
+}
+
+.madeBy {
+    position: absolute;
+    width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+    border-left: 0;
+    border-right: 0;
+    bottom: 0;
+}
+
+.myName {
+    font-size: 10px;
+    color: rgb(102, 124, 250);
+    text-align: center;
+}
