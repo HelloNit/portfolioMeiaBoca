@@ -2,32 +2,38 @@
 <html lang="pt_br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/mediaQueries.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/mediaQueries.css">
+	<link rel="stylesheet" href="/css/about.css">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
-    <!-- GSAP e ScrollTrigger da mesma fonte -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+	<!-- GSAP e ScrollTrigger da mesma fonte -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 	<script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
 
-    <title>Felipe Rodrigues - UX | UI Designer</title>
+	<title>Felipe Rodrigues - UX | UI Designer</title>
 </head>
 
 
 <body>
 	<header>
-		<a id="logoChangesTypo" href="/index.html"> <img src="../img/logo_fe.png" alt=""></a>
+		<a id="logoChangesTypo" href="/index.html">
+			<svg id="logo_main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+				<path d="M123.89,294.27h301.16v128.81h-147.9v47.11h138.95v112.12h-137.16v123.45H123.89v-411.49Z" />
+				<path
+					d="M794.42,550.69c42.94-27.43,60.23-65.6,60.23-116.89,0-103.77-85.28-139.56-198.6-139.56h-177.72v411.52h155.07v-133h11.33l54.87,133h176.53l-81.7-155.07ZM716.08,444.12c-.81,1.63-2.14,2.95-3.77,3.77l-90.16,45.09c-3.28,1.6-7.23.91-9.76-1.73-2.54-2.63-3.09-6.6-1.37-9.82l18.87-35.06c1.99-3.72,1.99-8.19,0-11.91l-18.87-35.06c-1.73-3.22-1.17-7.19,1.37-9.82,2.51-2.67,6.45-3.42,9.76-1.85l90.16,45.09c4.16,2.08,5.85,7.14,3.77,11.29Z" />
+			</svg>
+		</a>
 		<nav id="mobileNav">
 			<ul class="positionItemMenu" id="menuItems">
 				<li class="itemMenu"><a class="menuItem" href="index.html">Início</a></li>
 				<li class="itemMenu"><a class="menuItem" href="project.html">Projetos</a></li>
 				<li class="itemMenu"><a class="menuItem" href="about.html">Sobre</a></li>
-				<li class="itemMenu"><a class="menuItem" href="contact.html">Contatos</a></li>
+				<li class="itemMenu"><a class="menuItem" href="figmatips.html">Figma Tips 🗿</a></li>
 			</ul>
 			<ul class="footerMenuMobile" id="footerMenu">
 				<div class="content3">
@@ -50,7 +56,22 @@
 			</svg>
 		</button>
 	</header>
-	<section class="heroSection">
+
+	<div class="heroSection">
+		<div class="experience first">
+			<p>UX Designer & Product Designer</p>
+		</div>
+		<div class="experience second">
+			<p>Trabalhando em: <br> Getronics</p>
+		</div>
+		<canvas id="heroCanvas"></canvas>
+	</div>
+
+
+
+
+
+	<!-- <section class="heroSection">
 		<h1 class="titleUp">Descubra <br> com UX</h1>
 		<div class="experience">
 			<p class="contenExpirence"><b>Trabalhando em:</b></p>
@@ -75,47 +96,36 @@
 			</div>
 		</div>
 		<h1 class="titleDown"> Estilize <br> com UI</h1>
-	</section>
+	</section> -->
+
+
+
+
+
 	<main>
 		<h2 class="titleProjects">&#x21c3 Projetos &#8642</h2>
 		<div class="parent">
 			<div class="cardGrid destaque1">
 				<a href="/handoff.html" id="linkProjeto">
-					<span class="titleCard">Handoff!</span>
+					<span class="titleCard">Handoff - Lovelace</span>
 					<img src="/img/banner_1.png" alt="" id="imagemProjeto">
 					<span class="yearContent">2025</span>
 				</a>
 			</div>
-			<div class="cardGrid">
-				<a href="">
-					<span class="titleCard">Branding DEM</span>
-					<img src="/img/banner_3.png" alt="">
-					<span class="yearContent">2025</span>
-				</a>
-			</div>
 			<div class="cardGrid destaque3">
-				<a href="">
-					<span class="titleCard">Pstory - Launcher</span>
+				<a href="/batch.html">
+					<span class="titleCard">Processamentos Batch - Research</span>
+					<img src="/img/mainframe.jpg" alt="">
+					<span class="yearContent">2025</span>
+				</a>
+			</div>
+			<div class="cardGrid destaque2">
+				<a target="_blank" href="https://pstoryonline.com/">
+					<span class="titleCard">Pstory - Visual Design &#8599;</span>
 					<img src="/img/banner_4.png" alt="">
-					<span class="yearContent">2025</span>
+					<span class="yearContent">2024</span>
 				</a>
 			</div>
-			<div class="cardGrid destaque4">
-				<a href="">
-					<span class="titleCard">Cloud Radar</span>
-					<img src="/img/banner_5.png" alt="">
-					<span class="yearContent">2025</span>
-				</a>
-			</div>
-			<div class="cardGrid destaque5">
-				<a href="">
-					<span class="titleCard">Auto Annotations</span>
-					<img src="/img/banner_6.png" alt="">
-					<span class="yearContent">2025</span>
-				</a>
-			</div>
-			<h2 style="padding: 0px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed autem odio
-				praesentium ea nulla in cum at quidem sunt architecto tempore voluptatibus corrupti.</h2>
 		</div>
 	</main>
 
@@ -137,15 +147,10 @@
 	<span class="aboutMe">
 		<h4>Mais sobre mim</h4>
 	</span>
-	<div class="preloader">
-		<div class="stair"></div>
-		<div class="stair"></div>
-		<div class="stair"></div>
-		<div class="stair"></div>
-		<div class="stair"></div>
-	</div>
 
 	<footer id="footerElement"></footer>
 	<script type="module" src="script.js"></script>
+	<script src="animationMain.js"></script>
 </body>
+
 </html>

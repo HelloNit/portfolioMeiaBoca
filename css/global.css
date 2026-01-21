@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+MX+Guides&display=swap');
 
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 100px 60px;
 }
@@ -36,6 +40,7 @@ body::-webkit-scrollbar-track {
     transform: translateX(100);
 }
 
+
 h1,
 h2,
 h3,
@@ -47,7 +52,8 @@ span,
 p,
 #hour,
 .primaryBtn,
-.secondaryBtn {
+.secondaryBtn,
+.label {
     font-family: Geologica;
 }
 
@@ -59,6 +65,13 @@ h1 {
     margin: 0;
 }
 
+/* head contexto */
+
+.styledHeading {
+    font-size: 3rem;
+}
+
+
 h6 {
     color: #000;
     font-size: 7rem;
@@ -68,7 +81,7 @@ h6 {
     margin: 0;
 }
 
-.paragraphsup{
+.paragraphsup {
     color: #000;
     font-family: Geologica;
     font-size: 0.875rem;
@@ -132,6 +145,10 @@ header {
     align-items: center;
 }
 
+#logo_main {
+    width: 40px;
+}
+
 nav,
 ul {
     list-style: none;
@@ -157,7 +174,7 @@ li,
     padding: 20px 30px;
     background-color: #FFF;
     color: #000000;
-    transition: all 0.4s ease;
+    transition: all 0.9s ease;
 }
 
 .menuItem:hover {
@@ -166,16 +183,14 @@ li,
 }
 
 /* Hero */
-
 .heroSection {
-    position: relative;
-    text-align: center;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+}
 
+#heroCanvas {
+    display: block;
+    cursor: none;
 }
 
 /* Main */
@@ -192,7 +207,7 @@ main {
 
 .cardGrid {
     position: relative;
-    height: 600px;
+    height: 620px;
     overflow: hidden;
     border-radius: 20px;
     border: 1px solid gray;
@@ -214,7 +229,7 @@ main {
     left: 0;
     padding: 20px;
     border-radius: 0 0 20px 0;
-    background-color: rgb(37, 37, 237);
+    background-color: #2525ed;
     color: #ffffff;
     z-index: 998;
 }

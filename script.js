@@ -234,35 +234,27 @@ class HeroImageSwapper {
     this.isSwapping = false;
 
     this.waveEffect = waveEffect;
-
     this.init();
   }
 
   init() {
-    this.titleUp.addEventListener('mouseenter', () => {
-      this.startSwapping('ux');
+    this.bind(this.titleUp, 'ux');
+    this.bind(this.titleDown, 'ui');
+  }
+
+  bind(element, type) {
+    element.addEventListener('mouseenter', () => {
+      this.startSwapping(type);
       this.waveEffect.startWave();
-    });
-    this.titleUp.addEventListener('mouseleave', () => {
-      this.stopSwapping('ux');
-      this.waveEffect.stopWave();
-    });
-    this.titleUp.addEventListener('mousemove', (e) => {
-      this.handleMouseMove('ux');
-      this.waveEffect.updateMouseFromElement(e, this.titleUp);
     });
 
-    this.titleDown.addEventListener('mouseenter', () => {
-      this.startSwapping('ui');
-      this.waveEffect.startWave();
-    });
-    this.titleDown.addEventListener('mouseleave', () => {
-      this.stopSwapping('ui');
+    element.addEventListener('mouseleave', () => {
+      this.stopSwapping();
       this.waveEffect.stopWave();
     });
-    this.titleDown.addEventListener('mousemove', (e) => {
-      this.handleMouseMove('ui');
-      this.waveEffect.updateMouseFromElement(e, this.titleDown);
+
+    element.addEventListener('mousemove', (e) => {
+      this.waveEffect.updateMouseFromElement(e, element);
     });
   }
 
@@ -270,42 +262,31 @@ class HeroImageSwapper {
     if (this.isSwapping) return;
     this.isSwapping = true;
 
+    this.hideAllImages(this.uiImages);
+    this.hideAllImages(this.uxImages);
+
     if (type === 'ux') {
-      this.hideAllImages(this.uiImages);
-      this.hideAllImages(this.uxImages);
       this.currentUXIndex = 0;
       this.showImage(this.uxImages[0]);
     } else {
-      this.hideAllImages(this.uxImages);
-      this.hideAllImages(this.uiImages);
       this.currentUIIndex = 0;
       this.showImage(this.uiImages[0]);
     }
 
     this.swapInterval = setInterval(() => {
-      if (type === 'ux') this.swapUXImages();
-      else this.swapUIImages();
+      type === 'ux'
+        ? this.swapUXImages()
+        : this.swapUIImages();
     }, 400);
   }
 
-  stopSwapping(type) {
+  stopSwapping() {
     this.isSwapping = false;
     clearInterval(this.swapInterval);
 
-    if (type === 'ux') {
-      this.hideAllImages(this.uxImages);
-      this.showImage(this.uiImages[0]);
-    } else {
-      this.hideAllImages(this.uiImages);
-      this.showImage(this.uiImages[0]);
-    }
-  }
-
-  handleMouseMove(type) {
-    if (this.isSwapping && Math.random() > 0.09) {
-      if (type === 'ux') this.swapUXImages();
-      else this.swapUIImages();
-    }
+    this.hideAllImages(this.uiImages);
+    this.hideAllImages(this.uxImages);
+    this.showImage(this.uiImages[0]);
   }
 
   swapUIImages() {
@@ -335,19 +316,19 @@ class OriginalSVGWaveEffect {
     this.svg = document.getElementById('linewave');
     this.path = this.svg.querySelector('path');
 
-    this.width = 1820;
-    this.height = 1;
-    this.centerY = 40;
+    this.width = this.svg.viewBox.baseVal.width || 1143;
 
-    this.numPoints = 9999;
-    this.maxAmplitude = 0;      // começa suave
-    this.targetAmplitude = 80;  // valor final
-    this.influenceRadius = 1820;
-    this.magneticStrength = 0;  // começa suave
-    this.targetMagnetic = 0;    // valor final
+    this.centerY = this.svg.viewBox.baseVal.height / 0.1;
 
-    this.mouseX = 0;
-    this.mouseY = 0;
+    this.numPoints = 240;
+
+    this.idleAmplitude = 0.9;
+    this.maxAmplitude = this.idleAmplitude;
+    this.targetAmplitude = 8;
+
+    this.influenceRadius = this.width * 0.6;
+
+    this.mouseX = this.width / 9;
     this.isHovering = false;
 
     this.points = [];
@@ -356,112 +337,89 @@ class OriginalSVGWaveEffect {
 
   init() {
     this.createPoints();
-    this.startAnimation();
+    this.animate();
   }
 
   createPoints() {
     this.points = [];
     for (let i = 0; i <= this.numPoints; i++) {
-      const x = 1.00101 + (i / this.numPoints) * (1143 - 1.00101);
-      this.points.push({ x, y: this.centerY, targetY: this.centerY, originalY: this.centerY, velocity: 0 });
+      const x = (i / this.numPoints) * this.width;
+      this.points.push({
+        x,
+        y: this.centerY,
+        baseY: this.centerY,
+        v: 0
+      });
     }
   }
 
   startWave() {
     this.isHovering = true;
-
-    // stroke animado
-    gsap.to(this.path, { strokeWidth: 1, duration: 0.9, ease: "power2.out" });
-
-    // entrada suave da onda
     gsap.to(this, {
       maxAmplitude: this.targetAmplitude,
-      magneticStrength: this.targetMagnetic,
-      duration: 10,
-      ease: "power2.out"
+      duration: 1.2,
+      ease: 'power3.out'
     });
   }
 
   stopWave() {
     this.isHovering = false;
-
-    // stroke volta suave
-    gsap.to(this.path, { strokeWidth: 1, duration: 0.9, ease: "power2.out" });
-
-    // suaviza saída da onda
     gsap.to(this, {
-      maxAmplitude: 0,
-      magneticStrength: 0,
-      duration: 10,
-      ease: "power2.out"
+      maxAmplitude: this.idleAmplitude,
+      duration: 1.2,
+      ease: 'power3.out'
     });
   }
 
-  updateMouseFromElement(e, element) {
-    const rect = element.getBoundingClientRect();
-    this.mouseX = ((e.clientX - rect.left) / rect.width) * this.width;
-    this.mouseY = ((e.clientY - rect.top) / rect.height) * this.height;
+  updateMouseFromElement(e, el) {
+    const r = el.getBoundingClientRect();
+    this.mouseX = ((e.clientX - r.left) / r.width) * this.width;
   }
 
-  calculateWaveInfluence(point, time) {
-    if (!this.isHovering) return 0;
+  update() {
+    const t = Date.now() * 0.015;
 
-    const distanceFromMouse = Math.abs(point.x - this.mouseX);
-    const falloff = Math.exp(-distanceFromMouse / (this.influenceRadius * 0.9));
-    const magneticY = (this.mouseY - point.originalY) * this.magneticStrength * falloff;
-
-    const primary = Math.sin(time * 0.012 + point.x * 0.025) * falloff;
-    const secondary = Math.sin(time * 0.018 + point.x * 0.04) * 0.6 * falloff;
-    const tertiary = Math.sin(time * 0.008 + point.x * 0.02) * 0.4 * falloff;
-
-    return magneticY + (primary + secondary + tertiary) * this.maxAmplitude * 0.8;
-  }
-
-  updatePoints() {
-    const time = Date.now();
     this.points.forEach(p => {
-      const influence = this.calculateWaveInfluence(p, time);
-      p.targetY = p.originalY + influence;
-      const spring = (p.targetY - p.y) * 0.25;
-      p.velocity += spring;
-      p.velocity *= 0.82;
-      p.y += p.velocity;
+      const d = Math.abs(p.x - this.mouseX);
+      const falloff = Math.exp(-d / this.influenceRadius);
+
+      // wave contínua
+      const idleWave =
+        Math.sin(t + p.x * 0.02) * this.idleAmplitude;
+
+      // intensidade no hover
+      const hoverWave =
+        Math.sin(t + p.x * 0.04) * this.maxAmplitude * falloff;
+
+      const target =
+        p.baseY + idleWave + (this.isHovering ? hoverWave : 0);
+
+      p.v += (target - p.y) * 0.12;
+      p.v *= 0.8;
+      p.y += p.v;
     });
   }
 
-  returnSmoothly() {
-    this.points.forEach(p => {
-      const spring = (p.originalY - p.y) * 0.08;
-      p.velocity += spring;
-      p.velocity *= 0.9;
-      p.y += p.velocity;
-    });
-  }
-
-  generatePath() {
-    let path = `M ${this.points[0].x} ${this.points[0].y}`;
-    for (let i = 1; i < this.points.length - 1; i++) {
-      const c = this.points[i], n = this.points[i + 1];
-      const cpX = c.x + (n.x - c.x) * 0.5;
-      const cpY = c.y;
-      path += ` Q ${cpX} ${cpY} ${n.x} ${n.y}`;
+  draw() {
+    let d = `M ${this.points[0].x} ${this.points[0].y}`;
+    for (let i = 1; i < this.points.length; i++) {
+      d += ` L ${this.points[i].x} ${this.points[i].y}`;
     }
-    return path;
+    this.path.setAttribute('d', d);
   }
 
-  startAnimation() {
-    const animate = () => {
-      if (this.isHovering) {
-        this.updatePoints();
-      } else {
-        this.returnSmoothly();
-      }
-      this.path.setAttribute('d', this.generatePath());
-      requestAnimationFrame(animate);
+  animate() {
+    const loop = () => {
+      this.update();
+      this.draw();
+      requestAnimationFrame(loop);
     };
-    animate();
+    loop();
   }
 }
+
+
+
 
 //animação wave
 document.addEventListener('DOMContentLoaded', () => {
@@ -471,12 +429,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const mobileBreakpoints = [575.98, 767.99, 992]; //resolução das telas
 
+
 // se tá no mobile ou n
 function isMobile() {
   return mobileBreakpoints.some(bp => window.innerWidth <= bp);
 }
 
-// Só inicializa o mosaico se não for mobile
+// so inicializa o mosaico se não for mobile
 if (!isMobile()) {
 
   const figmaIcon = document.querySelector(".figma");
@@ -581,28 +540,6 @@ floatingIcons.forEach((icon, i) => {
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  gsap.to(".stair", {
-    x: "0%",
-    duration: 0.4,
-    stagger: 0.1,
-    ease: "power2.inOut"
-  });
-
-
-  gsap.to(".stair", {
-    x: "100%",
-    duration: 0.3,
-    stagger: 0.1,
-    ease: "power2.inOut",
-    delay: 1,
-    onComplete: () => {
-      document.querySelector(".preloader").style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-  });
-});
-
 //paralax cards bls?
 const cards = document.querySelectorAll(".cardGrid img");
 
@@ -649,3 +586,6 @@ gsap.to(".columnLeft", {
     scrub: true, 
   }
 });
+
+
+
