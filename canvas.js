@@ -58,10 +58,9 @@ function draw() {
   bottomLabels.forEach((label, index) => {
     const end = getAnchor(label, "top");
     const curveStrength = Math.abs(end.x - start.x) * 0.5;
-
-    // Gradiente para cada linha
+    
     const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
-    gradient.addColorStop(0, '#0073ff');
+    gradient.addColorStop(0, '#000000');
 
 
     ctx.strokeStyle = gradient;

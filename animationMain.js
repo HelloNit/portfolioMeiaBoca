@@ -1,6 +1,3 @@
-/* =========================
-   SETUP
-========================= */
 const canvas = document.getElementById("heroCanvas");
 const ctx = canvas.getContext("2d");
 const hero = document.querySelector(".heroSection");
@@ -12,28 +9,23 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-/* =========================
-   TEXT CONFIG
-========================= */
-const text1 = "Por trás de uma interface, existe um mundo de decisões...";
-const text2 = "é esse cuidado que transforma design em experiência🌹";
 
-const fontSize = 150;
+const text1 = "Por trás de uma interface, existe um mundo de decisões...";
+const text2 = "é esse cuidado que transforma design em experiência.";
+
+const fontSize = 120;
 const fontFamily = "Geologica";
 const lineHeight = fontSize * 1;
 
 const centerX = () => canvas.width / 2;
 const centerY = () => canvas.height / 2;
 
-/* =========================
-   TEXT WRAPPING
-========================= */
 function wrapText(text, maxWidth) {
   const words = text.split(' ');
   const lines = [];
   let currentLine = words[0];
 
-  ctx.font = `200 ${fontSize}px ${fontFamily}`;
+  ctx.font = `400 ${fontSize}px ${fontFamily}`;
 
   for (let i = 1; i < words.length; i++) {
     const word = words[i];
@@ -49,24 +41,19 @@ function wrapText(text, maxWidth) {
   return lines;
 }
 
-/* =========================
-   MOUSE
-========================= */
+
 const mouse = {
   x: -999,
   y: -999,
   active: false
 };
 
-let revealRadius = 200;
-let targetRadius = 200;
-const minRadius = 10;
-const maxRadius = 400;
+let revealRadius = 500;
+let targetRadius = 500;
+const minRadius = 40;
+const maxRadius = 660;
 const transitionSpeed = 0.10;
 
-/* =========================
-   TEXT BOUNDS (hover)
-========================= */
 function getTextBounds() {
   ctx.font = `800 ${fontSize}px ${fontFamily}`;
 
@@ -103,9 +90,7 @@ function isMouseOverText() {
   );
 }
 
-/* =========================
-   DRAW TEXT WITH WRAPPING
-========================= */
+
 function drawText(text, color) {
   const maxTextWidth = canvas.width * 0.9;
   const lines = wrapText(text, maxTextWidth);
@@ -119,12 +104,10 @@ function drawText(text, color) {
   });
 }
 
-/* =========================
-   SCROLL CONTROL (GRID RADIUS)
-========================= */
+
 let gridRadius = 80;
 let targetGridRadius = 130;
-const gridTransitionSpeed = 0.04; // <--- suavidade (quanto menor, mais suave)
+const gridTransitionSpeed = 0.04;
 
 window.addEventListener("scroll", () => {
   const step = 40;
@@ -136,26 +119,23 @@ window.addEventListener("scroll", () => {
   if (targetGridRadius > max) targetGridRadius = max;
 });
 
-/* =========================
-   GRID
-========================= */
-function drawGrid() {
-  // gridSize "base"
-  const baseSize = 90;
 
-  // Quantidade de colunas e linhas que cabem
+function drawGrid() {
+  //tamanho do grid
+  const baseSize = 80;
+
   const cols = Math.floor(canvas.width / baseSize);
   const rows = Math.floor(canvas.height / baseSize);
 
-  // Ajusta o tamanho do grid para caber certinho
+
   const gridSizeX = canvas.width / cols;
   const gridSizeY = canvas.height / rows;
 
-  // interpolação suave do radius
+
   gridRadius += (targetGridRadius - gridRadius) * gridTransitionSpeed;
   const radius = gridRadius;
 
-  ctx.strokeStyle = "#00000018";
+  ctx.strokeStyle = "#00000013";
   ctx.lineWidth = 1;
 
   for (let y = 0; y < rows; y++) {
@@ -179,35 +159,28 @@ function drawRoundedRect(x, y, w, h, r) {
   ctx.stroke();
 }
 
-/* =========================
-   DRAW
-========================= */
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Desenhar grid
   drawGrid();
 
-  // Atualizar raio do reveal (transição suave)
   if (mouse.active && isMouseOverText()) {
     targetRadius = maxRadius;
   } else {
     targetRadius = minRadius;
   }
 
-  // Interpolação suave
+
   revealRadius += (targetRadius - revealRadius) * transitionSpeed;
 
-  // Configurar fonte
-  ctx.font = `800 ${fontSize}px ${fontFamily}`;
+
+  ctx.font = `100 ${fontSize}px ${fontFamily}`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
   if (mouse.active) {
-    // Desenhar texto 1 (preto)
-    drawText(text1, "#000");
+    drawText(text1, "#000000");
 
-    // Criar máscara circular para "apagar" o texto preto
     ctx.save();
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
@@ -215,7 +188,7 @@ function draw() {
     ctx.fill();
     ctx.restore();
 
-    // Desenhar texto 2 (azul) apenas no círculo
+
     ctx.save();
     ctx.beginPath();
     ctx.arc(mouse.x, mouse.y, revealRadius, 0, Math.PI * 2);
@@ -224,16 +197,17 @@ function draw() {
     drawText(text2, "#0a2cff");
     ctx.restore();
 
-    // Desenhar borda vermelha do círculo
-    ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
+    ctx.strokeStyle = "#0a2cff"; // cor do stroke do mouse
+
     ctx.beginPath();
     ctx.arc(mouse.x, mouse.y, revealRadius, 0, Math.PI * 2);
     ctx.stroke();
 
+
   } else {
-    // Apenas texto preto quando mouse não está ativo
-    drawText(text1, "#000");
+    drawText(text1, "#000000");
+
   }
 
   requestAnimationFrame(draw);
@@ -241,9 +215,6 @@ function draw() {
 
 draw();
 
-/* =========================
-   EVENTS
-========================= */
 canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   mouse.x = e.clientX - rect.left;

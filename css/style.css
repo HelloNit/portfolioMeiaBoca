@@ -45,13 +45,19 @@ title {
 
 .first {
     left: 90%;
-    top: 0%;
+    top: 2%;
 
 }
 
 .second {
-    left: 4%;
-   top: 85%;
+    left: 1%;
+    top: 85%;
+    display: flex;
+}
+
+.flagCountry{
+    text-transform: uppercase;
+    font-size: 10px;
 }
 
 .contenExpirence {
@@ -164,7 +170,7 @@ svg {
 
 .titleProjects {
     font-size: 3rem;
-    text-align: center;
+    text-align: left;
 }
 
 .columnLeft {
@@ -319,7 +325,6 @@ canvas {
     font-size: 12px;
     font-weight: 500;
 }
-
 
 .center {
     top: 20px;

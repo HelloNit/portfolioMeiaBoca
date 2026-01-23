@@ -7,6 +7,9 @@
 
 body {
     margin: 100px 60px;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--secondary-color);
 }
 
 body::-webkit-scrollbar {
@@ -184,13 +187,70 @@ li,
 
 /* Hero */
 .heroSection {
-    height: 100vh;
     position: relative;
+    width: 100%;
+    /* Altura da tela inteira menos a altura de um possível cabeçalho */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Garante que o canvas não cause barras de rolagem indesejadas */
 }
 
+/* O Canvas deve cobrir toda a seção e estar por baixo do conteúdo de texto */
 #heroCanvas {
-    display: block;
-    cursor: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Conteúdo de texto por cima do Canvas */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Acima do Canvas */
+    text-align: center;
+    padding: 20px;
+    /* Usando Flexbox para organizar os elementos de experiência */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.experience h1,
+.experience h2 {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    /* Tamanho de fonte responsivo */
+    font-weight: 100;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.experience.first h1 {
+    font-weight: 800;
+    /* Destaque para a função */
+    color: var(--primary-color);
+}
+
+.experience.second h2 {
+    font-weight: 400;
+    color: var(--secondary-color);
+}
+
+.flagCountry {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-left: 5px;
 }
 
 /* Main */
@@ -202,46 +262,50 @@ main {
 .parent {
     display: grid;
     grid-template-columns: repeat(3, 2fr);
-    gap: 10px;
+}
+
+.destaque1 {
+    border-radius: 20px 0 0 20px;
+}
+
+.destaque3 {
+    border-radius: 0 20px 20px 0;
 }
 
 .cardGrid {
     position: relative;
-    height: 620px;
+    height: 100%;
     overflow: hidden;
-    border-radius: 20px;
-    border: 1px solid gray;
 }
 
 .cardGrid img {
     width: 100%;
-    height: 130%;
-    border-radius: 20px;
+    height: 140%;
     object-fit: cover;
     transition: all 0.4s ease;
     will-change: transform, filter;
-    transition: filter 0.01s ease;
+    transition: filter 0.2s ease;
 }
 
 .titleCard {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 10px;
     padding: 20px;
-    border-radius: 0 0 20px 0;
+    border-radius: 20px 20px 20px 20px;
     background-color: #2525ed;
     color: #ffffff;
-    z-index: 998;
+    z-index: 20;
 }
 
 .yearContent {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 10px;
+    bottom: 10px;
     padding: 20px;
-    border-radius: 20px 0 0 0;
+    border-radius: 20px;
     color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.468);
+    background-color: rgba(0, 0, 0, 0.221);
 }
 
 /* Ferramentas */
@@ -253,9 +317,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(230, 222, 222);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+
 }
 
 .floatingObjects {
@@ -312,9 +374,8 @@ main {
 }
 
 .headingTools {
-    font-size: 100px;
-    letter-spacing: -4px;
-    text-align: center;
+    font-size: 90px;
+    white-space: break-spaces;
     mix-blend-mode: color-dodge;
     color: #030303;
     pointer-events: none;
