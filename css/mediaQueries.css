@@ -1,8 +1,8 @@
 /* Extra pequeno (mobile) */
 @media (max-width: 575.98px) {
     body {
-        overflow-x: hidden;
         margin: 10px 10px;
+        border: 1px solid red;
     }
 
     header {
@@ -80,51 +80,6 @@
     }
 
     /* Hero */
-
-    .titleUp,
-    .titleDown {
-        text-transform: none;
-        font-size: 60px;
-    }
-
-    .titleUp {
-        left: 4%;
-        padding: 0;
-        top: 10%;
-    }
-
-    .experience {
-        display: none;
-    }
-
-    .titleDown {
-        right: 4%;
-        bottom: 2%;
-    }
-
-    .allImages {
-        width: 100%;
-        max-width: 320px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    .swapUI,
-    .swapUX {
-        width: 100%;
-        max-width: 320px;
-        height: 600px;
-        transform: scale(0.2);
-    }
-
-    .titleUp.hovering~.allImages .uiImages {
-        z-index: -1;
-    }
-
-    .titleDown.hovering~.allImages .uxImages {
-        z-index: -1;
-    }
-
     .contentHero h1 {
         font-size: 2.3rem;
     }
@@ -172,7 +127,7 @@
     /* footer */
 
     .footerHeading {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     .contantMe {
@@ -194,7 +149,7 @@
     }
 
     .heroProject img {
-        width: 80%;
+        width: 100%;
         height: 50%;
         object-fit: cover;
     }
@@ -203,20 +158,27 @@
         color: #0f0f0f;
         mix-blend-mode: color-burn;
         text-align: center;
+        margin: 0;
         z-index: 99;
+    }
+
+    .styledHeading {
+        font-size: 1rem;
     }
 
     .columnLeft {
         position: absolute;
-        top: 62%;
+        padding: 10px;
+        top: 60%;
+        left: 0;
     }
 
     .mainContentProject {
-        padding: 10px;
+        padding: 0px;
     }
 
     .stickyContent {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 
     .subtitleContentPhases {
@@ -276,6 +238,23 @@
     .positionChallenges {
         display: flex;
         flex-direction: column;
+        gap: 0;
+        align-items: self-start;
+    }
+
+    .card {
+        width: 310px;
+    }
+
+    .contentHeadingMain {
+        margin: 0;
+    }
+
+    .challenges {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        overflow: hidden;
     }
 
     .contentPartOne .challenges .blockOne:nth-child(2),
@@ -293,34 +272,28 @@
         display: none;
     }
 
-    .scrollWrapper,
-    .scrollLeftRight {
+    .diagram-wrapper {
         display: none;
+        position: relative;
+        width: 100%;
+        height: 420px;
+
     }
 
-    .moreArtefacts {
-        display: none;
-    }
-
-    .seeMore {
+    canvas {
         width: 100%;
         height: 100%;
-        padding: 0;
-        margin: 0px 0px 60px 0px;
     }
 
-    .previewImage {
+    .label {
+        position: absolute;
+        border: 1px solid #b9b9b9;
+        font-size: 8px;
+    }
+
+    .sliderGsap {
         display: none;
     }
-
-    .columnRightSeeMore {
-        width: 90%;
-    }
-
-    .imgHoveringProjects {
-        display: none;
-    }
-
 }
 
 /* Pequeno (mobile grande) */
@@ -493,6 +466,7 @@
 
     .subtitleContentPhases {
         font-size: 1rem;
+        max-width: 100%;
     }
 
     h1 {
@@ -527,18 +501,6 @@
     .contentPartTwo,
     .contentPartThree {
         margin: 60px 0px 60px 0px;
-    }
-
-    .svgWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100vh;
-    }
-
-    #handoffDiagram {
-        transform: rotate(270deg) scale(1);
     }
 
     .subtitleContent {

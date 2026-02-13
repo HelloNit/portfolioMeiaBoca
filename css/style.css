@@ -126,10 +126,9 @@ main h2 {
 
 .challenges {
     display: flex;
-    height: 400px;
     gap: 10px;
-    margin: 40px 0px 40px 0px;
 }
+
 
 .sizeChallenges {
     height: fit-content;
@@ -145,14 +144,13 @@ main h2 {
 }
 
 .spaceContentBlockOne {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: start;
     border: 1px solid rgb(224, 222, 222);
 
     border-radius: 20px 20px 20px 20px;
     padding: 20px;
-    width: 100%;
 }
 
 .contentHeadingMain .challenges .spaceContentBlockOne:nth-child(1) {
@@ -193,7 +191,7 @@ main h2 {
 }
 
 .subtitleContentPhases {
-    max-width: 60%;
+    min-width: 60%;
     font-size: 2rem;
     margin-top: 30px;
 }
@@ -202,7 +200,7 @@ main h2 {
 /* thanks ilkhoeri 🌹*/
 
 .card {
-    min-width: 400px;
+    max-width: 400px;
 }
 
 .wrap {
@@ -408,10 +406,6 @@ canvas {
 
 .label {
     position: absolute;
-}
-
-.label {
-    position: absolute;
     padding: 10px 14px;
     border-radius: 20px;
     border: 1px solid #b9b9b9;
@@ -503,7 +497,7 @@ canvas {
 
 .content-slider {
     position: relative;
-    flex: 0 0 98%;
+    flex: 0 0 96%;
     overflow: hidden;
     scroll-snap-align: start;
 }
@@ -518,7 +512,7 @@ canvas {
     inset: 0;
 
     background: #000000;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 28%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 18, 41, 0.95) 28%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 100%);
 
     z-index: 1;
 }
@@ -532,4 +526,122 @@ canvas {
 
     padding: 20px 40px;
     color: white;
+}
+
+.tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 1s ease, transform 0.25s ease;
+}
+
+.pos1 {
+    transform: translateX(-90%);
+    top: 2%;
+    z-index: 999;
+}
+
+.pos2 {
+    transform: translateX(102%);
+    width: 280px;
+    z-index: 999;
+    top: 40%;
+}
+
+.pos3 {
+    transform: translateX(80%);
+    width: 380px;
+    z-index: 999;
+    top: 10%;
+}
+
+.pos4 {
+    transform: translateX(-80%);
+    width: 380px;
+    z-index: 999;
+    top: 50%;
+}
+
+.pos5 {
+    transform: translateX(-50%);
+    width: 380px;
+    z-index: 999;
+    top: 90%;
+    left: 50%;
+}
+
+.commentUser {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 10px;
+}
+
+.tooltipComponent {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #0057d2;
+    padding: 10px;
+    flex-direction: row;
+}
+
+.tooltipComponent::after {
+    content: "";
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #0057d2;
+}
+
+.styled1::after {
+    top: 50%;
+    right: -9px;
+    transform: translateY(-50%);
+}
+
+.styled2::after,
+.styled3::after {
+    top: 50%;
+    left: -9px;
+
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.styled4::after {
+    top: -15px;
+    left: 50%;
+    transform: rotate(270deg);
+}
+
+.namePic {
+    font-weight: 900;
+    color: #fff;
+}
+
+.comment {
+    margin: 0;
+    font-size: 14px;
+    color: #dad9d9;
+}
+
+.picPerson {
+    width: 48px;
+    height: 48px;
+    background-color: violet;
+    border-radius: 10px;
+}
+
+.spaceContentBlockOne:hover .tooltip {
+    opacity: 1;
+    pointer-events: none;
 }

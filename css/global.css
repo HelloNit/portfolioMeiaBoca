@@ -482,3 +482,9 @@ footer,
     color: rgb(102, 124, 250);
     text-align: center;
 }
+
+.divider{
+    width: 100%;
+    height: 1px;
+    background-color: #e9e9e9;
+}

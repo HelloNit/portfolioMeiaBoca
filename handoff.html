@@ -12,7 +12,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
 
     <title>Felipe Rodrigues - UX | UI Designer</title>
 </head>
@@ -55,16 +54,16 @@
         </button>
     </header>
     <section class="heroProject">
-        <img src="/img/banner_1.png" alt="">
+        <img class="heroProjectImg" src="/img/banner_1.png" alt="">
     </section>
     <main class="mainContentProject">
         <div class="columnLeft">
             <div class="titleProject">
                 <h1><span class="stickyContent">Lovelance <b>Handoff</b></span></h1>
-                <p>Cliente: Não revelado</p>
-                <p> Minha atuação teve foco em traduzir decisões técnicas em fluxos e protótipos
+                <p class="clientReveal">Cliente: Não revelado</p>
+                <p class="myPosition"> Minha atuação teve foco em traduzir decisões técnicas em fluxos e protótipos
                     claros, garantindo consistência visual e facilitando a implementação pelo time de
-                    desenvolvimento. <i>Algumas informações foram excluídas por segurança.</i></p>
+                    desenvolvimento.</p>
             </div>
         </div>
         <div class="columnRight">
@@ -139,7 +138,7 @@
                         <h2>Decisão</h2>
                         <p class="sourceExplain">Diante desse cenário, decidi estruturar um handoff visual e funcional,
                             mesmo sendo um projeto simples, com o objetivo de tornar os fluxos explícitos, organizar as
-                            telas produzidas e facilitar a leitura técnica do protótipo pelo time de desenvolvimento.
+                            telas produzidas e facilitar a leitura técnica do protótipo para o time de desenvolvimento.
                         </p>
                     </div>
                     <div class=" spaceContentBlockOne">
@@ -213,10 +212,9 @@
                         <img class="imgSizeFull" src="/img/onboarding.png" alt="">
                         <h2>&#x203B; Drafts</h2>
                         <span class="subtitleContentPhases">
-                            Rascunhos ou mais conhecidos pelos designers drafts são um local para você colocar suas
-                            ideias
-                            que podem ser projetadas em baixa e média fidelidade sem gastar muito tempo e claro um ótimo
-                            lugar para deixar as ideias salvas para o futuro.
+                            A seção de Drafts (rascunhos) é um espaço dedicado à ideação, onde conceitos podem ser
+                            explorados em baixa e média fidelidade. Este ambiente flexível permite o registro de ideias
+                            para futuras iterações, sem o compromisso com o refinamento visual imediato.
                         </span>
 
                         <h2>&#x203B; Workstation</h2>
@@ -258,11 +256,8 @@
                         <div class="sliderWrapper">
 
                         </div>
+                        <!-- slider -->
                         <div class="sliderGsap">
-
-                            <img id="swapMouse" src="/img/swipe.svg">
-
-
                             <div class="content-slider">
                                 <div class="overlay"></div>
                                 <div class="textContent">
@@ -311,7 +306,114 @@
                                 </div>
                                 <img src="/img/variableBuild.png" alt="">
                             </div>
+                        </div>
+                        <!-- slider -->
 
+                        <h2>&#x203B; Handoff</h2>
+                        <span class="subtitleContentPhases">
+                            Aqui se encontra o que os <i>desenvolvedores</i> e <i>QA</i> se encontram.
+                        </span>
+                        <p>A passagem de bastão, foi construída de forma direta, utilizando a ferramenta <a
+                                href="https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs"
+                                target="_blank" rel="noopener noreferrer">Figma Annotations</a>. Uma das maiores
+                            ferramentas de listagem de caracteristicas de componentes como nome
+                            tamanho, cor, hexadecimal etc.
+                        </p>
+                        <h2>&#x203B; Componentes</h2>
+                        <span class="subtitleContentPhases">
+                            Um erro? Um equivoco? Não sei! Mas não funcionou essa sessão.
+                        </span>
+                        <p>
+                            Não há um design aprova de balas ou erros indepente de senioridade. Essa sessão é um
+                            exemplo... A ideia aqui foi criar uma sessão que isolaria
+                            com todos os componentes que faziam parte do corpo da interface, no final se tornou uma
+                            sessão inútil já que todos os componentes e seus nomes
+                            já estavam listados na sessão de handoff. Abaixo estão algumas imagens anexadas para
+                            demonstrar melhor como seria.
+                        </p>
+                        <img class="imgSizeFull" src="/img/radioBtn.png" alt="">
+                        <img class="imgSizeFull" src="/img/progressbar.png" alt="">
+                    </div>
+                    <div class="divider"></div>
+                    <h3 id="scramble" class="styledHeading">Resultados</h3>
+
+                    <div class="challenges sizeChallenges headingContentMain">
+                        <div class="spaceContentBlockOne">
+                            <h2>Redução de dúvidas </h2>
+                            <!-- tooltip -->
+                            <div class="tooltip pos1">
+                                <span class="tooltipText tooltipComponent styled1">
+                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
+                                    <div class="commentUser">
+                                        <span class="namePic">Front-end</span>
+                                        <p class="comment"><i>‘O fluxograma tem ajudado bastante’</i></p>
+                                    </div>
+                                </span>
+                            </div>
+                            <!-- tooltip -->
+
+                            <!-- tooltip -->
+                            <div class="tooltip pos2">
+                                <span class="tooltipText tooltipComponent styled2">
+                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
+                                    <div class="commentUser">
+                                        <span class="namePic">QA Analista</span>
+                                        <p class="comment"><i>‘[...]Embora eu não esteja validando as cores de
+                                                botões ou tamanho dos componentes o protótipo ajuda ’</i></p>
+                                    </div>
+                                </span>
+                            </div>
+                            <!-- tooltip -->
+                            <p class="sourceExplain">
+                                Os fluxos anteriormente eram apenas declarados através dos protótipos. Hoje o fluxo são
+                                declarados
+                                através do fluxograma.
+                            </p>
+                        </div>
+                        <div class=" spaceContentBlockOne">
+                            <h2>Introdução ao produto</h2>
+                            <div class="tooltip pos3">
+                                <span class="tooltipText tooltipComponent styled3">
+                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
+                                    <div class="commentUser">
+                                        <span class="namePic">Back-end</span>
+                                        <p class="comment"><i>‘As pessoas entram e saem de projetos. O protótipo e
+                                                Onboaridng
+                                                ajudam a contextualizar novos integrantes’</i></p>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="tooltip pos4">
+                                <span class="tooltipText tooltipComponent styled1">
+                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
+                                    <div class="commentUser">
+                                        <span class="namePic">Vanessa Souza</span>
+                                        <p class="comment"><i>‘O fluxograma tem ajudado bastante’</i></p>
+                                    </div>
+                                </span>
+                            </div>
+                            <p class="sourceExplain">
+                                Onboarding guia novos desenvolvedores, QA e Designers. Para a continuação
+                                de melhorias continua.
+                            </p>
+                        </div>
+                        <div class=" spaceContentBlockOne">
+                            <h2>Informação centralizadas</h2>
+                            <div class="tooltip pos5">
+                                <span class="tooltipText tooltipComponent styled4">
+                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
+                                    <div class="commentUser">
+                                        <span class="namePic">Designer</span>
+                                        <p class="comment"><i>‘Não preciso ficar indo no protótipo e depois consultar
+                                                no figjam para ver o diagrama. Isso ajudou a economizar tempo no
+                                                desenvolvimento...’</i></p>
+                                    </div>
+                                </span>
+                            </div>
+                            <p class="sourceExplain">
+                                A centralização de informações e a utlização de branch ajudaram a centralizar
+                                versões anteriores.
+                            </p>
                         </div>
                     </div>
                 </div>
