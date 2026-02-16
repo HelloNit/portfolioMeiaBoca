@@ -1,0 +1,84 @@
+    #header-placeholder{
+        z-index: 999;
+    }
+
+header {
+    position: sticky;
+    bottom: 20px;
+    margin: 0;
+}
+
+.heading_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    position: fixed;
+    inset: auto 10px 10px;
+    z-index: 10;
+
+    border-radius: var(--border-radius-small);
+    width: auto;
+
+    background-color: var(--secondary-blue-opacity);
+    backdrop-filter: blur(6px);
+
+    padding: var(--padding-mobile-small);
+}
+
+
+#logo_main{
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-black);
+}
+
+.nav {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    flex-direction: column;
+
+    background: var(--bg-light);
+    z-index: 3;
+}
+
+.nav.active {
+    display: flex;
+}
+
+.nav_menu {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    font-size: var(--font-menu-mobile-small);
+
+    gap: var(--padding-mobile-small);
+    margin: var(--margin-mobile-small);
+
+    padding: 0;
+    height: 100%;
+}
+
+.menu_toggle {
+    all: unset;
+
+    color: var(--text-white);
+    background-color: var(--primary-blue);
+
+    padding: var(--padding-mobile-small);
+    border-radius: var(--border-radius-small);
+
+    cursor: pointer;
+}

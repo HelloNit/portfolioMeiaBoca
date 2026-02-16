@@ -1,117 +1,143 @@
 <!DOCTYPE html>
-<html lang="pt_br">
+<html lang="pt-br">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Felipe Rodrigues — UX | UI Designer</title>
+
+	<!-- Styles -->
 	<link rel="stylesheet" href="/css/global.css">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/mediaQueries.css">
-	<link rel="stylesheet" href="/css/about.css">
-	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/query.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
-	<!-- GSAP e ScrollTrigger da mesma fonte -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-	<script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
-
-	<title>Felipe Rodrigues - UX | UI Designer</title>
 </head>
 
 <body>
-	<header>
-		<a id="logoChangesTypo" href="/index.html">
-			<svg id="logo_main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-				<path d="M123.89,294.27h301.16v128.81h-147.9v47.11h138.95v112.12h-137.16v123.45H123.89v-411.49Z" />
-				<path
-					d="M794.42,550.69c42.94-27.43,60.23-65.6,60.23-116.89,0-103.77-85.28-139.56-198.6-139.56h-177.72v411.52h155.07v-133h11.33l54.87,133h176.53l-81.7-155.07ZM716.08,444.12c-.81,1.63-2.14,2.95-3.77,3.77l-90.16,45.09c-3.28,1.6-7.23.91-9.76-1.73-2.54-2.63-3.09-6.6-1.37-9.82l18.87-35.06c1.99-3.72,1.99-8.19,0-11.91l-18.87-35.06c-1.73-3.22-1.17-7.19,1.37-9.82,2.51-2.67,6.45-3.42,9.76-1.85l90.16,45.09c4.16,2.08,5.85,7.14,3.77,11.29Z" />
-			</svg>
-		</a>
-		<nav id="mobileNav">
-			<ul class="positionItemMenu" id="menuItems">
-				<li class="itemMenu"><a class="menuItem" href="index.html">Início</a></li>
-				<li class="itemMenu"><a class="menuItem" href="project.html">Projetos</a></li>
-				<li class="itemMenu"><a class="menuItem" href="about.html">Sobre</a></li>
-				<li class="itemMenu"><a class="menuItem" href="figmatips.html">Figma Tips 🗿</a></li>
-			</ul>
-			<ul class="footerMenuMobile" id="footerMenu">
-				<div class="content3">
-					<a class="footerLinks" href="https://www.linkedin.com/in/rodrigues02/" target="_blank"
-						rel="noopener noreferrer">Linkedin</a>
-					<a class="footerLinks" href="">Discord: releasenit</a>
-				</div>
-			</ul>
-		</nav>
-		<button id="menuToggle">
-			<svg id="svgMenu" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<header id="header-placeholder" data-header></header>
 
-				<!-- Linha de cima -->
-				<path id="lineTwo" d="M2 8C8.67863 8 12.3575 8 19 8" stroke="white" stroke-width="2"
-					stroke-linecap="round" />
-
-				<!-- Linha de baixo -->
-				<path id="lineTwo_2" d="M2 12C8.67863 12 12.3575 12 19 12" stroke="white" stroke-width="2"
-					stroke-linecap="round" />
-			</svg>
-		</button>
-	</header>
-
-	<div class="heroSection">
-		<div class="experience first">
-			<p>UX Designer & Product Designer</p>
+	<section class="hero" data-hero>
+		<div class="hero_info">
+			<p class="hero_role">
+				<span class="role">UX Designer &</span>
+				<span class="role">Product Designer</span>
+			</p>
+			<p class="hero_company">
+				Trabalhando em:<br>
+				Getronics
+			</p>
 		</div>
-		<div class="experience second">
-			<p>Trabalhando em: <br> Getronics <span class="flagCountry">br</span></p>
+		<canvas id="hero_canvas" data-hero-canvas></canvas>
+	</section>
+
+	<main class="projects" data-projects>
+		<div class="heading_projects">
+			<h2>Projetos</h2>
+			<span class="num_projects">(3)</span>
 		</div>
-		<canvas id="heroCanvas"></canvas>
-	</div>
-	<main>
-		<h2 class="titleProjects">Projetos <span class="numProjects">(3)</span></h2>
-		<div class="parent">
-			<div class="cardGrid destaque1">
-				<a href="/handoff.html" id="linkProjeto">
-					<span class="titleCard">Handoff - Lovelace</span>
-					<img src="/img/banner_1.png" alt="" id="imagemProjeto">
-					<span class="yearContent">2025</span>
-				</a>
-			</div>
-			<div class="cardGrid destaque2">
-				<a href="/batch.html">
-					<span class="titleCard">Processamentos Batch - Research</span>
-					<img src="/img/mainframe.jpg" alt="">
-					<span class="yearContent">2025</span>
-				</a>
-			</div>
-			<div class="cardGrid destaque3">
-				<a target="_blank" href="https://pstoryonline.com/">
-					<span class="titleCard">Pstory - Launcher Designer &#8599;</span>
-					<img src="/img/banner_4.png" alt="">
-					<span class="yearContent">2024</span>
-				</a>
-			</div>
+
+		<div class="projects_grid">
+
+			<a href="/handoff.html" class="item item-0">
+				<article class="project-card" data-project>
+					<div>
+						<span class="project-card_title"> Handoff — Lovelace</span>
+						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea dignissimos nostrum.
+							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
+							voluptatum soluta illum odio!</p>
+						<div class="acess_link">
+							<span class="acess_project">Acessar projeto</span>
+							<span class="svg_eye">
+								<svg id="eye_svg" width="300" height="300" viewBox="0 0 300 300" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<g id="eyeSvg">
+										<path id="eye_body"
+											d="M179.453 173.203C187.526 165.13 191.563 155.312 191.563 143.75C191.563 132.187 187.526 122.37 179.453 114.297C171.38 106.224 161.563 102.188 150 102.188C138.438 102.188 128.62 106.224 120.547 114.297C112.474 122.37 108.438 132.187 108.438 143.75C108.438 155.312 112.474 165.13 120.547 173.203C128.62 181.276 138.438 185.313 150 185.313C161.563 185.313 171.38 181.276 179.453 173.203ZM85.3906 201.484C65.7552 189.141 49.7917 173.021 37.5 153.125C36.4583 151.512 35.7552 149.95 35.3906 148.437C35.026 146.925 34.8438 145.361 34.8438 143.747C34.8438 142.132 35.026 140.57 35.3906 139.059C35.7552 137.549 36.4583 135.987 37.5 134.375C49.7917 114.479 65.7563 98.3594 85.3938 86.0156C105.029 73.6719 126.566 67.5 150.003 67.5C173.439 67.5 194.974 73.6719 214.609 86.0156C234.245 98.3594 250.208 114.468 262.5 134.341C263.542 135.926 264.271 137.488 264.688 139.025C265.104 140.563 265.312 142.151 265.312 143.791C265.312 145.43 265.104 147.005 264.688 148.516C264.271 150.026 263.542 151.574 262.5 153.159C250.208 173.032 234.244 189.141 214.606 201.484C194.971 213.828 173.434 220 149.997 220C126.561 220 105.026 213.828 85.3906 201.484Z"
+											fill="black" />
+										<path id="main_eye"
+											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
+											fill="#FF0000" />
+									</g>
+								</svg>
+							</span>
+						</div>
+					</div>
+				</article>
+			</a>
+
+			<a href="/handoff.html" class="item item-1">
+				<article class="project-card" data-project>
+					<div>
+						<span class="project-card_title"> Mainframe — Pesquisa</span>
+						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea dignissimos nostrum.
+							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
+							voluptatum soluta illum odio!</p>
+						<div class="acess_link">
+							<span class="acess_project">Acessar projeto</span>
+							<span class="svg_eye">
+								<svg id="eye_svg" width="300" height="300" viewBox="0 0 300 300" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<g id="eyeSvg">
+										<path id="eye_body"
+											d="M179.453 173.203C187.526 165.13 191.563 155.312 191.563 143.75C191.563 132.187 187.526 122.37 179.453 114.297C171.38 106.224 161.563 102.188 150 102.188C138.438 102.188 128.62 106.224 120.547 114.297C112.474 122.37 108.438 132.187 108.438 143.75C108.438 155.312 112.474 165.13 120.547 173.203C128.62 181.276 138.438 185.313 150 185.313C161.563 185.313 171.38 181.276 179.453 173.203ZM85.3906 201.484C65.7552 189.141 49.7917 173.021 37.5 153.125C36.4583 151.512 35.7552 149.95 35.3906 148.437C35.026 146.925 34.8438 145.361 34.8438 143.747C34.8438 142.132 35.026 140.57 35.3906 139.059C35.7552 137.549 36.4583 135.987 37.5 134.375C49.7917 114.479 65.7563 98.3594 85.3938 86.0156C105.029 73.6719 126.566 67.5 150.003 67.5C173.439 67.5 194.974 73.6719 214.609 86.0156C234.245 98.3594 250.208 114.468 262.5 134.341C263.542 135.926 264.271 137.488 264.688 139.025C265.104 140.563 265.312 142.151 265.312 143.791C265.312 145.43 265.104 147.005 264.688 148.516C264.271 150.026 263.542 151.574 262.5 153.159C250.208 173.032 234.244 189.141 214.606 201.484C194.971 213.828 173.434 220 149.997 220C126.561 220 105.026 213.828 85.3906 201.484Z"
+											fill="black" />
+										<path id="main_eye"
+											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
+											fill="#FF0000" />
+									</g>
+								</svg>
+							</span>
+						</div>
+					</div>
+				</article>
+			</a>
+
+			<a href="/handoff.html" class="item item-2">
+				<article class="project-card" data-project>
+					<div>
+						<span class="project-card_title"> Pstory — Launcher</span>
+						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea
+							dignissimos nostrum.
+							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
+							voluptatum soluta illum odio!</p>
+						<div class="acess_link">
+							<span class="acess_project">Acessar projeto</span>
+							<span class="svg_eye">
+								<svg id="eye_svg" width="300" height="300" viewBox="0 0 300 300" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<g id="eyeSvg">
+										<path id="eye_body"
+											d="M179.453 173.203C187.526 165.13 191.563 155.312 191.563 143.75C191.563 132.187 187.526 122.37 179.453 114.297C171.38 106.224 161.563 102.188 150 102.188C138.438 102.188 128.62 106.224 120.547 114.297C112.474 122.37 108.438 132.187 108.438 143.75C108.438 155.312 112.474 165.13 120.547 173.203C128.62 181.276 138.438 185.313 150 185.313C161.563 185.313 171.38 181.276 179.453 173.203ZM85.3906 201.484C65.7552 189.141 49.7917 173.021 37.5 153.125C36.4583 151.512 35.7552 149.95 35.3906 148.437C35.026 146.925 34.8438 145.361 34.8438 143.747C34.8438 142.132 35.026 140.57 35.3906 139.059C35.7552 137.549 36.4583 135.987 37.5 134.375C49.7917 114.479 65.7563 98.3594 85.3938 86.0156C105.029 73.6719 126.566 67.5 150.003 67.5C173.439 67.5 194.974 73.6719 214.609 86.0156C234.245 98.3594 250.208 114.468 262.5 134.341C263.542 135.926 264.271 137.488 264.688 139.025C265.104 140.563 265.312 142.151 265.312 143.791C265.312 145.43 265.104 147.005 264.688 148.516C264.271 150.026 263.542 151.574 262.5 153.159C250.208 173.032 234.244 189.141 214.606 201.484C194.971 213.828 173.434 220 149.997 220C126.561 220 105.026 213.828 85.3906 201.484Z"
+											fill="black" />
+										<path id="main_eye"
+											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
+											fill="#FF0000" />
+									</g>
+								</svg>
+							</span>
+						</div>
+					</div>
+				</article>
+			</a>
+
 		</div>
 	</main>
 
-	<section class="myTools">
-		<div class="floatingObjects">
-			<img class="figma sizeToolImg" src="/img/figma.png" alt="">
-			<img class="blender sizeToolImg" src="img/blender.png" alt="">
-			<img class="protopie sizeToolImg" src="/img/protopie.png" alt="">
-			<img class="photoshop sizeToolImg" src="/img/photoshop.png" alt="">
-			<img class="unreal sizeToolImg" src="/img/unreal.png" alt="">
-		</div>
-		<div class="pixelGrid"></div>
-		<div class="positionTools">
-			<h4 class="headingTools">As ferramentas certas
-				para os projetos certos.
-			</h4>
-		</div>
-	</section>
+	<div class="divider"></div>
 
-	<footer id="footerElement"></footer>
-	<div id="custom-cursor"></div>
-	<script type="module" src="script.js"></script>
-	<script src="animationMain.js"></script>
+	<!-- ================= FOOTER ================= -->
+
+	<footer class="footer" style="display: none;" data-footer></footer>
+	<!-- Cursor -->
+	<div class="cursor" data-cursor></div>
+
+	<!-- Scripts -->
+	<script type="module" src="/javascript/script.js"></script>
+	<script type="module" src="/javascript/animation.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

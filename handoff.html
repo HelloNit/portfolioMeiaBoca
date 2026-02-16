@@ -1,427 +1,267 @@
 <!DOCTYPE html>
-<html lang="pt_br">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Felipe Rodrigues — UX | UI Designer</title>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/mediaQueries.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <title>Felipe Rodrigues - UX | UI Designer</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/handoff.css">
+    <link rel="stylesheet" href="/css/query.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <header>
-        <a id="logoChangesTypo" href="/index.html">
-            <svg id="logo_main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-                <path d="M123.89,294.27h301.16v128.81h-147.9v47.11h138.95v112.12h-137.16v123.45H123.89v-411.49Z" />
-                <path
-                    d="M794.42,550.69c42.94-27.43,60.23-65.6,60.23-116.89,0-103.77-85.28-139.56-198.6-139.56h-177.72v411.52h155.07v-133h11.33l54.87,133h176.53l-81.7-155.07ZM716.08,444.12c-.81,1.63-2.14,2.95-3.77,3.77l-90.16,45.09c-3.28,1.6-7.23.91-9.76-1.73-2.54-2.63-3.09-6.6-1.37-9.82l18.87-35.06c1.99-3.72,1.99-8.19,0-11.91l-18.87-35.06c-1.73-3.22-1.17-7.19,1.37-9.82,2.51-2.67,6.45-3.42,9.76-1.85l90.16,45.09c4.16,2.08,5.85,7.14,3.77,11.29Z" />
-            </svg>
-        </a>
-        <nav id="mobileNav">
-            <ul class="positionItemMenu" id="menuItems">
-                <li class="itemMenu"><a class="menuItem" href="index.html">Início</a></li>
-                <li class="itemMenu"><a class="menuItem" href="project.html">Projetos</a></li>
-                <li class="itemMenu"><a class="menuItem" href="about.html">Sobre</a></li>
-                <li class="itemMenu"><a class="menuItem" href="figmatips.html">Figma Tips 🗿</a></li>
-            </ul>
-            <ul class="footerMenuMobile" id="footerMenu">
-                <div class="content3">
-                    <a class="footerLinks" href="https://www.linkedin.com/in/rodrigues02/" target="_blank"
-                        rel="noopener noreferrer">Linkedin</a>
-                    <a class="footerLinks" href="">Discord: releasenit</a>
+    <header id="header-placeholder" data-header></header>
+
+    <section class="hero_section">
+        <div class="workflow_cards">
+            <canvas id="connector-canvas"></canvas>
+
+            <div class="card" data-index="0">
+                <div class="content_card">
+                    <span class="title_role">UX Designer</span>
+                    <span class="part_project">Part I</span>
                 </div>
-            </ul>
-        </nav>
-        <button id="menuToggle">
-            <svg id="svgMenu" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-                <!-- Linha de cima -->
-                <path id="lineTwo" d="M2 8C8.67863 8 12.3575 8 19 8" stroke="white" stroke-width="2"
-                    stroke-linecap="round" />
-
-                <!-- Linha de baixo -->
-                <path id="lineTwo_2" d="M2 12C8.67863 12 12.3575 12 19 12" stroke="white" stroke-width="2"
-                    stroke-linecap="round" />
-            </svg>
-        </button>
-    </header>
-    <section class="heroProject">
-        <img class="heroProjectImg" src="/img/banner_1.png" alt="">
-    </section>
-    <main class="mainContentProject">
-        <div class="columnLeft">
-            <div class="titleProject">
-                <h1><span class="stickyContent">Lovelance <b>Handoff</b></span></h1>
-                <p class="clientReveal">Cliente: Não revelado</p>
-                <p class="myPosition"> Minha atuação teve foco em traduzir decisões técnicas em fluxos e protótipos
-                    claros, garantindo consistência visual e facilitando a implementação pelo time de
-                    desenvolvimento.</p>
+                <div class="image-container">
+                    <img src="img/batch.jpg" alt="UX Designer illustration">
+                </div>
             </div>
+            <div class="card-wrapper">
+                <div class="card" data-index="1">
+                    <div class="content_card">
+                        <span class="title_role">UI Designer</span>
+                        <span class="part_project">Part II</span>
+                    </div>
+                    <div class="image-container">
+                        <img src="img/batch.jpg" alt="UI Designer illustration">
+                    </div>
+                </div>
+
+                <div class="tooltip" role="tooltip">
+                    <h4>Minha atuação</h4>
+                    <p>Responsible for visual <br> design and prototyping</p>
+                    <span class="tooltip-arrow"></span>
+                </div>
+            </div>
+
+            <div class="card" data-index="2">
+                <div class="content_card">
+                    <span class="title_role">Desenvolvedor</span>
+                    <span class="part_project">Part III</span>
+                </div>
+                <div class="image-container">
+                    <img src="img/batch.jpg" alt="Developer illustration">
+                </div>
+            </div>
+
+            <div class="card final_product" data-index="3">
+                <div class="content_card">
+                    <span class="title_role">Organização final: Handoff</span>
+                </div>
+                <div class="image-container">
+                    <img src="img/Thumbnail.png" alt="Final product">
+                </div>
+            </div>
+
         </div>
-        <div class="columnRight">
-            <h1 class="styledHeading">Lovelace é uma ferramenta de sugestão de tecnologias que orienta o
-                usuário até a opção mais adequada a partir de um conjunto de perguntas estruturadas.
-                Ao final do fluxo, o sistema entrega um resultado previsível e previamente definido,
-                reduzindo a incerteza na escolha de ferramentas técnicas. </h1>
-            <div class="contentPartOne">
-                <span class="subtitleContentPhases">👥 Quem a utiliza?</span>
+    </section>
 
-                <div class="positionChallenges">
-                    <span class="subtitleContentPhases">
-                        O produto é focado em desenvolvedores back-end, front-end ou fullstack.
-                    </span>
-                    <span class="helloWorldEffect">
-                        <div class="card">
-                            <div class="wrap">
-                                <div class="terminal">
-                                    <hgroup class="head">
-                                        <p class="title">
-                                            <svg width="16px" height="16px" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                                                stroke="currentColor" fill="none">
-                                                <path
-                                                    d="M7 15L10 12L7 9M13 15H17M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z">
-                                                </path>
-                                            </svg>
-                                            Terminal
-                                        </p>
-
-                                        <button class="copy_toggle" tabindex="-1" type="button">
-                                            <svg width="16px" height="16px" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                                                stroke="currentColor" fill="none">
-                                                <path
-                                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                                                </path>
-                                                <path
-                                                    d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </hgroup>
-
-                                    <div class="body">
-                                        <pre class="pre">          <code>-&nbsp;</code>
-          <code>PS C:\user\felipe &nbsp;</code>
-          <code class="cmd" data-cmd="g++ yourfilename.cpp -o file"></code>
-        </pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </span>
+    <main>
+        <div class="sticky_column_right">
+            <div class="column_one_fixed">
+                <h2>Lovelance Handoff</h2>
+                <div class="introduce_resume">
+                    <p class="client_reveal">Cliente: Não revelado</p>
+                    <p class="my_position">Minha atuação teve foco em traduzir decisões técnicas em fluxos e protótipos
+                        claros, garantindo consistência visual e facilitando a implementação pelo time de
+                        desenvolvimento.
+                    </p>
                 </div>
             </div>
-            <div class="contentHeadingMain">
-                <div class="challenges sizeChallenges headingContentMain">
-                    <div class="spaceContentBlockOne">
-                        <h2>Problema</h2>
-                        <p class="sourceExplain">O time de front-end e QA tinham dificuldades em compreender a lógica
-                            por
+
+            <div class="column_two">
+                <span class="introduce_project_text">
+                    Lovelace é uma ferramenta de sugestão de tecnologias que orienta o usuário até a opção mais adequada
+                    a
+                    partir de um conjunto de perguntas estruturadas. Ao final do fluxo, o sistema entrega um resultado
+                    previsível e previamente definido, reduzindo a incerteza na escolha de ferramentas técnicas.
+                </span>
+                <span class="clients_main">
+                    <h3>Para quem é o produto 👥</h3>
+                    <p class="paragraph">O produto é focado em desenvolvedores back-end, front-end ou fullstack.</p>
+                </span>
+                <span class="cards_introduction">
+                    <div class="card_problem">
+                        <h3>Problema</h3>
+                        <p class="paragraph">O time de front-end e QA tinham dificuldades em compreender
+                            a lógica por
                             trás dos protótipos.
                             Os fluxos não estavam claros, as telas produzidas não seguiam uma hierarquia facilmente
                             identificável e não havia uma estrutura que conectasse decisões de interface com o
-                            comportamento esperado do sistema.</p>
+                            comportamento esperado do sistema.
+                        </p>
                     </div>
-                    <div class=" spaceContentBlockOne">
-                        <h2>Decisão</h2>
-                        <p class="sourceExplain">Diante desse cenário, decidi estruturar um handoff visual e funcional,
+                    <div class="card_problem">
+                        <h3>Decisão</h3>
+                        <p class="paragraph">Diante desse cenário, decidi estruturar um handoff visual e funcional,
                             mesmo sendo um projeto simples, com o objetivo de tornar os fluxos explícitos, organizar as
                             telas produzidas e facilitar a leitura técnica do protótipo para o time de desenvolvimento.
                         </p>
                     </div>
-                    <div class=" spaceContentBlockOne">
-                        <h2>Solução</h2>
-                        <p class="sourceExplain">O handoff foi organizado em sessões claras, separando fluxos,
+                    <div class="card_problem">
+                        <h3>Solução</h3>
+                        <p class="paragraph">O handoff foi organizado em sessões claras, separando fluxos,
                             protótipos finais e componentes, com anotações focadas no comportamento da interface e nos
-                            estados dos elementos.
-
-                            Essa organização permitiu que os desenvolvedores navegassem pelo protótipo com mais
+                            estados dos elementos. Essa organização permitiu que os desenvolvedores navegassem pelo
+                            protótipo com mais
                             autonomia, reduzindo dúvidas durante a implementação.
                         </p>
                     </div>
-                </div>
-                <div class="mainContent">
-                    <div class="contentPartTwo">
-                        <span class="subtitleContentPhases">Primeira frase</span>
-                        <p>Neste momento do projeto, foram identificadas dores recorrentes do time de desenvolvimento,
-                            principalmente relacionadas ao uso incorreto dos componentes do design system e à ausência
-                            de uma listagem clara dos componentes utilizados após a finalização dos protótipos.
-                        </p>
-                        <p>
-                            Outro ponto levantado foi a falta de um arquivo padrão que centralizasse e organizasse todos
-                            os protótipos desenvolvidos pela equipe de UX Design, dificultando a navegação, o
-                            entendimento dos fluxos e a leitura técnica do material..
-                        </p>
-                        <p>
-                            A partir dessas necessidades, foi proposta a criação de um fluxo inicial de organização do
-                            projeto, materializado em um diagrama que estruturasse desde a exploração até o handoff
-                            final.
-                        </p>
-                        <h2>Diagrama.:</h2>
-                        <div class="diagram-wrapper">
-                            <canvas id="diagram"></canvas>
-                            <div class="labels">
-                                <div class="label center">Main file figma</div>
-                                <div class="label">Thumbnail</div>
-                                <div class="label">Onboarding</div>
-                                <div class="label">Release</div>
-                                <div class="label">Drafts</div>
-                                <div class="label">Sketch</div>
-                                <div class="label">Workstation</div>
-                                <div class="label">Final Prototyping</div>
-                                <div class="label">Handoff</div>
-                                <div class="label">Final flow</div>
-                                <div class="label">Componentes</div>
-                            </div>
-                        </div>
-                        <h2>&#x203B; Thumbnail</h2>
-                        <span class="subtitleContentPhases">
-                            <p>Aqui é onde tudo começa. A thumbnail foi criada como uma página de entrada simples, capaz
-                                de direcionar rapidamente designers e desenvolvedores para os principais fluxos do
-                                handoff.</p>
-                        </span>
-                        <p>Funcionando como uma vitrine do projeto, essa página reúne todos os caminhos disponíveis no
-                            arquivo, organizados por meio de atalhos visuais que facilitam a navegação e reduzem
-                            fricções no processo de entendimento..
-                        </p>
-                        <p>Essa abordagem permitiu que o handoff se tornasse autoexplicativo, reduzindo dependência de
-                            alinhamentos síncronos.</p>
-                        <img class="imgSizeFull" src="/img/thumbnail.png" alt="">
-                        <h2>&#x203B; Onboarding</h2>
-                        <span class="subtitleContentPhases">
-                            A página de onboarding tem como objetivo contextualizar novos colaboradores da área de
-                            tecnologia, incluindo desenvolvedores, designers, QA e Product Owners, oferecendo uma visão
-                            geral do produto antes do contato direto com os protótipos.
-                        </span>
-                        <p>Nela são descritas as etapas anteriores, os times envolvidos e os principais critérios de
-                            aceitação considerados, como pesquisas qualitativas e quantitativas com usuários. Essas
-                            etapas são indicadas de forma visual, sem a inclusão de links diretos para repositórios,
-                            preservando a anonimidade dos participantes da pesquisa.</p>
-                        <img class="imgSizeFull" src="/img/onboarding.png" alt="">
-                        <h2>&#x203B; Drafts</h2>
-                        <span class="subtitleContentPhases">
-                            A seção de Drafts (rascunhos) é um espaço dedicado à ideação, onde conceitos podem ser
-                            explorados em baixa e média fidelidade. Este ambiente flexível permite o registro de ideias
-                            para futuras iterações, sem o compromisso com o refinamento visual imediato.
-                        </span>
-
-                        <h2>&#x203B; Workstation</h2>
-                        <span class="subtitleContentPhases">
-                            A Workstation funciona como o espaço de consolidação do trabalho de design. É nessa página
-                            que os designers organizam versões estáticas das telas junto aos protótipos de alta
-                            fidelidade, criando um ambiente estruturado para evolução do projeto.
-                        </span>
-
-                        <h2>&#x203B; Protótipo final</h2>
-                        <span class="subtitleContentPhases">
-                            A página de protótipos final foi criada para centralizar exclusivamente as telas de alta
-                            fidelidade, oferecendo um espaço dedicado à organização e manutenção do material final de
-                            design.
-                        </span>
-                        <p>Designers de diferentes níveis de senioridade frequentemente enfrentam desafios ao estruturar
-                            seus arquivos, misturando explorações visuais, componentes e versões intermediárias com
-                            protótipos finalizados. Essa sobreposição pode dificultar tanto a evolução do projeto quanto
-                            a leitura por parte do time de desenvolvimento.
-                        </p>
-                        <p>
-                            Como solução, essa seção isola os protótipos de alta fidelidade, permitindo manutenção
-                            contínua e a adição de novas funcionalidades sem comprometer a clareza do arquivo ou o fluxo
-                            de handoff.
-                        </p>
-                        <img class="imgSizeFull" src="/img/prototipo_final.png" alt="">
-                        <span class="subtitleContentPhases">
-                            Para garantir que outros designers pudessem evoluir o protótipo com precisão — sem
-                            ambiguidades ou ruídos — foram adotadas duas abordagens complementares de construção de
-                            fluxo.
-                        </span>
-                        <p>A primeira segue o método tradicional de conexão entre nós, permitindo visualização direta da
-                            navegação. A segunda utiliza Figma Variables para estruturar estados, comportamentos e
-                            relações de forma mais previsível e escalável. Essa combinação reduz a chance de
-                            interpretações equivocadas, facilita a continuidade do
-                            trabalho e mantém o fluxo consistente mesmo com múltiplos colaboradores.
-                        </p>
-
-                        <div class="sliderWrapper">
-
-                        </div>
-                        <!-- slider -->
-                        <div class="sliderGsap">
-                            <div class="content-slider">
-                                <div class="overlay"></div>
-                                <div class="textContent">
-                                    <h3>- Nós + lógica (1/3)</h3>
-                                    <p>
-                                        Este exemplo demonstra como cada componente é estruturado dentro do canvas do
+                </span>
+                <span class="first_phase">
+                    <h3>Primeira fase</h3>
+                    <p class="paragraph">
+                        Neste momento do projeto, foram identificadas dores recorrentes do time de desenvolvimento,
+                        principalmente relacionadas ao uso incorreto dos componentes do design system e à ausência
+                        de uma listagem clara dos componentes utilizados após a finalização dos protótipos.
+                    </p>
+                    <p class="paragraph">Outro ponto levantado foi a falta de um arquivo padrão que centralizasse e
+                        organizasse todos
+                        os protótipos desenvolvidos pela equipe de UX Design, dificultando a navegação, o
+                        entendimento dos fluxos e a leitura técnica do material..</p>
+                    <p class="paragraph">
+                        A partir dessas necessidades, foi proposta a criação de um fluxo inicial de organização do
+                        projeto, materializado em um diagrama que estruturasse desde a exploração até o handoff
+                        final.
+                    </p>
+                </span>
+                <span class="diagram">
+                    <h3>Diragama </h3>
+                    <div id="diagram">
+                    </div>
+                </span>
+                <span class="thumbnail">
+                    <h3>Thumbnail</h3>
+                    <p class="paragraph">
+                        Aqui é onde tudo começa. A thumbnail foi criada como uma página de entrada simples, capaz
+                        de direcionar rapidamente designers e desenvolvedores para os principais fluxos do
+                        handoff.
+                    </p>
+                    <p class="paragraph">
+                        Funcionando como uma vitrine do projeto, essa página reúne todos os caminhos disponíveis no
+                        arquivo, organizados por meio de atalhos visuais que facilitam a navegação e reduzem
+                        fricções no processo de entendimento.Essa abordagem permitiu que o handoff se tornasse
+                        autoexplicativo, reduzindo dependência de
+                        alinhamentos síncronos.
+                    </p>
+                    <div class="divider"></div>
+                    <img src="/img/Thumbnail.png" alt="">
+                </span>
+                <span class="onboarding">
+                    <h3>Onboarding</h3>
+                    <p class="paragraph">
+                        A página de onboarding tem como objetivo contextualizar novos colaboradores da área de
+                        tecnologia, incluindo desenvolvedores, designers, QA e Product Owners, oferecendo uma visão
+                        geral do produto antes do contato direto com os protótipos.
+                    </p>
+                    <p class="paragraph">
+                        ela são descritas as etapas anteriores, os times envolvidos e os principais critérios de
+                        aceitação considerados, como pesquisas qualitativas e quantitativas com usuários. Essas
+                        etapas são indicadas de forma visual, sem a inclusão de links diretos para repositórios,
+                        preservando a anonimidade dos participantes da pesquisa.
+                    </p>
+                    <img src="/img/onboarding.png" alt="">
+                </span>
+                <span class="drafts">
+                    <h3>Drafts</h3>
+                    <p class="paragraph">
+                        A seção de Drafts (rascunhos) é um espaço dedicado à ideação, onde conceitos podem ser
+                        explorados em baixa e média fidelidade. Este ambiente flexível permite o registro de ideias
+                        para futuras iterações, sem o compromisso com o refinamento visual imediato.
+                    </p>
+                </span>
+                <span class="workstation">
+                    <h3>Workstation</h3>
+                    <p class="paragraph">
+                        A Workstation funciona como o espaço de consolidação do trabalho de design. É nessa página
+                        que os designers organizam versões estáticas das telas junto aos protótipos de alta
+                        fidelidade, criando um ambiente estruturado para evolução do projeto.
+                    </p>
+                    <img src="/img/prototipo_final.png" alt="">
+                </span>
+                <span class="final_prototype">
+                    <h3>Prototipo final</h3>
+                    <p class="paragraph">
+                        A página de protótipos final foi criada para centralizar exclusivamente as telas de alta
+                        fidelidade, oferecendo um espaço dedicado à organização e manutenção do material final de
+                        design. Designers de diferentes níveis de senioridade frequentemente enfrentam desafios ao
+                        estruturar
+                        seus arquivos, misturando explorações visuais, componentes e versões intermediárias com
+                        protótipos finalizados. Essa sobreposição pode dificultar tanto a evolução do projeto quanto
+                        a leitura por parte do time de desenvolvimento.
+                    </p>
+                    <p class="paragraph">
+                        Como solução, essa seção isola os protótipos de alta fidelidade, permitindo manutenção
+                        contínua e a adição de novas funcionalidades sem comprometer a clareza do arquivo ou o fluxo
+                        de handoff.
+                    </p>
+                    <img src="/img/final_proto.png" alt="">
+                    <p class="paragraph">
+                        Para garantir que outros designers pudessem evoluir o protótipo com precisão — sem
+                        ambiguidades ou ruídos — foram adotadas duas abordagens complementares de construção de
+                        fluxo.
+                    </p>
+                    <p class="paragraph">
+                        A primeira segue o método tradicional de conexão entre nós, permitindo visualização direta da
+                        navegação. A segunda utiliza Figma Variables para estruturar estados, comportamentos e
+                        relações de forma mais previsível e escalável. Essa combinação reduz a chance de
+                        interpretações equivocadas, facilita a continuidade do
+                        trabalho e mantém o fluxo consistente mesmo com múltiplos colaboradores.
+                    </p>
+                    <div class="slider_wrapper">
+                        <div class="slider_style stylder_one">
+                            <div class="overlay"></div>
+                            <div class="content_slider">
+                                <div class="contet_text">
+                                    <span class="title_slider_text">Menos Nós e + lógica (1/3)</span>
+                                    <p class="paragraph"> Este exemplo demonstra como cada componente é estruturado
+                                        dentro
+                                        do canvas
+                                        do
                                         Figma. É comum que protótipos se tornem visualmente poluídos devido ao excesso
                                         de nós, o que dificulta a manutenção dos fluxos e a identificação de entradas e
-                                        saídas.
-                                    </p>
-                                    <p>
+                                        saídas.</p>
+                                    <p class="paragraph">
                                         Ao utilizar condicionais e variáveis, o protótipo se torna mais lógico e
                                         organizado. Essa abordagem reduz a complexidade visual, melhora a navegação
                                         entre estados e facilita a manutenção do fluxo ao longo do projeto.
                                     </p>
-                                    <p><i>Clique 2x para ver a imagem</i></p>
-                                </div>
-                                <img src="/img/prototipo_final_blured.png" alt="">
-                            </div>
-                            <div class="content-slider">
-                                <div class="overlay"></div>
-                                <div class="textContent">
-                                    <h3>Interações (2/3)</h3>
-                                    <p>
-                                        Este trecho exemplifica o console de interações baseado em <i>lógica
-                                            condicional</i>. A
-                                        variável hasOption define a quantidade total de opções <i>(radio buttons)</i>
-                                        disponíveis, determinando os possíveis caminhos que o usuário pode seguir dentro
-                                        do fluxo
-                                    </p>
-                                    <p><i>Clique 2x para ver a imagem</i></p>
+                                    <p class="paragraph"><i>Clique 2x para ver a imagem</i></p>
                                 </div>
                                 <img src="/img/variableShow.png" alt="">
                             </div>
-                            <div class="content-slider">
-                                <div class="overlay"></div>
-                                <div class="textContent">
-                                    <h3> Conjunto de funções e variáveis (3/3)</h3>
-                                    <p>
-                                        As collections centralizam condições e variáveis reutilizáveis, permitindo que
-                                        sejam aplicadas em múltiplos fluxos e regras condicionais. Essa organização
-                                        reduz a complexidade dos arquivos, evita redundâncias e facilita a manutenção
-                                        para os próximos designers.
-                                    </p>
-                                    <p><i>Clique 2x para ver a imagem</i></p>
-                                </div>
-                                <img src="/img/variableBuild.png" alt="">
-                            </div>
-                        </div>
-                        <!-- slider -->
-
-                        <h2>&#x203B; Handoff</h2>
-                        <span class="subtitleContentPhases">
-                            Aqui se encontra o que os <i>desenvolvedores</i> e <i>QA</i> se encontram.
-                        </span>
-                        <p>A passagem de bastão, foi construída de forma direta, utilizando a ferramenta <a
-                                href="https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs"
-                                target="_blank" rel="noopener noreferrer">Figma Annotations</a>. Uma das maiores
-                            ferramentas de listagem de caracteristicas de componentes como nome
-                            tamanho, cor, hexadecimal etc.
-                        </p>
-                        <h2>&#x203B; Componentes</h2>
-                        <span class="subtitleContentPhases">
-                            Um erro? Um equivoco? Não sei! Mas não funcionou essa sessão.
-                        </span>
-                        <p>
-                            Não há um design aprova de balas ou erros indepente de senioridade. Essa sessão é um
-                            exemplo... A ideia aqui foi criar uma sessão que isolaria
-                            com todos os componentes que faziam parte do corpo da interface, no final se tornou uma
-                            sessão inútil já que todos os componentes e seus nomes
-                            já estavam listados na sessão de handoff. Abaixo estão algumas imagens anexadas para
-                            demonstrar melhor como seria.
-                        </p>
-                        <img class="imgSizeFull" src="/img/radioBtn.png" alt="">
-                        <img class="imgSizeFull" src="/img/progressbar.png" alt="">
-                    </div>
-                    <div class="divider"></div>
-                    <h3 id="scramble" class="styledHeading">Resultados</h3>
-
-                    <div class="challenges sizeChallenges headingContentMain">
-                        <div class="spaceContentBlockOne">
-                            <h2>Redução de dúvidas </h2>
-                            <!-- tooltip -->
-                            <div class="tooltip pos1">
-                                <span class="tooltipText tooltipComponent styled1">
-                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
-                                    <div class="commentUser">
-                                        <span class="namePic">Front-end</span>
-                                        <p class="comment"><i>‘O fluxograma tem ajudado bastante’</i></p>
-                                    </div>
-                                </span>
-                            </div>
-                            <!-- tooltip -->
-
-                            <!-- tooltip -->
-                            <div class="tooltip pos2">
-                                <span class="tooltipText tooltipComponent styled2">
-                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
-                                    <div class="commentUser">
-                                        <span class="namePic">QA Analista</span>
-                                        <p class="comment"><i>‘[...]Embora eu não esteja validando as cores de
-                                                botões ou tamanho dos componentes o protótipo ajuda ’</i></p>
-                                    </div>
-                                </span>
-                            </div>
-                            <!-- tooltip -->
-                            <p class="sourceExplain">
-                                Os fluxos anteriormente eram apenas declarados através dos protótipos. Hoje o fluxo são
-                                declarados
-                                através do fluxograma.
-                            </p>
-                        </div>
-                        <div class=" spaceContentBlockOne">
-                            <h2>Introdução ao produto</h2>
-                            <div class="tooltip pos3">
-                                <span class="tooltipText tooltipComponent styled3">
-                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
-                                    <div class="commentUser">
-                                        <span class="namePic">Back-end</span>
-                                        <p class="comment"><i>‘As pessoas entram e saem de projetos. O protótipo e
-                                                Onboaridng
-                                                ajudam a contextualizar novos integrantes’</i></p>
-                                    </div>
-                                </span>
-                            </div>
-                            <div class="tooltip pos4">
-                                <span class="tooltipText tooltipComponent styled1">
-                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
-                                    <div class="commentUser">
-                                        <span class="namePic">Vanessa Souza</span>
-                                        <p class="comment"><i>‘O fluxograma tem ajudado bastante’</i></p>
-                                    </div>
-                                </span>
-                            </div>
-                            <p class="sourceExplain">
-                                Onboarding guia novos desenvolvedores, QA e Designers. Para a continuação
-                                de melhorias continua.
-                            </p>
-                        </div>
-                        <div class=" spaceContentBlockOne">
-                            <h2>Informação centralizadas</h2>
-                            <div class="tooltip pos5">
-                                <span class="tooltipText tooltipComponent styled4">
-                                    <img class="picPerson" src="/img/myProfile_Pic.png" alt="">
-                                    <div class="commentUser">
-                                        <span class="namePic">Designer</span>
-                                        <p class="comment"><i>‘Não preciso ficar indo no protótipo e depois consultar
-                                                no figjam para ver o diagrama. Isso ajudou a economizar tempo no
-                                                desenvolvimento...’</i></p>
-                                    </div>
-                                </span>
-                            </div>
-                            <p class="sourceExplain">
-                                A centralização de informações e a utlização de branch ajudaram a centralizar
-                                versões anteriores.
-                            </p>
                         </div>
                     </div>
-                </div>
+                </span>
             </div>
+        </div>
     </main>
-    <footer id="footerElement"></footer>
-    <script type="module" src="script.js"></script>
-    <script src="canvas.js"></script>
-</body>
 
-</html>
+
+
+    <footer class="footer" style="display: none;" data-footer></footer>
+    <!-- Cursor -->
+    <div class="cursor" data-cursor></div>
+    <!-- Scripts -->
+    <script type="module" src="/javascript/script.js"></script>
+    <script type="module" src="/javascript/animation.js"></script>
+    <script type="module" src="/javascript/diagram.js"></script>
+</body>
