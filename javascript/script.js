@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#header-placeholder").load("components/header.html", function () {
         inicializarMenu();
     });
-    
+
     $("#footer-placeholder").load("components/footer.html");
 });
 
@@ -137,8 +137,8 @@ function getAnchor(card, position = "bottom") {
     const wrapperRect = wrapper.getBoundingClientRect();
 
     const x = rect.left + rect.width / 2 - wrapperRect.left;
-    const y = position === "bottom" 
-        ? rect.bottom - wrapperRect.top 
+    const y = position === "bottom"
+        ? rect.bottom - wrapperRect.top
         : rect.top - wrapperRect.top;
 
     return { x, y };
@@ -158,52 +158,52 @@ function draw() {
     cards.forEach((card, index) => {
         if (index < cards.length - 1) {
             const nextCard = cards[index + 1];
-            
+
             const start = getAnchor(card, "bottom");
             const end = getAnchor(nextCard, "top");
 
             const dx = end.x - start.x;
             const dy = end.y - start.y;
             const curveAmount = 100;
-            
+
             // Cria gradiente com luz animada
             const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
-            
+
             // Calcula a posição da luz (0 a 1)
             const lightPos = (lightPosition + index * 0.3) % 1;
-            
+
             // Cria o efeito de luz percorrendo a linha
             const lightSize = 0.15; // Tamanho da luz
-            
+
             gradient.addColorStop(0, '#000000');
-            
+
             if (lightPos - lightSize > 0) {
                 gradient.addColorStop(lightPos - lightSize, '#000000');
             }
-            
+
             gradient.addColorStop(lightPos, '#ffffff'); // Luz branca no centro
-            
+
             if (lightPos + lightSize < 1) {
                 gradient.addColorStop(lightPos + lightSize, '#000000');
             }
-            
+
             gradient.addColorStop(1, '#000000');
-            
+
             ctx.strokeStyle = gradient;
-            
+
             ctx.beginPath();
             ctx.moveTo(start.x, start.y);
-            
+
             ctx.bezierCurveTo(
                 start.x + dx * 0.0, start.y + curveAmount,
                 end.x - dx * 0.3, end.y - curveAmount,
                 end.x, end.y
             );
-            
+
             ctx.stroke();
         }
     });
-    
+
     // Incrementa a posição da luz
     lightPosition += 0.005; // Velocidade da luz
     if (lightPosition > 1) lightPosition = 0;
@@ -215,11 +215,11 @@ function draw() {
 function loadPositions(breakpoint) {
     const key = `cardPositions_${breakpoint}`;
     const saved = localStorage.getItem(key);
-    
+
     if (saved) {
         return JSON.parse(saved);
     }
-    
+
     return defaultPositions[breakpoint];
 }
 
@@ -229,14 +229,14 @@ function loadPositions(breakpoint) {
 function savePositions() {
     const breakpoint = getCurrentBreakpoint();
     const positions = [];
-    
+
     cards.forEach((card) => {
         positions.push({
             x: parseInt(card.style.left),
             y: parseInt(card.style.top)
         });
     });
-    
+
     const key = `cardPositions_${breakpoint}`;
     localStorage.setItem(key, JSON.stringify(positions));
 }
@@ -247,7 +247,7 @@ function savePositions() {
 function applyPositions() {
     const breakpoint = getCurrentBreakpoint();
     const positions = loadPositions(breakpoint);
-    
+
     cards.forEach((card, index) => {
         const pos = positions[index];
         card.style.left = `${pos.x}px`;
@@ -262,11 +262,11 @@ function resetPositions(breakpoint = null) {
     const bp = breakpoint || getCurrentBreakpoint();
     const key = `cardPositions_${bp}`;
     localStorage.removeItem(key);
-    
+
     if (!breakpoint) {
         applyPositions();
     }
-    
+
     console.log(`🔄 Posições resetadas para ${bp}px!`);
 }
 
@@ -283,21 +283,21 @@ function resetAllPositions() {
 cards.forEach((card, index) => {
     card.style.position = 'absolute';
     card.style.cursor = 'grab';
-    
+
     // Mouse Down
     card.addEventListener('mousedown', (e) => {
         activeCard = card;
         const rect = card.getBoundingClientRect();
-        
+
         offset.x = e.clientX - rect.left;
         offset.y = e.clientY - rect.top;
-        
+
         // Inicializa posição atual
         currentX = parseInt(card.style.left) || 0;
         currentY = parseInt(card.style.top) || 0;
         targetX = currentX;
         targetY = currentY;
-        
+
         card.style.cursor = 'grabbing';
         card.style.zIndex = '1000';
     });
@@ -307,16 +307,16 @@ cards.forEach((card, index) => {
         activeCard = card;
         const touch = e.touches[0];
         const rect = card.getBoundingClientRect();
-        
+
         offset.x = touch.clientX - rect.left;
         offset.y = touch.clientY - rect.top;
-        
+
         // Inicializa posição atual
         currentX = parseInt(card.style.left) || 0;
         currentY = parseInt(card.style.top) || 0;
         targetX = currentX;
         targetY = currentY;
-        
+
         card.style.zIndex = '100';
     }, { passive: true });
 });
@@ -327,16 +327,16 @@ applyPositions();
 // Mouse Move - atualiza apenas o target
 document.addEventListener('mousemove', (e) => {
     if (!activeCard) return;
-    
+
     const wrapperRect = wrapper.getBoundingClientRect();
     const cardRect = activeCard.getBoundingClientRect();
-    
+
     let x = e.clientX - wrapperRect.left - offset.x;
     let y = e.clientY - wrapperRect.top - offset.y;
-    
+
     x = Math.max(0, Math.min(x, wrapperRect.width - cardRect.width));
     y = Math.max(0, Math.min(y, wrapperRect.height - cardRect.height));
-    
+
     targetX = x;
     targetY = y;
 });
@@ -344,17 +344,17 @@ document.addEventListener('mousemove', (e) => {
 // Touch Move - atualiza apenas o target
 document.addEventListener('touchmove', (e) => {
     if (!activeCard) return;
-    
+
     const touch = e.touches[0];
     const wrapperRect = wrapper.getBoundingClientRect();
     const cardRect = activeCard.getBoundingClientRect();
-    
+
     let x = touch.clientX - wrapperRect.left - offset.x;
     let y = touch.clientY - wrapperRect.top - offset.y;
-    
+
     x = Math.max(0, Math.min(x, wrapperRect.width - cardRect.width));
     y = Math.max(0, Math.min(y, wrapperRect.height - cardRect.height));
-    
+
     targetX = x;
     targetY = y;
 }, { passive: true });
@@ -392,11 +392,11 @@ function animate() {
     if (activeCard) {
         currentX += (targetX - currentX) * smoothness;
         currentY += (targetY - currentY) * smoothness;
-        
+
         activeCard.style.left = `${currentX}px`;
         activeCard.style.top = `${currentY}px`;
     }
-    
+
     draw();
     requestAnimationFrame(animate);
 }
@@ -443,7 +443,7 @@ slides.forEach(slide => {
     slide.addEventListener('click', () => {
         const overlay = slide.querySelector('.overlay');
         const contentText = slide.querySelector('.content_text');
-        
+
         // Toggle com classes
         overlay.classList.toggle('hidden');
         contentText.classList.toggle('hidden');
@@ -503,3 +503,20 @@ cardWrappers.forEach(wrapper => {
         });
     });
 });
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+
+    });
+}
