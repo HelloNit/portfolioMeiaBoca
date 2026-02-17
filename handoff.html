@@ -99,7 +99,7 @@
                     <p class="paragraph">O produto é focado em desenvolvedores back-end, front-end ou fullstack.</p>
                 </span>
                 <span class="cards_introduction">
-                    <div class="card_problem">
+                    <div class="card_projects  color_card">
                         <h3>Problema</h3>
                         <p class="paragraph">O time de front-end e QA tinham dificuldades em compreender
                             a lógica por
@@ -109,14 +109,14 @@
                             comportamento esperado do sistema.
                         </p>
                     </div>
-                    <div class="card_problem">
+                    <div class="card_projects color_card">
                         <h3>Decisão</h3>
                         <p class="paragraph">Diante desse cenário, decidi estruturar um handoff visual e funcional,
                             mesmo sendo um projeto simples, com o objetivo de tornar os fluxos explícitos, organizar as
                             telas produzidas e facilitar a leitura técnica do protótipo para o time de desenvolvimento.
                         </p>
                     </div>
-                    <div class="card_problem">
+                    <div class="card_projects  color_card">
                         <h3>Solução</h3>
                         <p class="paragraph">O handoff foi organizado em sessões claras, separando fluxos,
                             protótipos finais e componentes, com anotações focadas no comportamento da interface e nos
@@ -227,26 +227,153 @@
                         trabalho e mantém o fluxo consistente mesmo com múltiplos colaboradores.
                     </p>
                     <div class="slider_wrapper">
-                        <div class="slider_style stylder_one">
-                            <div class="overlay"></div>
-                            <div class="content_slider">
-                                <div class="contet_text">
-                                    <span class="title_slider_text">Menos Nós e + lógica (1/3)</span>
-                                    <p class="paragraph"> Este exemplo demonstra como cada componente é estruturado
-                                        dentro
-                                        do canvas
-                                        do
-                                        Figma. É comum que protótipos se tornem visualmente poluídos devido ao excesso
-                                        de nós, o que dificulta a manutenção dos fluxos e a identificação de entradas e
-                                        saídas.</p>
-                                    <p class="paragraph">
-                                        Ao utilizar condicionais e variáveis, o protótipo se torna mais lógico e
-                                        organizado. Essa abordagem reduz a complexidade visual, melhora a navegação
-                                        entre estados e facilita a manutenção do fluxo ao longo do projeto.
-                                    </p>
-                                    <p class="paragraph"><i>Clique 2x para ver a imagem</i></p>
+                        <div class="slider_container">
+                            <!-- Slide 1 -->
+                            <div class="slider_item active" data-slide="1">
+                                <div class="overlay"></div>
+                                <div class="content_slider">
+                                    <div class="content_text">
+                                        <span class="title_slider_text">Menos Nós e + lógica (1/3)</span>
+                                        <p class="paragraph slider_text">
+                                            Este exemplo demonstra como cada componente é estruturado dentro do canvas
+                                            do
+                                            Figma. É comum que protótipos se tornem visualmente poluídos devido ao
+                                            excesso
+                                            de nós, o que dificulta a manutenção dos fluxos e a identificação de
+                                            entradas e
+                                            saídas.
+                                        </p>
+                                        <p class="paragraph slider_text">
+                                            Ao utilizar condicionais e variáveis, o protótipo se torna mais lógico e
+                                            organizado. Essa abordagem reduz a complexidade visual, melhora a navegação
+                                            entre estados e facilita a manutenção do fluxo ao longo do projeto.
+                                        </p>
+                                        <p class="paragraph slider_text"><i>Clique 2x para ver a imagem</i></p>
+                                    </div>
+                                    <img src="/img/variableShow.png" alt="">
                                 </div>
-                                <img src="/img/variableShow.png" alt="">
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="slider_item" data-slide="2">
+                                <div class="overlay"></div>
+                                <div class="content_slider">
+                                    <div class="content_text">
+                                        <span class="title_slider_text">Interações (2/3)</span>
+                                        <p class="paragraph slider_text">
+                                            Este trecho exemplifica o console de interações baseado em saídas.
+                                        </p>
+                                        <p class="paragraph slider_text">
+                                            Ao utilizar condicionais e variáveis, o protótipo se torna mais lógico e
+                                            organizado. Essa abordagem reduz a complexidade visual, melhora a navegação
+                                            entre estados e facilita a manutenção do fluxo ao longo do projeto.
+                                        </p>
+                                        <p class="paragraph slider_text"><i>Clique 2x para ver a imagem</i></p>
+                                    </div>
+                                    <img src="/img/variableShow.png" alt="">
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="slider_item" data-slide="3">
+                                <div class="overlay"></div>
+                                <div class="content_slider">
+                                    <div class="content_text">
+                                        <span class="title_slider_text">Conjunto de funções e variáveis</span>
+                                        <p class="paragraph slider_text">
+                                            As collections centralizam condições e variáveis reutilizáveis, permitindo
+                                            que sejam aplicadas em múltiplos fluxos e regras condicionais. Essa
+                                            organização reduz a complexidade dos arquivos, evita redundâncias e facilita
+                                            a manutenção para os próximos designers.
+                                        </p>
+                                        <p class="paragraph slider_text"><i>Clique 2x para ver a imagem</i></p>
+                                    </div>
+                                    <img src="/img/variableShow.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="controlers">
+                            <button class="slider_prev"><img src="/img/arrow_left.svg" alt=""></button>
+                            <button class="slider_next"><img src="img/arrow_right.svg" alt=""></button>
+                        </div>
+                    </div>
+                </span>
+                <span class="handoff">
+                    <h3>Handoff</h3>
+                    <p class="paragraph">Aqui se encontra o que os <i>desenvolvedores</i> e <i>QA</i> se encontram.
+                        passagem de bastão, foi construída de forma direta, utilizando a ferramenta <a
+                            class="styled_link"
+                            href="https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs"
+                            target="_blank" rel="noopener noreferrer">Figma Annotations <img class="open_link_svg"
+                                src="/img/new_tab_open.svg" alt=""></a>. Uma das maiores
+                        ferramentas de listagem de caracteristicas de componentes como nome
+                        tamanho, cor, hexadecimal etc.</p>
+                </span>
+                <div class="divider"></div>
+                <span class="final_context">
+                    <h3>Considerações finais</h3>
+                    <div class="cards_container">
+                        <!-- Card 1 -->
+                        <div class="card_wrapper_considerations">
+                            <div class="card_projects_considerations card_animation">
+                                <h3>Redução de dúvidas</h3>
+                                <p class="paragraph">Os fluxos anteriormente eram apenas declarados através dos
+                                    protótipos.
+                                    Hoje o fluxo são declarados através do fluxograma.
+                                </p>
+                            </div>
+
+                            <div class="tooltip_person tooltip-left">
+                                <img class="person_pic" src="/img/myProfile_Pic.png" alt="">
+                                <div class="header_tooltip">
+                                    <h5>Front-End</h5>
+                                    <span class="comment_person">&ldquo;Responsible for visual design and
+                                        prototyping&rdquo;</span>
+                                </div>
+                                <span class="tooltip-arrow"></span>
+                            </div>
+
+                            <div class="tooltip_person tooltip-right">
+                                <img class="person_pic" src="/img/myProfile_Pic.png" alt="">
+                                <div class="header_tooltip">
+                                    <h5>Front-End</h5>
+                                    <span class="comment_person">&ldquo;Responsible for visual design and
+                                        prototyping&rdquo;</span>
+                                </div>
+                                <span class="tooltip-arrow"></span>
+                            </div>
+
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="card_wrapper_considerations">
+                            <div class="card_projects_considerations card_animation">
+                                <h3>Onboarding completo</h3>
+                                <p class="paragraph">Onboarding guia novos desenvolvedores, QA e Designers. Para a
+                                    continuação de melhorias continua.</p>
+                            </div>
+                            <div class="tooltip_person tooltip-left-card2">
+                                <img class="person_pic" src="/img/myProfile_Pic.png" alt="">
+                                <div class="header_tooltip">
+                                    <h5>Back-End</h5>
+                                    <span class="comment_person">&ldquo;Outro comentário aqui&rdquo;</span>
+                                </div>
+                                <span class="tooltip-arrow"></span>
+                            </div>
+                        </div>
+                        <!-- cards 3... -->
+                        <div class="card_wrapper_considerations">
+                            <div class="card_projects_considerations card_animation">
+                                <h3>Informações centralizadas</h3>
+                                <p class="paragraph">A centralização de informações e a utlização de branch ajudaram a
+                                    centralizar versões anteriores</p>
+                            </div>
+                            <div class="tooltip_person tooltip-left-card3">
+                                <img class="person_pic" src="/img/myProfile_Pic.png" alt="">
+                                <div class="header_tooltip">
+                                    <h5>Back-End</h5>
+                                    <span class="comment_person">&ldquo;Outro comentário aqui&rdquo;</span>
+                                </div>
+                                <span class="tooltip-arrow"></span>
                             </div>
                         </div>
                     </div>
@@ -254,9 +381,6 @@
             </div>
         </div>
     </main>
-
-
-
     <footer class="footer" style="display: none;" data-footer></footer>
     <!-- Cursor -->
     <div class="cursor" data-cursor></div>

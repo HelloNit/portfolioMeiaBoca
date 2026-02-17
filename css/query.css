@@ -1,24 +1,26 @@
 @media (min-width: 320px) {
     body {
-        margin: 4px;
+        margin: 20px;
 
     }
 
     .tooltip {
         display: none;
     }
+
 
 }
 
 @media (min-width: 425px) {
     body {
-        margin: 4px;
+        margin: 20px;
 
     }
 
     .tooltip {
         display: none;
     }
+
 
 }
 
@@ -133,9 +135,17 @@
         flex: 1;
     }
 
-    /* diagrama */
-    .zoom-controls {
-        display: none;
+    .slider_text {
+        width: 36%;
+        display: block;
+        font-size: 16px;
+        color: var(--text-white);
+    }
+
+    .cards_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 
 }
@@ -162,7 +172,6 @@
 @media (min-width: 1884px) {
     body {
         margin: 0 300px;
-        height: 1000vh;
     }
 
     .final_product img {

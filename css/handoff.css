@@ -14,7 +14,6 @@
     overflow: hidden;
 }
 
-
 #connector-canvas {
     position: absolute;
     top: 0;
@@ -77,7 +76,7 @@
     height: 0;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
-    border-right: 6px solid #1900ffe6;
+    border-right: 6px solid #000000e6;
 }
 
 .card-wrapper:hover .tooltip {
@@ -163,12 +162,11 @@ main {
     gap: 10px;
 }
 
-.card_problem {
+.card_projects {
     padding: var(--padding-medium-mobile-small);
-
 }
 
-.card_problem {
+.card_projects {
     border: 1px solid var(--border-color-global);
     border-radius: var(--border-radius-small);
 }
@@ -211,4 +209,211 @@ main {
 img {
     width: 100%;
     height: auto;
+}
+
+/* slider */
+
+.slider_wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider_container {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.slider_item {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 79%, rgba(255, 255, 255, 0) 100%);
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.content_slider {
+    display: block;
+    position: relative;
+}
+
+.slider_item {
+    min-width: 100%;
+    position: relative;
+    flex-shrink: 1;
+}
+
+.content_text {
+    position: absolute;
+    z-index: 5;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.content_text.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.title_slider_text {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--text-white);
+}
+
+.slider_text {
+    display: none;
+    color: var(--text-white);
+}
+
+/* Controles slider */
+
+.controlers {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color-global);
+    backdrop-filter: blur(4px);
+    border-radius: var(--border-radius-small);
+    bottom: 20px;
+    right: 20px;
+    z-index: 4;
+}
+
+.slider_prev,
+.slider_next {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.styled_link {
+    width: fit-content;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-global);
+    color: var(--text-gray);
+    padding: 4px;
+    background-color: #2e2e2ee6;
+}
+
+.open_link_svg {
+    width: 12px;
+    height: 12px;
+}
+
+.divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.096);
+    padding: 0;
+    margin: 0;
+}
+
+.final_context {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card_wrapper_considerations {
+    position: relative;
+}
+
+.cards_container {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.card_projects_considerations {
+    padding: 20px;
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-color-global);
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.card_animation {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card_animation:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.header_tooltip {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+}
+
+.tooltip_person {
+    position: absolute;
+    display: flex;
+    padding: var(--padding-mobile-small);
+    border: 1px solid var(--border-color-global);
+    border-radius: var(--border-radius-small);
+    background-color: var(--bg-dark);
+    gap: 10px;
+    z-index: 10;
+}
+
+.tooltip-left {
+    right: calc(100% + 20px);
+    width: 100%;
+    top: 20%;
+    transform: translateY(-50%) translateX(10px);
+}
+
+.tooltip-right {
+    width: 100%;
+    left: calc(100% + 20px);
+    top: 50%;
+    transform: translateY(0%) translateX(-10px);
+}
+
+.tooltip-right .tooltip-arrow {
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.tooltip-left-card2 {
+    width: 100%;
+    right: 100%;
+    top: 20%;
+}
+
+.tooltip-left-card3 .tooltip-arrow {
+    top: -3px;
+    left: 50%;
+    transform: translateY(-90%) rotate(90deg);
+}
+
+.person_pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
 }

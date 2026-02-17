@@ -1,49 +1,111 @@
-import { animate } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+import anime from 'https://cdn.jsdelivr.net/npm/animejs/lib/anime.es.js';
 
-const projectCards = document.querySelectorAll('[data-project]');
+function waitForHeader() {
+  return new Promise((resolve) => {
+    const header = document.querySelector('#header-placeholder');
+    if (header && header.querySelector('.logo_main_felipe')) {
+      resolve();
+      return;
+    }
 
-projectCards.forEach(card => {
-  const eyeSvg = card.querySelector('#eyeSvg');
-  const mainEye = card.querySelector('#main_eye');
+    const observer = new MutationObserver(() => {
+      const logo = document.querySelector('.logo_main_felipe');
+      if (logo) {
+        observer.disconnect();
+        resolve();
+      }
+    });
 
-  if (!eyeSvg || !mainEye) return;
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
 
-  card.addEventListener('mousemove', (e) => {
-    // Pega a posição do SVG na página
-    const eyeRect = eyeSvg.getBoundingClientRect();
-    const eyeCenterX = eyeRect.left + eyeRect.width / 2;
-    const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+waitForHeader().then(() => {
+  const projectCards = document.querySelectorAll('[data-project]');
 
-    // Calcula o ângulo entre o centro do olho e o mouse
-    const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+  projectCards.forEach(card => {
+    const eyeSvg = card.querySelector('#eyeSvg');
+    const mainEye = card.querySelector('#main_eye');
 
-    // Define o raio máximo de movimento (ajuste conforme necessário)
-    const maxDistance = 10;
+    if (!eyeSvg || !mainEye) return;
 
-    // Calcula a nova posição X e Y
-    const moveX = Math.cos(angle) * maxDistance;
-    const moveY = Math.sin(angle) * maxDistance;
+    card.addEventListener('mousemove', (e) => {
+      const eyeRect = eyeSvg.getBoundingClientRect();
+      const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+      const eyeCenterY = eyeRect.top + eyeRect.height / 2;
 
-    // Anima o olho usando Anime.js
-    anime({
-      targets: mainEye,
-      translateX: moveX,
-      translateY: moveY,
-      duration: 100,
-      easing: 'easeOutQuad'
+      const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+      const maxDistance = 10;
+
+      const moveX = Math.cos(angle) * maxDistance;
+      const moveY = Math.sin(angle) * maxDistance;
+
+      anime({
+        targets: mainEye,
+        translateX: moveX,
+        translateY: moveY,
+        duration: 100,
+        easing: 'easeOutQuad'
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      anime({
+        targets: mainEye,
+        translateX: 0,
+        translateY: 0,
+        duration: 700,
+        easing: 'easeOutElastic(1, .6)'
+      });
     });
   });
 
-  // Quando o mouse sai do card, retorna o olho ao centro
-  card.addEventListener('mouseleave', () => {
-    anime({
-      targets: mainEye,
-      translateX: 0,
-      translateY: 0,
-      duration: 700,
-      easing: 'easeOutElastic(1, .6)'
+  const logo = document.querySelector('.logo_main_felipe');
+
+  if (logo) {
+    let currentRotation = 0;
+
+    function getLogoCenter() {
+      const rect = logo.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+    }
+
+    function getAngle(mouseX, mouseY) {
+      const center = getLogoCenter();
+      const deltaX = mouseX - center.x;
+      const deltaY = mouseY - center.y;
+
+      let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+      angle = angle - 90;
+
+      while (angle > 180) angle -= 360;
+      while (angle < -180) angle += 360;
+      return Math.max(-90, Math.min(90, angle));
+    }
+
+    function updateRotation() {
+      const diff = currentRotation - parseFloat(logo.style.transform?.replace('rotate(', '').replace('deg)', '') || 0);
+
+      if (Math.abs(diff) > 0.1) {
+        const newRotation = parseFloat(logo.style.transform?.replace('rotate(', '').replace('deg)', '') || 0) + diff * 0.15;
+        logo.style.transform = `rotate(${newRotation}deg)`;
+      }
+
+      requestAnimationFrame(updateRotation);
+    }
+
+    updateRotation();
+
+    document.addEventListener('mousemove', (e) => {
+      currentRotation = getAngle(e.clientX, e.clientY);
     });
-  });
+  }
 });
 
 const canvas = document.getElementById("hero_canvas");

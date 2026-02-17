@@ -6,7 +6,8 @@
     --primary-blue: #000000;
     --secondary-blue: #c1c6ff;
     --secondary-blue-opacity: #000000af;
-    --bg-light: #fcfcfc;
+    --secondary-light-opacity: #ffffffe0;
+    --bg-light: #fcf5e6;
     --bg-dark: rgb(30, 29, 29);
     --text-black: #000000;
     --text-black-opacity: #969494;
@@ -24,6 +25,8 @@
 
     --font-size-main-h2-content: 1.4rem;
     --font-size-main-h2-desktop: 2rem;
+    --font-size-main-h5-content: 1.1rem;
+
 
 
     /* Espaçamento e Bordas */
@@ -45,6 +48,8 @@
     --margin-large-mobile-top: 200px;
     --margin-large-mobile-bottom: 200px
         /* divider */
+
+
 }
 
 h1,
@@ -63,6 +68,12 @@ h2 {
 h3 {
     font-size: var(--font-size-main-h2-content);
     font-weight: 400;
+}
+
+h5 {
+    font-size: var(--font-size-main-h5-content);
+    font-weight: 400;
+    margin: 0;
 }
 
 .paragraph {

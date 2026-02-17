@@ -388,9 +388,7 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
-// Loop de animação com movimento suave e luz animada
 function animate() {
-    // Se estiver arrastando, interpola a posição
     if (activeCard) {
         currentX += (targetX - currentX) * smoothness;
         currentY += (targetY - currentY) * smoothness;
@@ -405,6 +403,103 @@ function animate() {
 
 animate();
 
-// Funções globais
 window.resetCardPositions = resetPositions;
 window.resetAllCardPositions = resetAllPositions;
+
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slider_item');
+const totalSlides = slides.length;
+const sliderContainer = document.querySelector('.slider_container');
+const btnPrev = document.querySelector('.slider_prev');
+const btnNext = document.querySelector('.slider_next');
+
+function goToSlide(index) {
+    currentSlide = index;
+    const offset = -currentSlide * 100;
+    sliderContainer.style.transform = `translateX(${offset}%)`;
+}
+
+// Botão PRÓXIMO
+btnNext.addEventListener('click', () => {
+    if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+    } else {
+        goToSlide(0);
+    }
+});
+
+// Botão ANTERIOR
+btnPrev.addEventListener('click', () => {
+    if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+    } else {
+        goToSlide(totalSlides - 1);
+    }
+});
+
+// Clique no card pra remover overlay e texto COM TRANSIÇÃO
+slides.forEach(slide => {
+    slide.addEventListener('click', () => {
+        const overlay = slide.querySelector('.overlay');
+        const contentText = slide.querySelector('.content_text');
+        
+        // Toggle com classes
+        overlay.classList.toggle('hidden');
+        contentText.classList.toggle('hidden');
+    });
+});
+
+
+// tooltip final
+
+const cardWrappers = document.querySelectorAll('.card_wrapper_considerations');
+
+function isMobile() {
+    return window.innerWidth <= 767;
+}
+
+cardWrappers.forEach(wrapper => {
+    const tooltips = wrapper.querySelectorAll('.tooltip_person');
+
+    tooltips.forEach(tooltip => {
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.style.transition = 'opacity 1s ease, transform 0.6s ease';
+    });
+
+    wrapper.addEventListener('mouseenter', () => {
+        if (isMobile()) return;
+
+        tooltips.forEach((tooltip, index) => {
+            setTimeout(() => {
+                tooltip.style.opacity = '1';
+                tooltip.style.pointerEvents = 'auto';
+
+                if (tooltip.classList.contains('tooltip-left')) {
+                    tooltip.style.transform = 'translateY(-50%) translateX(0)';
+                }
+                if (tooltip.classList.contains('tooltip-right')) {
+                    tooltip.style.transform = 'translateY(0%) translateX(0)';
+                }
+
+            }, index * 100);
+        });
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+        if (isMobile()) return;
+
+        tooltips.forEach(tooltip => {
+            tooltip.style.opacity = '0';
+            tooltip.style.pointerEvents = 'none';
+
+            if (tooltip.classList.contains('tooltip-left')) {
+                tooltip.style.transform = 'translateY(-50%) translateX(10px)';
+            }
+            if (tooltip.classList.contains('tooltip-right')) {
+                tooltip.style.transform = 'translateY(0%) translateX(-10px)';
+            }
+        });
+    });
+});
