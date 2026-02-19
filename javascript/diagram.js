@@ -236,5 +236,3 @@ function gentlePulse() {
         loop: true
     });
 }
-
-console.log('✅ Main node com imagem! 🎨');

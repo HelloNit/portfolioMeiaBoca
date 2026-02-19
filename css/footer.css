@@ -1,0 +1,30 @@
+#footerElement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color-global);
+    border-radius: var(--border-radius-small);
+    padding: 100px 0;
+    background-color: var(--bg-dark);
+    
+}
+
+.contact_network{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 10px;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid var(--border-color-global);
+    padding: var(--padding-mobile-small);
+}
+
+.contact_network_icon{
+    width: 36px;
+    height: 36px;
+}
+
+.buttons_contact{
+    display: flex;
+    gap: 20px;
+}

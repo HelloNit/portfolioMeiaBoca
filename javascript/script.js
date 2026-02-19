@@ -110,6 +110,8 @@ const defaultPositions = {
     ]
 };
 
+
+
 /**
  * Configuração do canvas com suporte a alta resolução
  */
@@ -512,11 +514,11 @@ for (i = 0; i < acc.length; i++) {
         this.classList.toggle("active");
 
         var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null; // fecha
         } else {
-            panel.style.display = "block";
+            panel.style.maxHeight = panel.scrollHeight + "px"; // abre
         }
-
     });
+
 }

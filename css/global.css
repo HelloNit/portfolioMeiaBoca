@@ -26,6 +26,7 @@
     --font-size-main-h2-content: 1.4rem;
     --font-size-main-h2-desktop: 2rem;
     --font-size-main-h5-content: 1.1rem;
+    --font-size-main-h6-content: 1.3rem;
 
 
 
@@ -76,6 +77,10 @@ h5 {
     margin: 0;
 }
 
+h6{
+    font-size: var(--font-size-main-h6-content);
+}
+
 .paragraph {
     font-size: 16px;
     font-weight: 300;
@@ -92,7 +97,6 @@ p {
 * {
     scroll-behavior: smooth;
 }
-
 
 html {
     cursor: url("/img/cursor.png"), auto;
