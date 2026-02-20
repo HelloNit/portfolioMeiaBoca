@@ -1,3 +1,11 @@
+h6{
+    color: var(--text-white);
+    font-size: 4rem;
+    font-weight: 100;
+    margin: 40px 0;
+    letter-spacing: -4%;
+}
+
 #footerElement{
     display: flex;
     flex-direction: column;
@@ -6,6 +14,7 @@
     border-radius: var(--border-radius-small);
     padding: 100px 0;
     background-color: var(--bg-dark);
+    margin: 60px 0;
     
 }
 
@@ -13,7 +22,7 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    gap: 10px;
+    gap: 30px;
     color: rgb(255, 255, 255);
     border-bottom: 1px solid var(--border-color-global);
     padding: var(--padding-mobile-small);

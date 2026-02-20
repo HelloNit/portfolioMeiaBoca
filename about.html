@@ -1,116 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Felipe Rodrigues — UX | UI Designer</title>
+    <link rel="icon" type="imagem/x-icon" href="/img/favicon-32x32.png">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/mediaQueries.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-
-    <!-- GSAP e ScrollTrigger da mesma fonte -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
-
-    <title>Felipe Rodrigues - UX | UI Designer</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/handoff.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/query.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-
 <body>
-    <header>
-        <a id="logoChangesTypo" href="/index.html">
-            <svg id="logo_main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-                <path d="M123.89,294.27h301.16v128.81h-147.9v47.11h138.95v112.12h-137.16v123.45H123.89v-411.49Z" />
-                <path
-                    d="M794.42,550.69c42.94-27.43,60.23-65.6,60.23-116.89,0-103.77-85.28-139.56-198.6-139.56h-177.72v411.52h155.07v-133h11.33l54.87,133h176.53l-81.7-155.07ZM716.08,444.12c-.81,1.63-2.14,2.95-3.77,3.77l-90.16,45.09c-3.28,1.6-7.23.91-9.76-1.73-2.54-2.63-3.09-6.6-1.37-9.82l18.87-35.06c1.99-3.72,1.99-8.19,0-11.91l-18.87-35.06c-1.73-3.22-1.17-7.19,1.37-9.82,2.51-2.67,6.45-3.42,9.76-1.85l90.16,45.09c4.16,2.08,5.85,7.14,3.77,11.29Z" />
-            </svg>
-        </a>
-        <nav id="mobileNav">
-            <ul class="positionItemMenu" id="menuItems">
-                <li class="itemMenu"><a class="menuItem" href="index.html">Início</a></li>
-                <li class="itemMenu"><a class="menuItem" href="project.html">Projetos</a></li>
-                <li class="itemMenu"><a class="menuItem" href="about.html">Sobre</a></li>
-                <li class="itemMenu"><a class="menuItem" href="figmatips.html">Figma Tips 🗿</a></li>
-            </ul>
-            <ul class="footerMenuMobile" id="footerMenu">
-                <div class="content3">
-                    <a class="footerLinks" href="https://www.linkedin.com/in/rodrigues02/" target="_blank"
-                        rel="noopener noreferrer">Linkedin</a>
-                    <a class="footerLinks" href="">Discord: releasenit</a>
-                </div>
-            </ul>
-        </nav>
-        <button id="menuToggle">
-            <svg id="svgMenu" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-                <!-- Linha de cima -->
-                <path id="lineTwo" d="M2 8C8.67863 8 12.3575 8 19 8" stroke="white" stroke-width="2"
-                    stroke-linecap="round" />
-
-                <!-- Linha de baixo -->
-                <path id="lineTwo_2" d="M2 12C8.67863 12 12.3575 12 19 12" stroke="white" stroke-width="2"
-                    stroke-linecap="round" />
-            </svg>
-        </button>
-    </header>
-    <section class="heroAbout">
-        <h1 class="openHeading">Designer <br> multidisciplinar</h1>
-    </section>
-    <main class="myJourney">
-        <div class="intro partOne">
-            <div class="contentIntro">
-                <h2 class="headingJourney">Criando experiências digitais há 2 anos</h2>
-                <p>Iniciei minha carreira em 2022 no setor de telecom, atuando em uma das maiores empresas do ramo. Em
-                    agosto de 2024, fui convidado a me integrar a
-                    um dos maiores bancos da América Latina como UX generalista, com foco em
-                    <span class="styleTitle">coleta de insights</span>,
-                    <span class="styleTitle">design system</span> e
-                    <span class="styleTitle">desenvolvimento de interfaces</span>, sempre guiado por pesquisas para
-                    maior assertividade.
-                </p>
-                <p>Atualmente, minha stack de design envolve ferramentas como
-                    <span class="styleTitle">Figma / FigJam</span>,
-                    <span class="styleTitle">Miro</span> e
-                    <span class="styleTitle">Protopie</span>, dedicadas a todo o universo de experiência e interface do
-                    usuário.
-                    Paralelamente, venho expandindo minha atuação com uma stack voltada para interatividade digital,
-                    explorando
-                    <span class="styleTitle">Blender</span> e
-                    <span class="styleTitle">Unreal Engine</span>.
-                </p>
-                <h2>Atualmente...</h2>
-                <p>Foco em aprender ao menos uma linguagem de programação para <span class="styleTitle">compreender os
-                        limites de um produto </span> melhorar a comunicação com os
-                    <span class="styleTitle">desenvolvedores</span>, maior <span class="styleTitle">autonomia</span>
-                    para não depender 100% de um desenvolvedor para validar ideias.
-                    Dito isso a linguagem que eu escolhi é... <span class="styleTitle">C++</span>
-                </p>
-            </div>
-            <img class="imgAbout" src="/img/myProfile_Pic.png" alt="">
-        </div>
-        <div class="intro partTwo">
-            <div class="contentIntro">
-                <h2 class="headingPartTwo">Estudos, estudos, <br> estudos...</h2>
-                <p>Sou formado em <span class="styleTitle">Design Gráfico</span> pelo Centro Universitário
-                    Internacional.
-                    Concluí o curso de <span class="styleTitle">UX Design e UI Design</span> pela escola <b>Ebac</b>. No
-                    ano
-                    de 2023 realizei um curso de <span class="styleTitle">Innovative and creative website design</span>
-                    pela
-                    <b>Domestika</b>.
-                </p>
-            </div>
-            <video autoplay loop id="videoScrolling" src="/img/54c86523b8ade25514abb33821d7a1fb.mp4" muted playsinline
-                preload="auto">
-            </video>
-        </div>
-    </main>
-
-    <footer id="footerElement"></footer>
-    <script type="module" src="script.js"></script>
 </body>
-
-</html>

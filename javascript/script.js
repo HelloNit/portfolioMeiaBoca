@@ -60,7 +60,7 @@ let targetX = 0;
 let targetY = 0;
 let currentX = 0;
 let currentY = 0;
-const smoothness = 0.10; // Controla a velocidade (0.05 = lento, 0.3 = rápido, 1.0 = instantâneo)
+const smoothness = 0.05; // Controla a velocidade (0.05 = lento, 0.3 = rápido, 1.0 = instantâneo)
 
 /**
  * Identifica o breakpoint atual
@@ -249,11 +249,18 @@ function savePositions() {
 function applyPositions() {
     const breakpoint = getCurrentBreakpoint();
     const positions = loadPositions(breakpoint);
+    const wrapperRect = wrapper.getBoundingClientRect();
 
     cards.forEach((card, index) => {
         const pos = positions[index];
-        card.style.left = `${pos.x}px`;
-        card.style.top = `${pos.y}px`;
+        const cardW = card.offsetWidth;
+        const cardH = card.offsetHeight;
+
+        const x = Math.max(0, Math.min(pos.x, wrapperRect.width - cardW));
+        const y = Math.max(0, Math.min(pos.y, wrapperRect.height - cardH));
+
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
     });
 }
 
@@ -331,13 +338,14 @@ document.addEventListener('mousemove', (e) => {
     if (!activeCard) return;
 
     const wrapperRect = wrapper.getBoundingClientRect();
-    const cardRect = activeCard.getBoundingClientRect();
+    const cardW = activeCard.offsetWidth;
+    const cardH = activeCard.offsetHeight;
 
     let x = e.clientX - wrapperRect.left - offset.x;
     let y = e.clientY - wrapperRect.top - offset.y;
 
-    x = Math.max(0, Math.min(x, wrapperRect.width - cardRect.width));
-    y = Math.max(0, Math.min(y, wrapperRect.height - cardRect.height));
+    x = Math.max(0, Math.min(x, wrapperRect.width - cardW));
+    y = Math.max(0, Math.min(y, wrapperRect.height - cardH));
 
     targetX = x;
     targetY = y;
@@ -349,13 +357,14 @@ document.addEventListener('touchmove', (e) => {
 
     const touch = e.touches[0];
     const wrapperRect = wrapper.getBoundingClientRect();
-    const cardRect = activeCard.getBoundingClientRect();
+    const cardW = activeCard.offsetWidth;
+    const cardH = activeCard.offsetHeight;
 
     let x = touch.clientX - wrapperRect.left - offset.x;
     let y = touch.clientY - wrapperRect.top - offset.y;
 
-    x = Math.max(0, Math.min(x, wrapperRect.width - cardRect.width));
-    y = Math.max(0, Math.min(y, wrapperRect.height - cardRect.height));
+    x = Math.max(0, Math.min(x, wrapperRect.width - cardW));
+    y = Math.max(0, Math.min(y, wrapperRect.height - cardH));
 
     targetX = x;
     targetY = y;

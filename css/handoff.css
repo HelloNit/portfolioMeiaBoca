@@ -107,6 +107,7 @@
     height: 80px;
     overflow: hidden;
     border-radius: 8px;
+    pointer-events: none;
 }
 
 .image-container img {
