@@ -176,6 +176,11 @@ main {
     border-radius: var(--border-radius-small);
 }
 
+.clients_main {
+    display: flex;
+    flex-direction: column;
+}
+
 /* card da solução */
 
 /* diagrama */
@@ -508,7 +513,7 @@ ul {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
-    padding: 0; 
+    padding: 0;
 }
 
 .wrapper_componentes_example {

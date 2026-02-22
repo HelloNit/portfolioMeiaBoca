@@ -19,6 +19,21 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/Draggable.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/EaselPlugin.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/InertiaPlugin.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/TextPlugin.min.js"></script>
+
+	<!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/EasePack.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js"></script>
+	<!-- CustomBounce requires CustomEase -->
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomBounce.min.js"></script>
+	<!-- CustomWiggle requires CustomEase -->
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomWiggle.min.js"></script>
 
 </head>
 
@@ -42,20 +57,18 @@
 	<main class="projects" data-projects>
 		<div class="heading_projects">
 			<h2>Projetos</h2>
-			<span class="num_projects">(3)</span>
+			<span class="num_projects">(2)</span>
 		</div>
 
 		<div class="projects_grid">
-
 			<a href="/handoff.html" class="item item-0">
-
 				<article class="project-card" data-project>
 					<div class="content_project">
 						<div class="heading_project">
 							<span class="project-card_title">Handoff — Lovelace</span>
 							<p class="wave_effect">
-								Estruturando a comunicação entre times. Explore como utilizei tokens
-								semânticos e diagramas para criar um ambiente de trabalho escalável [...]
+								Desenvolvi uma estrutura de comunicação baseada em tokens semânticos e diagramas,
+								promovendo alinhamento entre times e crescimento sustentável do sistema.
 							</p>
 							<img class="card_img_project" src="/img/card_thumb_1.png" alt="">
 						</div>
@@ -80,14 +93,13 @@
 			</a>
 
 			<a href="" class="item item-1">
-
 				<article class="project-card" data-project>
 					<div class="content_project">
 						<div class="heading_project">
 							<span class="project-card_title">Mainframe — Pesquisa </span>
 							<p class="wave_effect">
-								<!-- estruturando a comunicação entre times. Explore como utilizei tokens -->
-								Descobrindo o usuário do mainframe através de uma pesquisa de profundidade [...]
+								Investigando perfil do usuário de mainframe por meio de pesquisa em profundidade, revelando
+								comportamentos, necessidades e oportunidades estratégicas.
 							</p>
 						</div>
 						<img class="card_img_project" src="/img/card_thum_2.png" alt="">
@@ -113,11 +125,29 @@
 		</div>
 	</main>
 
-	<div class="divider"></div>
+
+	<section class="my_tools">
+		<div class="heading_projects">
+			<h2>Ferramentas</h2>
+			<span class="num_projects">(4)</span>
+		</div>
+		<p>Profissional em</p>
+		<div class="grid_tools">
+			<div class="item_logo_01 border-item"><img class="logo_tools" src="/img/figma.svg" alt=""></div>
+			<div class="item_logo_02 border-item"><img class="logo_tools" src="/img/protopie.svg" alt=""></div>
+			<div class="item_logo_03 border-item"><img class="logo_tools" src="/img/Logo_Blender.svg" alt=""></div>
+			<div class="item_logo_04 border-item"><img class="logo_tools" src="/img/photoshop.svg" alt=""></div>
+			<div class="item_logo_05 border-item"><img class="logo_tools" src="/img/ilustrator.svg" alt=""></div>
+		</div>
+	</section>
+
+
+
 	<footer id="footer-placeholder" data-footer></footer>
 	<div class="cursor" data-cursor></div>
 	<script type="module" src="/javascript/animation.js"></script>
 	<script type="module" src="/javascript/script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+
 </html>

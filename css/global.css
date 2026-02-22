@@ -28,14 +28,13 @@
     --font-size-main-h5-content: 1.1rem;
     --font-size-main-h6-content: 1.3rem;
 
-
-
     /* Espaçamento e Bordas */
     --border-radius-small: 26px;
     --border-radius-card-small: 20px;
     --border-color-global: #cac8c8;
 
     /* Gap */
+    --gap-header-text: 10px;
     --gap-mobile-small: 10px;
 
     /* Padding */
@@ -48,9 +47,6 @@
     --margin-mobile-bottom: 100px;
     --margin-large-mobile-top: 200px;
     --margin-large-mobile-bottom: 200px
-        /* divider */
-
-
 }
 
 h1,

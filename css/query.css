@@ -108,7 +108,11 @@
         gap: 10px;
     }
 
-    
+    .hero {
+        margin: 7% 0;
+    }
+
+
     .tooltip {
         display: block;
     }
@@ -116,6 +120,59 @@
     .final_product {
         width: 50% !important;
         /* box-sizing: border-box; */
+    }
+
+    .logo_tools {
+        width: 100px;
+        height: 100px;
+        mix-blend-mode: luminosity;
+    }
+
+    .item_logo_01 .logo_tools,
+    .item_logo_02 .logo_tools {
+        width: 240px;
+        height: 240px;
+    }
+
+    .border-item {
+    height: auto;         /* para de forçar altura fixa */
+    padding: 40px 20px;   /* respira ao redor da imagem */
+}
+
+    .grid_tools {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    /* Remove borda geral */
+    .border-item {
+        border: none;
+    }
+
+    .item_logo_01 {
+        grid-column: span 3;
+        border-right: 1px solid var(--border-color-global);
+        border-bottom: 1px solid var(--border-color-global);
+    }
+
+    .item_logo_02 {
+        grid-column: span 3;
+        border-bottom: 1px solid var(--border-color-global);
+        /* só baixo */
+    }
+
+    .item_logo_03 {
+        grid-column: span 2;
+        border-right: 1px solid var(--border-color-global);
+    }
+
+    .item_logo_04 {
+        grid-column: span 2;
+        border-right: 1px solid var(--border-color-global);
+    }
+
+    .item_logo_05 {
+        grid-column: span 2;
+        /* sem borda */
     }
 
     /* handoff project */
