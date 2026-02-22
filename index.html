@@ -18,28 +18,13 @@
 	<link rel="stylesheet" href="/css/query.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/Draggable.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/EaselPlugin.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/InertiaPlugin.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/TextPlugin.min.js"></script>
-
-	<!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/EasePack.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js"></script>
-	<!-- CustomBounce requires CustomEase -->
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomBounce.min.js"></script>
-	<!-- CustomWiggle requires CustomEase -->
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomWiggle.min.js"></script>
+	<script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script>
 
 </head>
 
 <body>
 	<header id="header-placeholder" data-header></header>
-
 	<section class="hero" data-hero>
 		<div class="hero_info">
 			<p class="hero_role">
@@ -98,7 +83,8 @@
 						<div class="heading_project">
 							<span class="project-card_title">Mainframe — Pesquisa </span>
 							<p class="wave_effect">
-								Investigando perfil do usuário de mainframe por meio de pesquisa em profundidade, revelando
+								Investigando perfil do usuário de mainframe por meio de pesquisa em profundidade,
+								revelando
 								comportamentos, necessidades e oportunidades estratégicas.
 							</p>
 						</div>
@@ -129,7 +115,7 @@
 	<section class="my_tools">
 		<div class="heading_projects">
 			<h2>Ferramentas</h2>
-			<span class="num_projects">(4)</span>
+			<span class="num_projects">(5)</span>
 		</div>
 		<p>Profissional em</p>
 		<div class="grid_tools">
@@ -141,13 +127,12 @@
 		</div>
 	</section>
 
-
-
 	<footer id="footer-placeholder" data-footer></footer>
 	<div class="cursor" data-cursor></div>
 	<script type="module" src="/javascript/animation.js"></script>
 	<script type="module" src="/javascript/script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="module" src="/javascript/scroll.js"></script>
 </body>
 
 </html>

@@ -365,7 +365,7 @@ img {
 
 .card_animation {
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .card_animation:hover {
