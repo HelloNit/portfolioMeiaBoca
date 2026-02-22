@@ -1,0 +1,89 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 1.7rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.line2 {
+    align-self: flex-end;
+}
+
+
+/* main about */
+
+.main_about {
+    display: grid;
+    gap: 30px;
+}
+
+.heading_experience {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    /* padding: 2px 0; */
+    /* border-top: 1px solid var(--border-color-global); */
+    /* border-bottom: 1px solid var(--border-color-global); */
+    border-left: none;
+    border-right: none;
+}
+
+.all_experiences {
+    display: grid;
+    gap: 4px;
+    margin-top: 20px;
+}
+
+.year {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.styled_h1_about {
+    font-size: 1.2rem;
+}
+
+.working {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.description_work {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-black);
+    font-weight: 400;
+}
+
+.wrapper_content_expertise {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.content_expertise {
+    display: flex;
+    flex-direction: column;
+}
+
+.item_expertise {
+    font-size: 14px;
+    color: var(--text-black);
+}
+
+.divider_pad {
+    margin: 10px 0;
+}
+
+.divider_light {
+    border: 1px solid white;
+}

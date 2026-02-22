@@ -11,9 +11,14 @@
 	<!-- Styles -->
 	<link rel="stylesheet" href="/css/global.css">
 	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/footer.css">
 	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/handoff.css">
+	<link rel="stylesheet" href="/css/about.css">
 	<link rel="stylesheet" href="/css/query.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -43,13 +48,17 @@
 		<div class="projects_grid">
 
 			<a href="/handoff.html" class="item item-0">
+
 				<article class="project-card" data-project>
-					<div>
-						<span class="project-card_title"> Handoff — Lovelace</span>
-						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea
-							dignissimos nostrum.
-							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
-							voluptatum soluta illum odio!</p>
+					<div class="content_project">
+						<div class="heading_project">
+							<span class="project-card_title">Handoff — Lovelace</span>
+							<p class="wave_effect">
+								Estruturando a comunicação entre times. Explore como utilizei tokens
+								semânticos e diagramas para criar um ambiente de trabalho escalável [...]
+							</p>
+							<img class="card_img_project" src="/img/card_thumb_1.png" alt="">
+						</div>
 						<div class="acess_link">
 							<span class="acess_project">Acessar projeto</span>
 							<span class="svg_eye">
@@ -61,7 +70,7 @@
 											fill="black" />
 										<path id="main_eye"
 											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
-											fill="#FF0000" />
+											fill="#FFFFFF" />
 									</g>
 								</svg>
 							</span>
@@ -70,16 +79,20 @@
 				</article>
 			</a>
 
-			<a href="/handoff.html" class="item item-1">
+			<a href="" class="item item-1">
+
 				<article class="project-card" data-project>
-					<div>
-						<span class="project-card_title"> Mainframe — Pesquisa</span>
-						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea
-							dignissimos nostrum.
-							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
-							voluptatum soluta illum odio!</p>
+					<div class="content_project">
+						<div class="heading_project">
+							<span class="project-card_title">Mainframe — Pesquisa </span>
+							<p class="wave_effect">
+								<!-- estruturando a comunicação entre times. Explore como utilizei tokens -->
+								Descobrindo o usuário do mainframe através de uma pesquisa de profundidade [...]
+							</p>
+						</div>
+						<img class="card_img_project" src="/img/card_thum_2.png" alt="">
 						<div class="acess_link">
-							<span class="acess_project">Acessar projeto</span>
+							<span class="acess_project">Em breve</span>
 							<span class="svg_eye">
 								<svg id="eye_svg" width="300" height="300" viewBox="0 0 300 300" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +102,7 @@
 											fill="black" />
 										<path id="main_eye"
 											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
-											fill="#FF0000" />
+											fill="#FFFFFF" />
 									</g>
 								</svg>
 							</span>
@@ -97,44 +110,14 @@
 					</div>
 				</article>
 			</a>
-
-			<a href="/handoff.html" class="item item-2">
-				<article class="project-card" data-project>
-					<div>
-						<span class="project-card_title"> Pstory — Launcher</span>
-						<p class="wave_effect">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum sunt ea
-							dignissimos nostrum.
-							Optio recusandae dolorem libero ut ab dolorum quo error minus nesciunt beatae consequatur,
-							voluptatum soluta illum odio!</p>
-						<div class="acess_link">
-							<span class="acess_project">Acessar projeto</span>
-							<span class="svg_eye">
-								<svg id="eye_svg" width="300" height="300" viewBox="0 0 300 300" fill="none"
-									xmlns="http://www.w3.org/2000/svg">
-									<g id="eyeSvg">
-										<path id="eye_body"
-											d="M179.453 173.203C187.526 165.13 191.563 155.312 191.563 143.75C191.563 132.187 187.526 122.37 179.453 114.297C171.38 106.224 161.563 102.188 150 102.188C138.438 102.188 128.62 106.224 120.547 114.297C112.474 122.37 108.438 132.187 108.438 143.75C108.438 155.312 112.474 165.13 120.547 173.203C128.62 181.276 138.438 185.313 150 185.313C161.563 185.313 171.38 181.276 179.453 173.203ZM85.3906 201.484C65.7552 189.141 49.7917 173.021 37.5 153.125C36.4583 151.512 35.7552 149.95 35.3906 148.437C35.026 146.925 34.8438 145.361 34.8438 143.747C34.8438 142.132 35.026 140.57 35.3906 139.059C35.7552 137.549 36.4583 135.987 37.5 134.375C49.7917 114.479 65.7563 98.3594 85.3938 86.0156C105.029 73.6719 126.566 67.5 150.003 67.5C173.439 67.5 194.974 73.6719 214.609 86.0156C234.245 98.3594 250.208 114.468 262.5 134.341C263.542 135.926 264.271 137.488 264.688 139.025C265.104 140.563 265.312 142.151 265.312 143.791C265.312 145.43 265.104 147.005 264.688 148.516C264.271 150.026 263.542 151.574 262.5 153.159C250.208 173.032 234.244 189.141 214.606 201.484C194.971 213.828 173.434 220 149.997 220C126.561 220 105.026 213.828 85.3906 201.484Z"
-											fill="black" />
-										<path id="main_eye"
-											d="M116.565 143.765C116.565 153.048 119.82 160.939 126.331 167.437C132.841 173.935 140.738 177.184 150.021 177.184C159.305 177.184 167.195 173.928 173.693 167.418C180.191 160.908 183.44 153.011 183.44 143.727C183.44 134.444 180.185 126.553 173.674 120.055C167.164 113.558 159.267 110.309 149.984 110.309C140.7 110.309 132.81 113.564 126.312 120.074C119.814 126.585 116.565 134.482 116.565 143.765Z"
-											fill="#FF0000" />
-									</g>
-								</svg>
-							</span>
-						</div>
-					</div>
-				</article>
-			</a>
-
 		</div>
 	</main>
 
 	<div class="divider"></div>
-	<footer class="footer" style="display: none;" data-footer></footer>
+	<footer id="footer-placeholder" data-footer></footer>
 	<div class="cursor" data-cursor></div>
 	<script type="module" src="/javascript/animation.js"></script>
 	<script type="module" src="/javascript/script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
-
 </html>

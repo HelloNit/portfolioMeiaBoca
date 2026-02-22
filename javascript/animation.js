@@ -112,7 +112,6 @@ const canvas = document.getElementById("hero_canvas");
 const ctx = canvas.getContext("2d");
 const hero = document.querySelector('[data-hero]');
 
-// Cria e carrega as 3 imagens (escondidas no DOM)
 const img1 = new Image();
 const img2 = new Image();
 const img3 = new Image();
@@ -124,11 +123,10 @@ img3.src = "img/banner_1.png";
 
 const images = [img1, img2, img3];
 
-// Controle de sequência das imagens
 let currentImageIndex = 0;
 let imageTimer = null;
 let lastMouseOverTime = 0;
-const IMAGE_DURATION = 500;
+const IMAGE_DURATION = 800; // era 500 — mais tempo entre cada imagem
 let imageOpacity = 0;
 let isFadingIn = false;
 
@@ -235,7 +233,6 @@ function calculateTextBounds(lines1, lines2) {
   };
 }
 
-// Calcula as posições de todos os retângulos da grid
 function calculateGridCells() {
   gridCells = [];
   const baseSize = 300;
@@ -267,11 +264,12 @@ const mouse = {
   pressed: false
 };
 
-let revealRadius = 500;
-let targetRadius = 500;
-const minRadius = 10;
+// Radius do reveal agora começa em 0 para entrar suavemente
+let revealRadius = 0;
+let targetRadius = 0;
+const minRadius = 0;
 const maxRadius = 360;
-const transitionSpeed = 0.10;
+const transitionSpeed = 0.07; // era 0.10 — mais lento = mais suave
 
 function isMouseOverText() {
   return (
@@ -284,7 +282,7 @@ function isMouseOverText() {
 
 let gridRadius = 40;
 let targetGridRadius = 60;
-const gridTransitionSpeed = 0.04;
+const gridTransitionSpeed = 0.025; // era 0.04 — mais suave
 
 window.addEventListener("scroll", () => {
   const step = 20;
@@ -328,14 +326,10 @@ function drawRoundedRect(x, y, w, h, r) {
   ctx.stroke();
 }
 
-// Desenha uma imagem ajustada ao retângulo com cantos arredondados
 function drawImageInRect(img, x, y, w, h, radius, opacity = 1) {
   ctx.save();
-
-  // Define a opacidade
   ctx.globalAlpha = opacity;
 
-  // Cria o clipping path com cantos arredondados
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
   ctx.lineTo(x + w - radius, y);
@@ -349,20 +343,17 @@ function drawImageInRect(img, x, y, w, h, radius, opacity = 1) {
   ctx.closePath();
   ctx.clip();
 
-  // Desenha a imagem cobrindo todo o retângulo (com object-fit: cover)
   const imgAspect = img.width / img.height;
   const rectAspect = w / h;
 
   let drawWidth, drawHeight, offsetX, offsetY;
 
   if (imgAspect > rectAspect) {
-    // Imagem mais larga que o retângulo
     drawHeight = h;
     drawWidth = h * imgAspect;
     offsetX = (w - drawWidth) / 2;
     offsetY = 0;
   } else {
-    // Imagem mais alta que o retângulo
     drawWidth = w;
     drawHeight = w / imgAspect;
     offsetX = 0;
@@ -370,10 +361,8 @@ function drawImageInRect(img, x, y, w, h, radius, opacity = 1) {
   }
 
   ctx.drawImage(img, x + offsetX, y + offsetY, drawWidth, drawHeight);
-
   ctx.restore();
 
-  // Desenha a borda
   ctx.strokeStyle = "#181818";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -389,19 +378,16 @@ function drawImageInRect(img, x, y, w, h, radius, opacity = 1) {
   ctx.stroke();
 }
 
-// Gerencia a sequência de imagens
 function startImageSequence() {
   currentImageIndex = 0;
   imageOpacity = 0;
   isFadingIn = true;
   lastMouseOverTime = Date.now();
 
-  // Limpa timer anterior se existir
   if (imageTimer) {
     clearInterval(imageTimer);
   }
 
-  // Avança para próxima imagem a cada 3 segundos
   imageTimer = setInterval(() => {
     if (isMouseOverText() && mouse.active) {
       if (currentImageIndex < images.length - 1) {
@@ -424,7 +410,6 @@ function stopImageSequence() {
   currentImageIndex = 0;
 }
 
-// Variável para controlar estado anterior do mouse
 let wasOverText = false;
 
 function draw() {
@@ -434,7 +419,6 @@ function draw() {
     ? (mouse.pressed && mouse.active && isMouseOverText())
     : (mouse.active && isMouseOverText());
 
-  // Detecta quando o mouse entra sobre o texto
   const isOverText = isMouseOverText();
   if (isOverText && !wasOverText) {
     startImageSequence();
@@ -449,11 +433,12 @@ function draw() {
     targetRadius = minRadius;
   }
 
+  // Lerp mais suave com easing
   revealRadius += (targetRadius - revealRadius) * transitionSpeed;
 
-  // Atualiza fade in
+  // Fade das imagens mais suave — era 0.05
   if (isFadingIn && imageOpacity < 1) {
-    imageOpacity += 0.05; // Velocidade do fade
+    imageOpacity += 0.025;
     if (imageOpacity >= 1) {
       imageOpacity = 1;
       isFadingIn = false;
@@ -461,16 +446,12 @@ function draw() {
   }
 
   if (mouse.active && (isMobile ? mouse.pressed : true)) {
-    // Posições específicas para as imagens
     const imagePositions = [0, 2, 7];
 
-    // Desenha a grid com imagens nos retângulos
     gridCells.forEach((cell, index) => {
-      // Verifica se é uma das posições escolhidas (0, 2, 6)
       const posIndex = imagePositions.indexOf(index);
 
       if (posIndex !== -1 && isOverText && posIndex <= currentImageIndex && images[posIndex].complete) {
-        // Desenha a imagem com fade in apenas para a imagem atual
         const opacity = posIndex === currentImageIndex ? imageOpacity : 1;
         drawImageInRect(
           images[posIndex],
@@ -482,14 +463,12 @@ function draw() {
           opacity
         );
       } else {
-        // Desenha retângulo vazio
         ctx.strokeStyle = "#00000015";
         ctx.lineWidth = 1;
         drawRoundedRect(cell.x, cell.y, cell.width, cell.height, gridRadius);
       }
     });
 
-    // Desenha o texto por cima
     ctx.drawImage(cacheCanvas1, 0, 0);
 
     ctx.save();
@@ -506,11 +485,15 @@ function draw() {
     ctx.drawImage(cacheCanvas2, 0, 0);
     ctx.restore();
 
+    // Borda do círculo com opacidade proporcional ao tamanho — some suavemente
     ctx.lineWidth = 2;
+    ctx.globalAlpha = Math.min(revealRadius / 80, 1);
     ctx.strokeStyle = "#000000";
     ctx.beginPath();
     ctx.arc(mouse.x, mouse.y, revealRadius, 0, Math.PI * 2);
     ctx.stroke();
+    ctx.globalAlpha = 1;
+
   } else {
     drawGrid();
     ctx.drawImage(cacheCanvas1, 0, 0);
@@ -565,6 +548,3 @@ canvas.addEventListener("touchcancel", () => {
   mouse.y = -999;
   stopImageSequence();
 });
-
-// Teste simples
-

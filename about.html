@@ -11,9 +11,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/handoff.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/about.css">
     <link rel="stylesheet" href="/css/query.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -21,5 +22,96 @@
 </head>
 
 <body>
+    <header id="header-placeholder" data-header></header>
+
+    <section class="about">
+        <h1 class="styled_h1_about">
+            <span class="line1">Algumas experiências</span>
+            <span class="line2">e outras informações</span>
+        </h1>
+        <p class="paragraph">
+            ¯\_(ツ)_/¯
+        </p>
+    </section>  
+
+    <main class="main_about">
+        <div class="my_experiences">
+            <h3>Experiências</h3>
+            <div class="wrapper_experiences">
+                <div class="heading_experience">
+                    <span class="item_first">companhias</span>
+                    <span class="item_last">atuação</span>
+                </div>
+                <div class="all_experiences">
+                    <span class="description_work">
+                        <span class="working">Getronics <span class="year">ago 2024 - atual</span></span>
+                        <span class="working">UX & UI</span>
+                    </span>
+                    <span class="description_work">
+                        <span class="working">Geosite <span class="year">set 2022 - ago 2023</span></span>
+                        <span class="working">UX Trainee</span>
+                    </span>
+                    <span class="description_work">
+                        <span class="working">In. Amazilia <span class="year">jan 2022 - mar 2022</span></span>
+                        <span class="working">UX voluntariado</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="my_expertise">
+            <h3>Highlights</h3>
+            <div class="wrapper_content_expertise">
+                <div class="wrapper_content_two">
+                    <span class="item_first">ux</span>
+
+                    <div class="divider divider_pad"></div>
+                    <div class="content_expertise">
+                        <span class="item_expertise">&#47;Pesquisa</span>
+                        <span class="item_expertise">&#47;Teste de usabilidade</span>
+                        <span class="item_expertise">&#47;Design thinking</span>
+                    </div>
+                </div>
+
+                <div class="wrapper_content_two">
+                    <span class="item_last">ui</span>
+                    <div class="divider divider_pad"></div>
+                    <div class="content_expertise">
+                        <span class="item_expertise">&#47;Handoff colaborativo</span>
+                        <span class="item_expertise">&#47;Design system</span>
+                        <span class="item_expertise">&#47;Prototipação</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my_hobbies">
+            <h3>Hobbies</h3>
+            <div class="wrapper_content_expertise">
+                <div class="wrapper_content_two">
+                    <span class="item_first">Modelagem 3D</span>
+
+                    <div class="divider divider_pad"></div>
+                    <div class="content_expertise">
+                        <span class="item_expertise">&#47;Hard surface</span>
+                        <span class="item_expertise">&#47;Texturing</span>
+                    </div>
+                </div>
+
+                <div class="wrapper_content_two">
+                    <span class="item_last">Game Dev</span>
+                    <div class="divider divider_pad"></div>
+                    <div class="content_expertise">
+                        <span class="item_expertise">&#47;C++</span>
+                        <span class="item_expertise">&#47;Unreal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer-placeholder" data-footer></footer>
+    <div class="cursor" data-cursor></div>
+    <script type="module" src="/javascript/script.js"></script>
+    <script type="module" src="/javascript/animation.js"></script>
+    <script type="module" src="/javascript/diagram.js"></script>
 
 </body>
