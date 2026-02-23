@@ -1,5 +1,5 @@
     #header-placeholder {
-        z-index: 999;
+        z-index: 16;
     }
 
     header {
@@ -62,19 +62,16 @@
 
     .nav_menu {
         list-style: none;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-end;
-
+        align-items: center;
         font-size: var(--font-menu-mobile-small);
-
         gap: var(--padding-mobile-small);
         margin: var(--margin-mobile-small);
-
-        padding: 0;
+        padding: 10px;
         height: 100%;
+        letter-spacing: -1px;
     }
 
     .menu_toggle {
@@ -87,4 +84,43 @@
         border-radius: var(--border-radius-small);
 
         cursor: pointer;
+    }
+
+    .figma_tips {
+        pointer-events: none;
+        display: flex;
+        gap: 4px;
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color-global);
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .icon_soon {
+        width: 24px;
+        height: 24px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #00000080;
+    }
+
+    .soon_position {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 2px;
+        font-size: 10px;
+    }
+
+    .nav_menu {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: var(--font-menu-mobile-small);
+        gap: var(--padding-mobile-small);
+        margin: var(--margin-mobile-small);
+        padding: 10px;
+        height: 100%;
     }

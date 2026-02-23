@@ -154,8 +154,8 @@ function resize() {
 
 window.addEventListener("resize", resize);
 
-const text1 = "Por trás de uma interface, existe um mundo de decisões...";
-const text2 = "é esse cuidado que transforma design em experiência.🌹";
+const text1 = "Por trás de uma interface";
+const text2 = "existe um mundo de decisões 🌹";
 
 const fontFamily = "Geologica";
 

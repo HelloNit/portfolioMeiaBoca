@@ -45,9 +45,7 @@ function inicializarMenu() {
     });
 }
 
-// =============================================
-// CANVAS — só roda se existir na página
-// =============================================
+
 const canvas = document.getElementById("connector-canvas");
 
 if (canvas) {
@@ -371,10 +369,6 @@ if (canvas) {
     window.resetCardPositions = resetPositions;
     window.resetAllCardPositions = resetAllPositions;
 
-
-    // =============================================
-    // SLIDER — só roda se existir na página
-    // =============================================
     const sliderContainer = document.querySelector('.slider_container');
 
     if (sliderContainer) {
@@ -418,9 +412,6 @@ if (canvas) {
     }
 
 
-    // =============================================
-    // TOOLTIP — só roda se existir na página
-    // =============================================
     const cardWrappers = document.querySelectorAll('.card_wrapper_considerations');
 
     if (cardWrappers.length > 0) {
