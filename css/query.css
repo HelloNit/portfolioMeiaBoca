@@ -245,6 +245,12 @@
         width: 70%;
     }
 
+    .person_pic{
+        width: 100px;
+        height: 100px;
+        object-fit: fill;
+    }
+
     .about {
         display: flex;
         flex-direction: column;
@@ -295,7 +301,7 @@
 
 @media (min-width: 1884px) {
     body {
-        margin: 0 300px;
+        margin: 0 240px;
     }
 
     .final_product img {

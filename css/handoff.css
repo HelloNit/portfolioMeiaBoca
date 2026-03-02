@@ -131,7 +131,9 @@ main {
 
 .column_one_fixed {
     border-radius: var(--border-radius-small);
+    position: relative;
 }
+
 
 .sticky_column_right {
     display: flex;
