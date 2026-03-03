@@ -65,7 +65,7 @@ function inicializarMenu() {
         }
     });
 
-    // ✅ Safe eyes aqui, após o header ter carregado
+    // ✅ Safe eyes — dentro do callback após header carregar
     const overlay = document.getElementById('safe-eyes-overlay');
     const safeEyesButtons = document.querySelectorAll('.wrapper_colors button');
 
@@ -73,19 +73,31 @@ function inicializarMenu() {
         'default': 'transparent',
         'red': 'rgba(255, 81, 0, 0.20)',
         'orange': 'rgba(231, 85, 0, 0.20)',
-        'blue': 'rgba(0,   100, 255, 0.08)',
+        'blue': 'rgba(0, 100, 255, 0.08)',
     };
 
+    // Restaura cor salva
+    const savedColor = localStorage.getItem('safeEyesColor');
+    if (savedColor && overlay) {
+        overlay.style.backgroundColor = colors[savedColor] ?? 'transparent';
+    }
+
     safeEyesButtons.forEach(button => {
+        const key = button.id.split('-')[2];
+        if (key === savedColor) button.classList.add('active');
+
         button.addEventListener('click', () => {
             safeEyesButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
             const key = button.id.split('-')[2];
             overlay.style.backgroundColor = colors[key] ?? 'transparent';
+            localStorage.setItem('safeEyesColor', key);
         });
     });
 }
+
+// Canvas — cards arrastáveis
 
 const canvas = document.getElementById("connector-canvas");
 
@@ -190,7 +202,6 @@ if (canvas) {
                 const end = getAnchor(nextCard, "top");
 
                 const dx = end.x - start.x;
-                const dy = end.y - start.y;
                 const curveAmount = 100;
 
                 const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
@@ -234,11 +245,7 @@ if (canvas) {
     function loadPositions(breakpoint) {
         const key = `cardPositions_${breakpoint}`;
         const saved = localStorage.getItem(key);
-
-        if (saved) {
-            return JSON.parse(saved);
-        }
-
+        if (saved) return JSON.parse(saved);
         return defaultPositions[breakpoint];
     }
 
@@ -253,17 +260,13 @@ if (canvas) {
             });
         });
 
-        const key = `cardPositions_${breakpoint}`;
-        localStorage.setItem(key, JSON.stringify(positions));
+        localStorage.setItem(`cardPositions_${breakpoint}`, JSON.stringify(positions));
     }
 
     function applyPositions() {
         const breakpoint = getCurrentBreakpoint();
         const positions = loadPositions(breakpoint);
         const wrapperRect = wrapper.getBoundingClientRect();
-
-        console.log("Breakpoint atual:", breakpoint);
-        console.log("Posições carregadas:", positions);
 
         cards.forEach((card, index) => {
             const pos = positions[index];
@@ -273,8 +276,6 @@ if (canvas) {
             const x = Math.max(0, Math.min(pos.x, wrapperRect.width - cardW));
             const y = Math.max(0, Math.min(pos.y, wrapperRect.height - cardH));
 
-            console.log(`Card ${index}:`, { x, y });
-
             card.style.left = `${x}px`;
             card.style.top = `${y}px`;
         });
@@ -282,12 +283,8 @@ if (canvas) {
 
     function resetPositions(breakpoint = null) {
         const bp = breakpoint || getCurrentBreakpoint();
-        const key = `cardPositions_${bp}`;
-        localStorage.removeItem(key);
-
-        if (!breakpoint) {
-            applyPositions();
-        }
+        localStorage.removeItem(`cardPositions_${bp}`);
+        if (!breakpoint) applyPositions();
     }
 
     function resetAllPositions() {
@@ -297,7 +294,7 @@ if (canvas) {
         applyPositions();
     }
 
-    cards.forEach((card, index) => {
+    cards.forEach((card) => {
         card.style.position = 'absolute';
         card.style.cursor = 'grab';
 
@@ -415,6 +412,10 @@ if (canvas) {
     window.resetCardPositions = resetPositions;
     window.resetAllCardPositions = resetAllPositions;
 
+
+    // Slider
+
+
     const sliderContainer = document.querySelector('.slider_container');
 
     if (sliderContainer) {
@@ -426,37 +427,26 @@ if (canvas) {
 
         function goToSlide(index) {
             currentSlide = index;
-            const offset = -currentSlide * 100;
-            sliderContainer.style.transform = `translateX(${offset}%)`;
+            sliderContainer.style.transform = `translateX(${-currentSlide * 100}%)`;
         }
 
         btnNext.addEventListener('click', () => {
-            if (currentSlide < totalSlides - 1) {
-                goToSlide(currentSlide + 1);
-            } else {
-                goToSlide(0);
-            }
+            goToSlide(currentSlide < totalSlides - 1 ? currentSlide + 1 : 0);
         });
 
         btnPrev.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                goToSlide(currentSlide - 1);
-            } else {
-                goToSlide(totalSlides - 1);
-            }
+            goToSlide(currentSlide > 0 ? currentSlide - 1 : totalSlides - 1);
         });
 
         slides.forEach(slide => {
             slide.addEventListener('click', () => {
-                const overlay = slide.querySelector('.overlay');
-                const contentText = slide.querySelector('.content_text');
-
-                overlay.classList.toggle('hidden');
-                contentText.classList.toggle('hidden');
+                slide.querySelector('.overlay').classList.toggle('hidden');
+                slide.querySelector('.content_text').classList.toggle('hidden');
             });
         });
     }
 
+    // Tooltips considerações
 
     const cardWrappers = document.querySelectorAll('.card_wrapper_considerations');
 
@@ -488,7 +478,6 @@ if (canvas) {
                         if (tooltip.classList.contains('tooltip-right')) {
                             tooltip.style.transform = 'translateY(0%) translateX(0)';
                         }
-
                     }, index * 100);
                 });
             });
@@ -510,8 +499,9 @@ if (canvas) {
             });
         });
     }
-
 }
+
+// Accordion
 
 var acc = document.getElementsByClassName("accordion");
 
@@ -528,27 +518,7 @@ for (var i = 0; i < acc.length; i++) {
     });
 }
 
-const overlay = document.getElementById('safe-eyes-overlay');
-const safeEyesButtons = document.querySelectorAll('.wrapper_colors button');
-
-const colors = {
-    'default': 'transparent',
-    'red': 'rgba(255, 80,  0,   0.08)',
-    'orange': 'rgba(255, 165, 0,   0.08)',
-    'blue': 'rgba(0,   100, 255, 0.08)',
-};
-
-safeEyesButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        safeEyesButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const key = button.id.split('-')[2]; // "default", "red", etc.
-        overlay.style.backgroundColor = colors[key] ?? 'transparent';
-    });
-});
-
-//transição
+// Transição de página
 
 const transition = document.getElementById('page-transition');
 
