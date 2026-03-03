@@ -1,4 +1,4 @@
-h6{
+h6 {
     color: var(--text-white);
     font-size: 4rem;
     font-weight: 100;
@@ -6,34 +6,62 @@ h6{
     letter-spacing: -4%;
 }
 
-#footerElement{
+#footerElement {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid var(--border-color-global);
     border-radius: var(--border-radius-small);
-    padding: 100px 0;
+    padding: 100px 40px;
     background-color: var(--bg-dark);
     margin: 60px 0;
-    
+
 }
 
-.contact_network{
+.contact_network {
     display: flex;
     align-items: center;
-    width: fit-content;
-    gap: 30px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
     color: rgb(255, 255, 255);
     border-bottom: 1px solid var(--border-color-global);
     padding: var(--padding-mobile-small);
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
 }
 
-.contact_network_icon{
-    width: 36px;
-    height: 36px;
+.copy_feedback {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    border: 1px solid var(--border-color-global);
 }
 
-.buttons_contact{
+.copy_feedback.visible {
+    opacity: 1;
+}
+
+.contact_network_icon {
+    width: 24px;
+    height: 24px;
+}
+
+.buttons_contact {
     display: flex;
     gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 20px;
 }

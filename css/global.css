@@ -17,7 +17,7 @@
     /* Fontes */
     --font-main: 'Geologica', sans-serif;
 
-    --font-menu-mobile-small: 3rem;
+    --font-menu-mobile-small: 1.7rem;
 
     --font-size-card: 1rem;
     --font-size-title-card: 1.5rem;
@@ -119,4 +119,18 @@ body::-webkit-scrollbar-thumb:hover {
 
 body::-webkit-scrollbar-track {
     background-color: var(--bg-dark);
+}
+
+.page_transition {
+    position: fixed;
+    inset: 0;
+    background-color: #000000;
+    z-index: 99999;
+    opacity: 1;  /* começa visível */
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.page_transition.fade-out {
+    opacity: 0;
 }

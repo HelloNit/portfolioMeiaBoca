@@ -4,17 +4,22 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://srrodrigues.com">
+	<meta property="og:title" content="Felipe Rodrigues — UX | UI Designer">
+	<meta property="og:description" content="Ux designer com alguns anos de experiência">
+	<meta property="og:image" content="https://srrodrigues.comimg/cursor.jpg">
 
 	<title>Felipe Rodrigues — UX | UI Designer</title>
 	<link rel="icon" type="imagem/x-icon" href="/img/favicon-32x32.png">
 
-	<link rel="stylesheet" href="/css/global.css">
-	<link rel="stylesheet" href="/css/header.css">
-	<link rel="stylesheet" href="/css/footer.css">
-	<link rel="stylesheet" href="/css/index.css">
-	<link rel="stylesheet" href="/css/handoff.css">
-	<link rel="stylesheet" href="/css/about.css">
-	<link rel="stylesheet" href="/css/query.css">
+	<link rel="stylesheet" href="/css/global.css?v=2.0">
+	<link rel="stylesheet" href="/css/header.css?v=2.0">
+	<link rel="stylesheet" href="/css/footer.css?v=2.0">
+	<link rel="stylesheet" href="/css/index.css?v=2.0">
+	<link rel="stylesheet" href="/css/handoff.css?v=2.0">
+	<link rel="stylesheet" href="/css/about.css?v=2.0">
+	<link rel="stylesheet" href="/css/query.css?v=2.0">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
@@ -24,6 +29,7 @@
 
 <body>
 	<header id="header-placeholder" data-header></header>
+	<div class="safe_eyes_overlay" id="safe-eyes-overlay"></div>
 	<section class="hero" data-hero>
 		<div class="hero_info">
 			<p class="hero_role">
@@ -80,7 +86,7 @@
 				<article class="project-card" data-project>
 					<div class="content_project">
 						<div class="heading_project">
-							<span class="project-card_title">Mainframe — Pesquisa</span>
+							<span class="project-card_title">Pesquisa — Persona</span>
 							<p class="wave_effect">
 								Investigando perfil do usuário de mainframe por meio de pesquisa em profundidade,
 								revelando
@@ -128,6 +134,7 @@
 
 	<footer id="footer-placeholder" data-footer></footer>
 	<div class="cursor" data-cursor></div>
+	<div class="page_transition" id="page-transition"></div>
 	<script type="module" src="/javascript/animation.js"></script>
 	<script type="module" src="/javascript/script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

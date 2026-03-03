@@ -1,4 +1,4 @@
-@media (min-width: 320px) {
+@media (min-width: 20px) {
     body {
         margin: 20px;
     }
@@ -60,18 +60,69 @@
         left: 50%;
         transform: translateX(-50%);
 
-        width: 70%;
+        width: 84%;
         background-color: rgba(0, 0, 0, 0.767);
         backdrop-filter: blur(9px);
         border-radius: 30px;
     }
 
-
-
     .logo {
         width: 32px;
         height: 32px;
         fill: white;
+    }
+
+    .title_button {
+        color: var(--text-white);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dropdown_icon {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+
+    .option_four {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .wrapper_colors {
+        display: none;
+        transition: opacity 0.4s ease;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.548);
+        top: 100%;
+        left: 0;
+        transform: translate(-10%, 0%);
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color-global);
+    }
+
+    .option_four:hover .wrapper_colors {
+        display: flex;
+    }
+
+    #safe-eyes-default,
+    #safe-eyes-red,
+    #safe-eyes-orange,
+    #safe-eyes-blue {
+        width: 20px;
+        height: 20px;
+    }
+
+    .dropdown_icon {
+        transition: transform 0.2s ease;
+    }
+
+    .option_four:hover .dropdown_icon {
+        transform: rotate(180deg);
     }
 
     .heading_nav {
@@ -100,6 +151,10 @@
 
         padding-right: 30px;
         margin: 0;
+    }
+
+    .menu_option {
+        width: fit-content;
     }
 
     .icon_soon {
@@ -228,7 +283,7 @@
 
     .cards_container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -245,9 +300,9 @@
         width: 70%;
     }
 
-    .person_pic{
-        width: 100px;
-        height: 100px;
+    .person_pic {
+        width: 40px;
+        height: 40px;
         object-fit: fill;
     }
 
@@ -278,12 +333,43 @@
         width: 100%;
     }
 
+    .contact_network {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        color: rgb(255, 255, 255);
+        border-bottom: 1px solid var(--border-color-global);
+        padding: var(--padding-mobile-small);
+        box-sizing: border-box;
+    }
+
+    .contact_network_icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .buttons_contact {
+        display: flex;
+        gap: 20px;
+        flex-direction: row;
+        width: fit-content;
+        padding: 0px 20px;
+    }
+
 }
 
 @media (min-width: 1440px) {
     body {
         margin: 0 100px;
     }
+
+
+    header {
+        width: 70%;
+    }
+
 
     .final_product {
         width: 50%;
@@ -295,6 +381,12 @@
 
     .cards_introduction {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cards_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 
 }

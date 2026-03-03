@@ -27,6 +27,10 @@
         padding: var(--padding-mobile-small);
     }
 
+    .menu_option {
+        width: 100%;
+    }
+
     .logo {
         display: flex;
         align-items: center;
@@ -68,10 +72,18 @@
         align-items: center;
         font-size: var(--font-menu-mobile-small);
         gap: var(--padding-mobile-small);
-        margin: var(--margin-mobile-small);
+        margin-bottom: var(--margin-mobile-small);
         padding: 10px;
         height: 100%;
         letter-spacing: -1px;
+    }
+
+    .option_one,
+    .option_two,
+    .option_three,
+    .option_four {
+        border-bottom: 1px solid var(--border-color-global);
+        padding: 10px 0;
     }
 
     .menu_toggle {
@@ -90,16 +102,14 @@
         pointer-events: none;
         display: flex;
         gap: 4px;
-        padding: 4px;
         border-radius: 10px;
-        border: 1px solid var(--border-color-global);
         width: 100%;
         justify-content: space-between;
     }
 
     .icon_soon {
-        width: 24px;
-        height: 24px;
+        width: 14px;
+        height: 14px;
         padding: 10px;
         border-radius: 50%;
         background-color: #00000080;
@@ -123,4 +133,48 @@
         margin: var(--margin-mobile-small);
         padding: 10px;
         height: 100%;
+    }
+
+    /* safe eyes */
+
+    .wrapper_colors {
+        display: flex;
+        gap: 4px;
+    }
+
+    .option_four {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .style_btn_safe {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+    }
+
+    #safe-eyes-default {
+        background-color: #ffffff;
+        border: 1px solid var(--border-color-global);
+        cursor: pointer;
+    }
+
+    #safe-eyes-red {
+        background-color: red;
+        cursor: pointer;
+    }
+
+    #safe-eyes-orange {
+        background-color: rgb(255, 176, 73);
+        cursor: pointer;
+    }
+
+    #safe-eyes-blue {
+        background-color: #7583ff;
+        cursor: pointer;
+    }
+
+    .dropdown_icon{
+        display: none;
     }

@@ -8,14 +8,13 @@
     <title>Felipe Rodrigues — UX | UI Designer</title>
     <link rel="icon" type="imagem/x-icon" href="/img/favicon-32x32.png">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/handoff.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="stylesheet" href="/css/query.css">
+    <link rel="stylesheet" href="/css/global.css?v=2.0">
+    <link rel="stylesheet" href="/css/header.css?v=2.0">
+    <link rel="stylesheet" href="/css/footer.css?v=2.0">
+    <link rel="stylesheet" href="/css/index.css?v=2.0">
+    <link rel="stylesheet" href="/css/handoff.css?v=2.0">
+    <link rel="stylesheet" href="/css/about.css?v=2.0">
+    <link rel="stylesheet" href="/css/query.css?v=2.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,7 +23,7 @@
 
 <body>
     <header id="header-placeholder" data-header></header>
-
+    <div class="safe_eyes_overlay" id="safe-eyes-overlay"></div>
     <section class="about">
         <h1 class="styled_h1_about">
             <span class="line1">Algumas experiências</span>
@@ -111,6 +110,7 @@
 
     <footer id="footer-placeholder" data-footer></footer>
     <div class="cursor" data-cursor></div>
+    <div class="page_transition" id="page-transition"></div>
     <script type="module" src="/javascript/script.js"></script>
     <script type="module" src="/javascript/animation.js"></script>
     <script type="module" src="/javascript/diagram.js"></script>  

@@ -3,8 +3,29 @@ $(document).ready(function () {
         inicializarMenu();
     });
 
-    $("#footer-placeholder").load("components/footer.html");
+    $("#footer-placeholder").load("components/footer.html", function () {
+        inicializarFooter();
+    });
 });
+
+function inicializarFooter() {
+    const copyLink = document.getElementById('copy-email');
+
+    if (!copyLink) return;
+
+    const feedback = document.createElement('span');
+    feedback.classList.add('copy_feedback');
+    feedback.textContent = 'E-mail copiado!';
+    copyLink.appendChild(feedback);
+
+    copyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText('felipe@srrodrigues.com');
+
+        feedback.classList.add('visible');
+        setTimeout(() => feedback.classList.remove('visible'), 1000);
+    });
+}
 
 function inicializarMenu() {
     const menuToggle = document.querySelector('[data-menu-toggle]');
@@ -43,8 +64,28 @@ function inicializarMenu() {
             menuToggle.setAttribute('aria-label', 'Abrir menu');
         }
     });
-}
 
+    // ✅ Safe eyes aqui, após o header ter carregado
+    const overlay = document.getElementById('safe-eyes-overlay');
+    const safeEyesButtons = document.querySelectorAll('.wrapper_colors button');
+
+    const colors = {
+        'default': 'transparent',
+        'red': 'rgba(255, 81, 0, 0.20)',
+        'orange': 'rgba(231, 85, 0, 0.20)',
+        'blue': 'rgba(0,   100, 255, 0.08)',
+    };
+
+    safeEyesButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            safeEyesButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const key = button.id.split('-')[2];
+            overlay.style.backgroundColor = colors[key] ?? 'transparent';
+        });
+    });
+}
 
 const canvas = document.getElementById("connector-canvas");
 
@@ -74,34 +115,34 @@ if (canvas) {
 
     const defaultPositions = {
         '320': [
-            { x: 10, y: 50 },
-            { x: 10, y: 200 },
-            { x: 10, y: 350 },
-            { x: 10, y: 500 }
+            { x: 35, y: 5 },
+            { x: 0, y: 257 },
+            { x: 28, y: 480 },
+            { x: 0, y: 694 }
         ],
         '375': [
-            { x: 20, y: 50 },
-            { x: 20, y: 200 },
-            { x: 20, y: 350 },
-            { x: 20, y: 500 }
+            { x: 1, y: 3 },
+            { x: 94, y: 203 },
+            { x: 2, y: 416 },
+            { x: 0, y: 30 }
         ],
         '425': [
-            { x: 30, y: 50 },
-            { x: 30, y: 200 },
-            { x: 30, y: 350 },
-            { x: 30, y: 500 }
+            { x: 3, y: 6 },
+            { x: 137, y: 208 },
+            { x: 0, y: 366 },
+            { x: 0, y: 634 }
         ],
         '768': [
-            { x: 100, y: 50 },
-            { x: 100, y: 220 },
-            { x: 100, y: 390 },
-            { x: 100, y: 560 }
+            { x: 13, y: 6 },
+            { x: 414, y: 195 },
+            { x: 198, y: 391 },
+            { x: 0, y: 643 }
         ],
         '1024': [
-            { x: 200, y: 100 },
-            { x: 200, y: 300 },
-            { x: 200, y: 500 },
-            { x: 200, y: 700 }
+            { x: 167, y: 77 },
+            { x: 439, y: 315 },
+            { x: 27, y: 470 },
+            { x: 350, y: 644 }
         ]
     };
 
@@ -157,7 +198,7 @@ if (canvas) {
                 const lightPos = (lightPosition + index * 0.3) % 1;
                 const lightSize = 0.30;
 
-               gradient.addColorStop(0, 'rgba(255,255,255,0)');
+                gradient.addColorStop(0, 'rgba(255,255,255,0)');
 
                 if (lightPos - lightSize > 0) {
                     gradient.addColorStop(lightPos - lightSize, '#000000');
@@ -221,6 +262,9 @@ if (canvas) {
         const positions = loadPositions(breakpoint);
         const wrapperRect = wrapper.getBoundingClientRect();
 
+        console.log("Breakpoint atual:", breakpoint);
+        console.log("Posições carregadas:", positions);
+
         cards.forEach((card, index) => {
             const pos = positions[index];
             const cardW = card.offsetWidth;
@@ -228,6 +272,8 @@ if (canvas) {
 
             const x = Math.max(0, Math.min(pos.x, wrapperRect.width - cardW));
             const y = Math.max(0, Math.min(pos.y, wrapperRect.height - cardH));
+
+            console.log(`Card ${index}:`, { x, y });
 
             card.style.left = `${x}px`;
             card.style.top = `${y}px`;
@@ -465,8 +511,7 @@ if (canvas) {
         });
     }
 
-} 
-
+}
 
 var acc = document.getElementsByClassName("accordion");
 
@@ -482,3 +527,54 @@ for (var i = 0; i < acc.length; i++) {
         }
     });
 }
+
+const overlay = document.getElementById('safe-eyes-overlay');
+const safeEyesButtons = document.querySelectorAll('.wrapper_colors button');
+
+const colors = {
+    'default': 'transparent',
+    'red': 'rgba(255, 80,  0,   0.08)',
+    'orange': 'rgba(255, 165, 0,   0.08)',
+    'blue': 'rgba(0,   100, 255, 0.08)',
+};
+
+safeEyesButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        safeEyesButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const key = button.id.split('-')[2]; // "default", "red", etc.
+        overlay.style.backgroundColor = colors[key] ?? 'transparent';
+    });
+});
+
+//transição
+
+const transition = document.getElementById('page-transition');
+
+window.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            transition.classList.add('fade-out');
+        });
+    });
+});
+
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+
+    if (!link) return;
+    if (!link.href) return;
+    if (link.target === '_blank') return;
+    if (link.href.startsWith('mailto')) return;
+    if (link.href.startsWith('#')) return;
+
+    e.preventDefault();
+    const destination = link.href;
+
+    transition.classList.remove('fade-out');
+
+    setTimeout(() => {
+        window.location.href = destination;
+    }, 400);
+});
