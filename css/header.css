@@ -14,7 +14,7 @@
         box-sizing: border-box;
 
         position: fixed;
-        inset: 10px 10px auto;
+        inset: auto 10px 10px ;
         z-index: 10;
 
         border-radius: var(--border-radius-small);

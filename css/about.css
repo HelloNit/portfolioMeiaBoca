@@ -1,104 +1,136 @@
-.about {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.hero_about {
+    padding: 30px 0px 30px 0px;
+
 }
 
-.safe_eyes_overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: background-color 0.4s ease;
-    background-color: transparent;
+.about_me_hero {
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
-h1 {
-    font-size: 1.7rem;
-    margin: 0;
+.who_is {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    gap: 10px;
 }
 
-.line2 {
-    align-self: flex-end;
+.about_more {
+    margin: 0;
 }
 
+.gray_color {
+    color: rgb(194, 194, 194);
+}
 
-/* main about */
-
-.main_about {
+.content_about_more {
     display: grid;
-    margin-top: 120px;
-    gap: 30px;
+    gap: 10px;
 }
 
-.heading_experience {
+.wrapper_info_me {
+    margin-top: 30px;
+    position: sticky;
+    top: 0;
     display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    /* padding: 2px 0; */
-    /* border-top: 1px solid var(--border-color-global); */
-    /* border-bottom: 1px solid var(--border-color-global); */
-    border-left: none;
-    border-right: none;
+    align-items: center;
 }
 
-.all_experiences {
-    display: grid;
-    gap: 4px;
+article {
+    padding: 30px 0;
+}
+
+/* logo style */
+.brand_style {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
-.year {
-    font-size: 12px;
-    font-weight: 200;
+.styled_brand {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 10px;
 }
 
-.styled_h1_about {
-    font-size: 1.2rem;
-    letter-spacing: -2%;
+.wrapper_brands {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.brand_one {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.brand_img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.name_brand {
+    color: var(--text-black);
     font-weight: 500;
 }
 
-.working {
+.about_brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.role_level {
+    font-size: 12px;
+}
+
+
+/* comment */
+
+
+.wrapper_comments {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    scrollbar-width: none;
+}
+
+.comment_styled {
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: 20px;
+    width: 80%;
+    border: 1px solid var(--border-color-global);
+    border-radius: 20px;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.heading_comment {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.description_work {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text-black);
-    font-weight: 400;
+.img_user {
+    width: 60px;
+    height: 60px;
+    border-radius: 9px;
 }
 
-.wrapper_content_expertise {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.content_expertise {
+.name_user {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.item_expertise {
-    font-size: 14px;
-    color: var(--text-black);
-}
-
-.divider_pad {
-    margin: 10px 0;
-}
-
-.divider_light {
-    border: 1px solid white;
+.role_comment {
+    font-size: 12px;
 }
