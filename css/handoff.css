@@ -239,13 +239,15 @@ img {
 
 .slider_wrapper {
     position: relative;
-    overflow: hidden;
     width: 100%;
+    overflow: hidden;
+    /* volta aqui */
 }
 
 .slider_container {
     display: flex;
     transition: transform 0.4s ease-in-out;
+    /* overflow: hidden;  */
 }
 
 .slider_item {
@@ -312,23 +314,26 @@ img {
     position: absolute;
 
     background-color: var(--bg-dark);
+    padding: 6px;
     border: 1px solid var(--border-color-global);
     backdrop-filter: blur(4px);
     border-radius: var(--border-radius-small);
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
     z-index: 4;
+    gap: 1px;
 }
 
 .slider_prev,
-.slider_next {
+.slider_next,
+.zoom_img {
     all: unset;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
 }
 
 .styled_link {
@@ -546,4 +551,79 @@ ul {
     object-fit: cover;
     height: auto;
     object-position: right 0;
+}
+
+/* lightbox */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.776);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+}
+
+.lightbox_inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+.lightbox_icon_fill {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Zoom wrapper nas imagens da página */
+
+.zoom_img_desktop {
+    display: block;
+}
+
+.zoom_wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    cursor: alias;
+}
+
+.zoom_hint {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.zoom_wrapper:hover .zoom_hint {
+    opacity: 1;
+    transform: translateY(0);
 }

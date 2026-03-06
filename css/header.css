@@ -4,7 +4,6 @@
 
     header {
         position: sticky;
-        bottom: 20px;
         margin: 0;
     }
 
@@ -15,7 +14,7 @@
         box-sizing: border-box;
 
         position: fixed;
-        inset: auto 10px 10px;
+        inset: 10px 10px auto;
         z-index: 10;
 
         border-radius: var(--border-radius-small);
@@ -29,6 +28,11 @@
 
     .menu_option {
         width: 100%;
+    }
+
+    .link_goto {
+        width: 100%;
+        display: block
     }
 
     .logo {
@@ -175,6 +179,6 @@
         cursor: pointer;
     }
 
-    .dropdown_icon{
+    .dropdown_icon {
         display: none;
     }

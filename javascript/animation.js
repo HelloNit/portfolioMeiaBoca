@@ -1,5 +1,77 @@
 import anime from 'https://cdn.jsdelivr.net/npm/animejs/lib/anime.es.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+        lightboxImg.src = src;
+        lightbox.style.display = 'flex';
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                lightbox.classList.add('active');
+
+                anime({
+                    targets: '#lightbox-img',
+                    opacity: [0, 1],
+                    scale: [0.92, 1],
+                    duration: 600,
+                    easing: 'cubicBezier(0.77, 0, 0.18, 1)',
+                });
+
+                anime({
+                    targets: '.lightbox_icon_fill',
+                    opacity: [0, 1],
+                    translateY: [8, 0],
+                    duration: 500,
+                    delay: 600,
+                    easing: 'cubicBezier(0.77, 0, 0.18, 1)',
+                });
+            });
+        });
+    }
+
+    // duplo clique nas imagens
+    document.querySelectorAll('.zoom_img_desktop').forEach(img => {
+        let clicks = 0;
+        let timer = null;
+        img.style.cursor = 'url("/img/cursor.png"), auto';
+
+        img.addEventListener('click', () => {
+            clicks++;
+            clearTimeout(timer);
+            timer = setTimeout(() => { clicks = 0; }, 400);
+
+            if (clicks === 2) {
+                clicks = 0;
+                openLightbox(img.src);
+            }
+        });
+    });
+
+    // botão zoom do slider
+    const zoomBtn = document.querySelector('.zoom_img');
+    if (zoomBtn) {
+        zoomBtn.addEventListener('click', () => {
+            const activeSlide = document.querySelector('.slider_item.active');
+            if (!activeSlide) return;
+            const img = activeSlide.querySelector('img');
+            if (!img) return;
+            openLightbox(img.src);
+        });
+    }
+
+    // fechar lightbox
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        setTimeout(() => {
+            lightbox.style.display = 'none';
+            lightboxImg.src = '';
+        }, 400);
+    });
+});
+
 function waitForHeader() {
   return new Promise((resolve) => {
     const header = document.querySelector('#header-placeholder');
@@ -116,7 +188,6 @@ const img1 = new Image();
 const img2 = new Image();
 const img3 = new Image();
 
-// ⚠️ CAMINHOS DAS SUAS IMAGENS
 img1.src = "img/hands_blender.png";
 img2.src = "img/mainframe.jpg";
 img3.src = "img/banner_1.png";
@@ -135,15 +206,16 @@ const cacheCtx2 = cacheCanvas2.getContext("2d");
 let textBounds = { x: 0, y: 0, width: 0, height: 0 };
 let gridCells = [];
 
-// Estado animado pelo GSAP
 const anim = {
   revealRadius: 0,
   revealOpacity: 0,
   imageOpacity: 0,
 };
 
-// Opacidade por célula — GSAP vai animar cada índice
 const cellOpacities = {};
+
+// Retorna true se estiver em mobile — reavaliado a cada chamada
+const isMobile = () => window.innerWidth <= 768;
 
 function resize() {
   canvas.width = hero.clientWidth;
@@ -155,15 +227,15 @@ function resize() {
 window.addEventListener("resize", resize);
 
 const text1 = "Por trás de uma interface";
-const text2 = "existe um mundo de decisões 🌹";
+const text2 = "existe um mundo de decisões.";
 
 const fontFamily = "Geologica";
 
 let fontSize = window.innerWidth >= 1024 ? 100 : 30;
-let lineHeight = fontSize * 1;
+let lineHeight = fontSize * 2;
 
 const centerX = () => canvas.width / 2;
-const centerY = () => canvas.height / 2;
+const centerY = () => canvas.height / 1.8;
 
 function wrapText(context, text, maxWidth) {
   const words = text.split(' ');
@@ -242,9 +314,12 @@ function calculateTextBounds(lines1, lines2) {
 
 function calculateGridCells() {
   gridCells = [];
+
+  if (canvas.width < 768) return;
+
   const baseSize = 300;
   const cols = Math.floor(canvas.width / baseSize);
-  const rows = Math.floor(canvas.height / baseSize);
+  const rows = 2; 
   const gridSizeX = canvas.width / cols;
   const gridSizeY = canvas.height / rows;
 
@@ -257,7 +332,6 @@ function calculateGridCells() {
         width: gridSizeX,
         height: gridSizeY
       });
-      // Inicializa opacidade zerada por célula
       if (cellOpacities[index] === undefined) {
         cellOpacities[index] = 0;
       }
@@ -266,8 +340,6 @@ function calculateGridCells() {
 }
 
 resize();
-
-const isMobile = window.innerWidth <= 768;
 
 const mouse = {
   x: -999,
@@ -300,11 +372,13 @@ window.addEventListener("scroll", () => {
 });
 
 function drawGrid() {
+  if (canvas.width < 768) return;
+
   gridRadius += (targetGridRadius - gridRadius) * gridTransitionSpeed;
 
   const baseSize = 300;
   const cols = Math.floor(canvas.width / baseSize);
-  const rows = Math.floor(canvas.height / baseSize);
+  const rows = 2; // sempre 2 rows
   const gridSizeX = canvas.width / cols;
   const gridSizeY = canvas.height / rows;
 
@@ -383,7 +457,8 @@ function drawImageInRect(img, x, y, w, h, radius, opacity = 1) {
   ctx.stroke();
 }
 
-const imagePositions = [0, 2, 7];
+// Índices das células do grid onde as imagens aparecem
+const imageCellIndices = [0, 1, 7];
 
 function startImageSequence() {
   currentImageIndex = 0;
@@ -396,12 +471,10 @@ function startImageSequence() {
     if (isMouseOverText() && mouse.active) {
       if (currentImageIndex < images.length - 1) {
         currentImageIndex++;
-        // Fade da nova imagem
         gsap.killTweensOf(anim, "imageOpacity");
         gsap.fromTo(anim, { imageOpacity: 0 }, { imageOpacity: 1, duration: 0.5, ease: "power2.out" });
 
-        // Fade in da célula nova
-        const cellIndex = imagePositions[currentImageIndex];
+        const cellIndex = imageCellIndices[currentImageIndex];
         gsap.to(cellOpacities, {
           [cellIndex]: 1,
           duration: 0.6,
@@ -414,8 +487,7 @@ function startImageSequence() {
     }
   }, IMAGE_DURATION);
 
-  // Fade in da primeira célula
-  const firstCell = imagePositions[0];
+  const firstCell = imageCellIndices[0];
   gsap.to(cellOpacities, {
     [firstCell]: 1,
     duration: 0.6,
@@ -429,8 +501,7 @@ function stopImageSequence() {
     imageTimer = null;
   }
 
-  // Fade out de todas as células ativas
-  imagePositions.forEach(cellIndex => {
+  imageCellIndices.forEach(cellIndex => {
     gsap.to(cellOpacities, {
       [cellIndex]: 0,
       duration: 0.5,
@@ -444,7 +515,6 @@ function stopImageSequence() {
 let wasOverText = false;
 
 function onEnterText() {
-  // Reveal circle: entra com easing elástico suave
   gsap.killTweensOf(anim, "revealRadius,revealOpacity");
   gsap.to(anim, {
     revealRadius: maxRadius,
@@ -461,7 +531,6 @@ function onEnterText() {
 }
 
 function onLeaveText() {
-  // Reveal circle: sai suavemente
   gsap.killTweensOf(anim, "revealRadius,revealOpacity");
   gsap.to(anim, {
     revealRadius: 0,
@@ -477,33 +546,33 @@ function onLeaveText() {
   stopImageSequence();
 }
 
+// Reseta mouse e dispara onLeaveText — usado em múltiplos listeners
+function resetMouse() {
+  mouse.active = false;
+  mouse.pressed = false;
+  mouse.x = -999;
+  mouse.y = -999;
+  onLeaveText();
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const isOverText = isMouseOverText();
-  const shouldReveal = isMobile
+  const shouldReveal = isMobile()
     ? (mouse.pressed && mouse.active && isOverText)
     : (mouse.active && isOverText);
 
-  // Dispara callbacks de entrada/saída do texto
   if (isOverText && !wasOverText) onEnterText();
   else if (!isOverText && wasOverText) onLeaveText();
   wasOverText = isOverText;
 
-  if (mouse.active && (isMobile ? mouse.pressed : true)) {
-
-    const activeCells = new Set();
-    imagePositions.forEach((cellIndex, posIndex) => {
-      if (isOverText && posIndex <= currentImageIndex && images[posIndex].complete) {
-        activeCells.add(cellIndex);
-      }
-    });
+  if (mouse.active && (isMobile() ? mouse.pressed : true)) {
 
     gridCells.forEach((cell, index) => {
-      const posIndex = imagePositions.indexOf(index);
+      const posIndex = imageCellIndices.indexOf(index);
       const cellOpacity = cellOpacities[index] || 0;
 
-      // Grid some conforme imagem aparece
       ctx.save();
       ctx.globalAlpha = 1 - cellOpacity;
       ctx.strokeStyle = "#0a0a0a";
@@ -511,7 +580,6 @@ function draw() {
       drawRoundedRect(cell.x, cell.y, cell.width, cell.height, gridRadius);
       ctx.restore();
 
-      // Imagem entra com fade suave
       if (cellOpacity > 0.01 && posIndex !== -1 && images[posIndex] && images[posIndex].complete) {
         const baseOpacity = posIndex === currentImageIndex ? anim.imageOpacity : 1;
         drawImageInRect(
@@ -526,7 +594,6 @@ function draw() {
 
     ctx.drawImage(cacheCanvas1, 0, 0);
 
-    // Reveal circle
     if (anim.revealRadius > 1 && anim.revealOpacity > 0.01) {
       ctx.save();
       ctx.globalAlpha = anim.revealOpacity;
@@ -576,12 +643,7 @@ canvas.addEventListener("mousemove", (e) => {
   updatePointerPosition(e.clientX, e.clientY);
 });
 
-canvas.addEventListener("mouseleave", () => {
-  mouse.active = false;
-  mouse.x = -999;
-  mouse.y = -999;
-  onLeaveText();
-});
+canvas.addEventListener("mouseleave", resetMouse);
 
 canvas.addEventListener("touchstart", (e) => {
   const touch = e.touches[0];
@@ -594,18 +656,34 @@ canvas.addEventListener("touchmove", (e) => {
   updatePointerPosition(touch.clientX, touch.clientY);
 });
 
-canvas.addEventListener("touchend", () => {
-  mouse.active = false;
-  mouse.pressed = false;
-  mouse.x = -999;
-  mouse.y = -999;
-  onLeaveText();
-});
+canvas.addEventListener("touchend", resetMouse);
+canvas.addEventListener("touchcancel", resetMouse);
 
-canvas.addEventListener("touchcancel", () => {
-  mouse.active = false;
-  mouse.pressed = false;
-  mouse.x = -999;
-  mouse.y = -999;
-  onLeaveText();
-});
+// Efeito de scroll no hero mobile
+function initScrollEffect() {
+  const ghostText = document.querySelector('.hero_ghost_text');
+  const mainText = document.querySelector('.hero_main_text');
+  if (!ghostText || !mainText) return;
+
+  const lenis = new Lenis();
+
+  lenis.on('scroll', ({ scroll }) => {
+    const maxScroll = 100;
+    const progress = Math.min(scroll / maxScroll, 1);
+
+    const mainOpacity = 1 - progress * 0.9;
+    mainText.style.color = `rgba(0, 0, 0, ${mainOpacity})`;
+
+    const ghostOpacity = 0.04 + progress * 0.96;
+    ghostText.style.color = `rgba(0, 0, 0, ${ghostOpacity})`;
+    ghostText.style.zIndex = progress > 0.05 ? '1' : '-1';
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+
+initScrollEffect();

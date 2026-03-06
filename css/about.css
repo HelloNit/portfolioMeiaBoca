@@ -33,13 +33,14 @@ h1 {
 
 .main_about {
     display: grid;
+    margin-top: 120px;
     gap: 30px;
 }
 
 .heading_experience {
     display: flex;
     justify-content: space-between;
-    margin-top: 18px;
+    margin-top: 8px;
     /* padding: 2px 0; */
     /* border-top: 1px solid var(--border-color-global); */
     /* border-bottom: 1px solid var(--border-color-global); */
@@ -60,6 +61,8 @@ h1 {
 
 .styled_h1_about {
     font-size: 1.2rem;
+    letter-spacing: -2%;
+    font-weight: 500;
 }
 
 .working {

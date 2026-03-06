@@ -10,7 +10,6 @@ $(document).ready(function () {
 
 function inicializarFooter() {
     const copyLink = document.getElementById('copy-email');
-
     if (!copyLink) return;
 
     const feedback = document.createElement('span');
@@ -21,7 +20,6 @@ function inicializarFooter() {
     copyLink.addEventListener('click', (e) => {
         e.preventDefault();
         navigator.clipboard.writeText('felipe@srrodrigues.com');
-
         feedback.classList.add('visible');
         setTimeout(() => feedback.classList.remove('visible'), 1000);
     });
@@ -32,6 +30,13 @@ function inicializarMenu() {
     const nav = document.querySelector('[data-nav]');
     const header = document.querySelector('[data-header]');
 
+    function fecharMenu() {
+        nav.classList.remove('active');
+        document.body.style.overflow = '';
+        menuToggle.textContent = 'Menu';
+        menuToggle.setAttribute('aria-label', 'Abrir menu');
+    }
+
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
 
@@ -40,32 +45,19 @@ function inicializarMenu() {
             menuToggle.textContent = 'Fechar';
             menuToggle.setAttribute('aria-label', 'Fechar menu');
         } else {
-            document.body.style.overflow = '';
-            menuToggle.textContent = 'Menu';
-            menuToggle.setAttribute('aria-label', 'Abrir menu');
+            fecharMenu();
         }
     });
 
-    const menuLinks = document.querySelectorAll('[data-menu] a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            document.body.style.overflow = '';
-            menuToggle.textContent = 'Menu';
-            menuToggle.setAttribute('aria-label', 'Abrir menu');
-        });
+    document.querySelectorAll('[data-menu] a').forEach(link => {
+        link.addEventListener('click', fecharMenu);
     });
 
     document.addEventListener('click', (e) => {
-        if (!header.contains(e.target)) {
-            nav.classList.remove('active');
-            document.body.style.overflow = '';
-            menuToggle.textContent = 'Menu';
-            menuToggle.setAttribute('aria-label', 'Abrir menu');
-        }
+        if (!header.contains(e.target)) fecharMenu();
     });
 
-    // ✅ Safe eyes — dentro do callback após header carregar
+    // Safe eyes
     const overlay = document.getElementById('safe-eyes-overlay');
     const safeEyesButtons = document.querySelectorAll('.wrapper_colors button');
 
@@ -76,7 +68,6 @@ function inicializarMenu() {
         'blue': 'rgba(0, 100, 255, 0.08)',
     };
 
-    // Restaura cor salva
     const savedColor = localStorage.getItem('safeEyesColor');
     if (savedColor && overlay) {
         overlay.style.backgroundColor = colors[savedColor] ?? 'transparent';
@@ -116,6 +107,7 @@ if (canvas) {
     let currentY = 0;
     const smoothness = 0.05;
 
+    // Tudo acima de 768px usa as posições do 1024
     function getCurrentBreakpoint() {
         const width = window.innerWidth;
         if (width <= 320) return '320';
@@ -164,26 +156,23 @@ if (canvas) {
 
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
-
         canvas.style.width = rect.width + 'px';
         canvas.style.height = rect.height + 'px';
 
         ctx.scale(dpr, dpr);
+        applyPositions(); // reposiciona os cards quando o wrapper muda de tamanho
     }
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
 
     function getAnchor(card, position = "bottom") {
         const rect = card.getBoundingClientRect();
         const wrapperRect = wrapper.getBoundingClientRect();
 
-        const x = rect.left + rect.width / 2 - wrapperRect.left;
-        const y = position === "bottom"
-            ? rect.bottom - wrapperRect.top
-            : rect.top - wrapperRect.top;
-
-        return { x, y };
+        return {
+            x: rect.left + rect.width / 2 - wrapperRect.left,
+            y: position === "bottom"
+                ? rect.bottom - wrapperRect.top
+                : rect.top - wrapperRect.top
+        };
     }
 
     function draw() {
@@ -195,47 +184,33 @@ if (canvas) {
         ctx.lineJoin = "round";
 
         cards.forEach((card, index) => {
-            if (index < cards.length - 1) {
-                const nextCard = cards[index + 1];
+            if (index >= cards.length - 1) return;
 
-                const start = getAnchor(card, "bottom");
-                const end = getAnchor(nextCard, "top");
+            const nextCard = cards[index + 1];
+            const start = getAnchor(card, "bottom");
+            const end = getAnchor(nextCard, "top");
+            const dx = end.x - start.x;
+            const curveAmount = 100;
 
-                const dx = end.x - start.x;
-                const curveAmount = 100;
+            const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
+            const lightPos = (lightPosition + index * 0.3) % 1;
+            const lightSize = 0.30;
 
-                const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
+            gradient.addColorStop(0, 'rgba(255,255,255,0)');
+            if (lightPos - lightSize > 0) gradient.addColorStop(lightPos - lightSize, '#000000');
+            gradient.addColorStop(lightPos, '#ffffff');
+            if (lightPos + lightSize < 1) gradient.addColorStop(lightPos + lightSize, '#000000');
+            gradient.addColorStop(1, '#000000');
 
-                const lightPos = (lightPosition + index * 0.3) % 1;
-                const lightSize = 0.30;
-
-                gradient.addColorStop(0, 'rgba(255,255,255,0)');
-
-                if (lightPos - lightSize > 0) {
-                    gradient.addColorStop(lightPos - lightSize, '#000000');
-                }
-
-                gradient.addColorStop(lightPos, '#ffffff');
-
-                if (lightPos + lightSize < 1) {
-                    gradient.addColorStop(lightPos + lightSize, '#000000');
-                }
-
-                gradient.addColorStop(1, '#000000');
-
-                ctx.strokeStyle = gradient;
-
-                ctx.beginPath();
-                ctx.moveTo(start.x, start.y);
-
-                ctx.bezierCurveTo(
-                    start.x + dx * 0.0, start.y + curveAmount,
-                    end.x - dx * 0.3, end.y - curveAmount,
-                    end.x, end.y
-                );
-
-                ctx.stroke();
-            }
+            ctx.strokeStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+            ctx.bezierCurveTo(
+                start.x + dx * 0.0, start.y + curveAmount,
+                end.x - dx * 0.3, end.y - curveAmount,
+                end.x, end.y
+            );
+            ctx.stroke();
         });
 
         lightPosition += 0.005;
@@ -243,23 +218,17 @@ if (canvas) {
     }
 
     function loadPositions(breakpoint) {
-        const key = `cardPositions_${breakpoint}`;
-        const saved = localStorage.getItem(key);
+        const saved = localStorage.getItem(`cardPositions_${breakpoint}`);
         if (saved) return JSON.parse(saved);
         return defaultPositions[breakpoint];
     }
 
     function savePositions() {
         const breakpoint = getCurrentBreakpoint();
-        const positions = [];
-
-        cards.forEach((card) => {
-            positions.push({
-                x: parseInt(card.style.left),
-                y: parseInt(card.style.top)
-            });
-        });
-
+        const positions = Array.from(cards).map(card => ({
+            x: parseInt(card.style.left),
+            y: parseInt(card.style.top)
+        }));
         localStorage.setItem(`cardPositions_${breakpoint}`, JSON.stringify(positions));
     }
 
@@ -270,12 +239,8 @@ if (canvas) {
 
         cards.forEach((card, index) => {
             const pos = positions[index];
-            const cardW = card.offsetWidth;
-            const cardH = card.offsetHeight;
-
-            const x = Math.max(0, Math.min(pos.x, wrapperRect.width - cardW));
-            const y = Math.max(0, Math.min(pos.y, wrapperRect.height - cardH));
-
+            const x = Math.max(0, Math.min(pos.x, wrapperRect.width - card.offsetWidth));
+            const y = Math.max(0, Math.min(pos.y, wrapperRect.height - card.offsetHeight));
             card.style.left = `${x}px`;
             card.style.top = `${y}px`;
         });
@@ -301,15 +266,12 @@ if (canvas) {
         card.addEventListener('mousedown', (e) => {
             activeCard = card;
             const rect = card.getBoundingClientRect();
-
             offset.x = e.clientX - rect.left;
             offset.y = e.clientY - rect.top;
-
             currentX = parseInt(card.style.left) || 0;
             currentY = parseInt(card.style.top) || 0;
             targetX = currentX;
             targetY = currentY;
-
             card.style.cursor = 'grabbing';
             card.style.zIndex = '1000';
         });
@@ -318,15 +280,12 @@ if (canvas) {
             activeCard = card;
             const touch = e.touches[0];
             const rect = card.getBoundingClientRect();
-
             offset.x = touch.clientX - rect.left;
             offset.y = touch.clientY - rect.top;
-
             currentX = parseInt(card.style.left) || 0;
             currentY = parseInt(card.style.top) || 0;
             targetX = currentX;
             targetY = currentY;
-
             card.style.zIndex = '100';
         }, { passive: true });
     });
@@ -335,54 +294,36 @@ if (canvas) {
 
     document.addEventListener('mousemove', (e) => {
         if (!activeCard) return;
-
         const wrapperRect = wrapper.getBoundingClientRect();
-        const cardW = activeCard.offsetWidth;
-        const cardH = activeCard.offsetHeight;
-
         let x = e.clientX - wrapperRect.left - offset.x;
         let y = e.clientY - wrapperRect.top - offset.y;
-
-        x = Math.max(0, Math.min(x, wrapperRect.width - cardW));
-        y = Math.max(0, Math.min(y, wrapperRect.height - cardH));
-
-        targetX = x;
-        targetY = y;
+        targetX = Math.max(0, Math.min(x, wrapperRect.width - activeCard.offsetWidth));
+        targetY = Math.max(0, Math.min(y, wrapperRect.height - activeCard.offsetHeight));
     });
 
     document.addEventListener('touchmove', (e) => {
         if (!activeCard) return;
-
         const touch = e.touches[0];
         const wrapperRect = wrapper.getBoundingClientRect();
-        const cardW = activeCard.offsetWidth;
-        const cardH = activeCard.offsetHeight;
-
         let x = touch.clientX - wrapperRect.left - offset.x;
         let y = touch.clientY - wrapperRect.top - offset.y;
-
-        x = Math.max(0, Math.min(x, wrapperRect.width - cardW));
-        y = Math.max(0, Math.min(y, wrapperRect.height - cardH));
-
-        targetX = x;
-        targetY = y;
+        targetX = Math.max(0, Math.min(x, wrapperRect.width - activeCard.offsetWidth));
+        targetY = Math.max(0, Math.min(y, wrapperRect.height - activeCard.offsetHeight));
     }, { passive: true });
 
     document.addEventListener('mouseup', () => {
-        if (activeCard) {
-            activeCard.style.cursor = 'grab';
-            activeCard.style.zIndex = '1';
-            savePositions();
-            activeCard = null;
-        }
+        if (!activeCard) return;
+        activeCard.style.cursor = 'grab';
+        activeCard.style.zIndex = '1';
+        savePositions();
+        activeCard = null;
     });
 
     document.addEventListener('touchend', () => {
-        if (activeCard) {
-            activeCard.style.zIndex = '1';
-            savePositions();
-            activeCard = null;
-        }
+        if (!activeCard) return;
+        activeCard.style.zIndex = '1';
+        savePositions();
+        activeCard = null;
     });
 
     let resizeTimeout;
@@ -394,15 +335,15 @@ if (canvas) {
         }, 250);
     });
 
+    resizeCanvas();
+
     function animate() {
         if (activeCard) {
             currentX += (targetX - currentX) * smoothness;
             currentY += (targetY - currentY) * smoothness;
-
             activeCard.style.left = `${currentX}px`;
             activeCard.style.top = `${currentY}px`;
         }
-
         draw();
         requestAnimationFrame(animate);
     }
@@ -412,9 +353,7 @@ if (canvas) {
     window.resetCardPositions = resetPositions;
     window.resetAllCardPositions = resetAllPositions;
 
-
     // Slider
-
 
     const sliderContainer = document.querySelector('.slider_container');
 
@@ -451,9 +390,7 @@ if (canvas) {
     const cardWrappers = document.querySelectorAll('.card_wrapper_considerations');
 
     if (cardWrappers.length > 0) {
-        function isMobile() {
-            return window.innerWidth <= 767;
-        }
+        const isMobile = () => window.innerWidth <= 767;
 
         cardWrappers.forEach(wrapper => {
             const tooltips = wrapper.querySelectorAll('.tooltip_person');
@@ -466,35 +403,23 @@ if (canvas) {
 
             wrapper.addEventListener('mouseenter', () => {
                 if (isMobile()) return;
-
                 tooltips.forEach((tooltip, index) => {
                     setTimeout(() => {
                         tooltip.style.opacity = '1';
                         tooltip.style.pointerEvents = 'auto';
-
-                        if (tooltip.classList.contains('tooltip-left')) {
-                            tooltip.style.transform = 'translateY(-50%) translateX(0)';
-                        }
-                        if (tooltip.classList.contains('tooltip-right')) {
-                            tooltip.style.transform = 'translateY(0%) translateX(0)';
-                        }
+                        if (tooltip.classList.contains('tooltip-left')) tooltip.style.transform = 'translateY(-50%) translateX(0)';
+                        if (tooltip.classList.contains('tooltip-right')) tooltip.style.transform = 'translateY(0%) translateX(0)';
                     }, index * 100);
                 });
             });
 
             wrapper.addEventListener('mouseleave', () => {
                 if (isMobile()) return;
-
                 tooltips.forEach(tooltip => {
                     tooltip.style.opacity = '0';
                     tooltip.style.pointerEvents = 'none';
-
-                    if (tooltip.classList.contains('tooltip-left')) {
-                        tooltip.style.transform = 'translateY(-50%) translateX(10px)';
-                    }
-                    if (tooltip.classList.contains('tooltip-right')) {
-                        tooltip.style.transform = 'translateY(0%) translateX(-10px)';
-                    }
+                    if (tooltip.classList.contains('tooltip-left')) tooltip.style.transform = 'translateY(-50%) translateX(10px)';
+                    if (tooltip.classList.contains('tooltip-right')) tooltip.style.transform = 'translateY(0%) translateX(-10px)';
                 });
             });
         });
@@ -503,20 +428,13 @@ if (canvas) {
 
 // Accordion
 
-var acc = document.getElementsByClassName("accordion");
-
-for (var i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        }
+document.querySelectorAll('.accordion').forEach(acc => {
+    acc.addEventListener('click', function () {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + 'px';
     });
-}
+});
 
 // Transição de página
 
@@ -532,19 +450,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
-
-    if (!link) return;
-    if (!link.href) return;
+    if (!link || !link.href) return;
     if (link.target === '_blank') return;
-    if (link.href.startsWith('mailto')) return;
-    if (link.href.startsWith('#')) return;
+    if (link.href.startsWith('mailto') || link.href.startsWith('#')) return;
 
     e.preventDefault();
     const destination = link.href;
-
     transition.classList.remove('fade-out');
-
-    setTimeout(() => {
-        window.location.href = destination;
-    }, 400);
+    setTimeout(() => { window.location.href = destination; }, 400);
 });

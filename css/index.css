@@ -1,4 +1,85 @@
-/* hero */
+/* hero mobile */
+.hero_mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 80px 0 10px
+}
+
+.hero_text_block {
+    width: 100%;
+    /* position: relative; */
+}
+
+.hero_ghost_text,
+.hero_main_text {
+    font-weight: 300;
+    font-size: 90px;
+    line-height: 96%;
+}
+
+.hero_ghost_text {
+    color: rgba(0, 0, 0, 0.04);
+}
+
+.hero_card_img {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.hero_identity {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* era space-between */
+    gap: 10px;
+    color: var(--text-black);
+}
+
+.hero_identity .name,
+.hero_identity .role {
+    white-space: nowrap;
+    opacity: 0;
+    animation: fade-in 0.4s ease forwards;
+}
+
+.name {
+    animation-delay: 0.1s;
+}
+
+.role {
+    animation-delay: 0.8s;
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+.hero_line {
+    flex: 0 0 0px;
+    /* começa zerado */
+    height: 2px;
+    border-radius: 10%;
+    background-color: rgba(0, 0, 0, 0.264);
+
+    animation: line-grow 0.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes line-grow {
+    to {
+        flex: 0 0 calc(100% - 210px);
+    }
+}
+
+.styled_img_hero {
+    width: 100%;
+    border-radius: var(--border-radius-card-small);
+}
+
 .hero {
     display: flex;
     position: relative;
@@ -19,14 +100,26 @@
     background-color: transparent;
 }
 
-
 .hero_info {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    inset: 90% 20px;
+    inset: 64% 190px;
     z-index: 1;
     color: var(--text-black);
+    pointer-events: none;
+    gap: 0px;
+    white-space: nowrap;
+
+    animation: spread 1s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes spread {
+    to {
+        gap: 40px;
+    }
 }
 
 .hero_role {
@@ -91,11 +184,9 @@
     width: 100%;
     margin: 10px 0;
     object-fit: cover;
-    /* cover fica melhor em cards */
     height: 100%;
     min-height: 0;
     flex: 1;
-    /* ocupa o espaço disponível sem estourar */
 }
 
 .content_project {
