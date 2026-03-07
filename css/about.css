@@ -14,12 +14,13 @@
     gap: 10px;
 }
 
+
 .about_more {
     margin: 0;
 }
 
 .gray_color {
-    color: rgb(194, 194, 194);
+   color: rgba(0, 0, 0, 0.414);
 }
 
 .content_about_more {
@@ -28,7 +29,6 @@
 }
 
 .wrapper_info_me {
-    margin-top: 30px;
     position: sticky;
     top: 0;
     display: flex;

@@ -235,19 +235,16 @@ img {
     height: auto;
 }
 
-/* slider */
-
 .slider_wrapper {
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* volta aqui */
 }
 
 .slider_container {
     display: flex;
     transition: transform 0.4s ease-in-out;
-    /* overflow: hidden;  */
+    margin-top: 10px;
 }
 
 .slider_item {
@@ -609,6 +606,7 @@ ul {
     display: inline-block;
     width: 100%;
     cursor: alias;
+    margin-top: 10px;
 }
 
 .zoom_hint {

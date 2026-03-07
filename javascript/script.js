@@ -437,16 +437,21 @@ document.querySelectorAll('.accordion').forEach(acc => {
 });
 
 // Transição de página
-
 const transition = document.getElementById('page-transition');
 
-window.addEventListener('DOMContentLoaded', () => {
+function iniciarTransicao() {
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            transition.classList.add('fade-out');
+            if (transition) transition.classList.add('fade-out');
         });
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciarTransicao);
+} else {
+    iniciarTransicao();
+}
 
 document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
