@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://srrodrigues.com">
+    <meta property="og:title" content="Felipe Rodrigues — UX | UI Designer">
+    <meta property="og:description" content="Ux designer com alguns anos de experiência">
+    <meta property="og:image" content="https://srrodrigues.com/img/cursor.jpg">
 
     <title>Lovelace Handoff — Felipe Rodrigues UX | UI Designer</title>
-    <link rel="icon" type="imagem/x-icon" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
 
     <!-- Styles -->
     <link rel="stylesheet" href="/css/global.css">
@@ -450,6 +455,91 @@
             </div>
         </div>
     </main>
+
+    <section class="final_project_follow mobile_disable_content">
+        <div class="coding_show">
+            <div class="block_one">
+                <div class="if_spacing">
+                    <div class="if_state">
+                        <img class="icon_figma_conditional" src="/img/conditional.svg" alt="">
+                        <p>if</p>
+                        <div class="name_option">
+                            <span class="has_option">hasOption1</span><span class="or_to">or</span>
+                        </div>
+                        <div class="name_option">
+                            <span class="has_option">hasOption2</span><span class="or_to">or</span>
+                        </div>
+                        <div class="name_option">
+                            <span class="has_option">hasOption3</span><span class="or_to">or</span>
+                        </div>
+                        <div class="name_option">
+                            <span class="has_option">hasOption4</span>
+                        </div>
+                    </div>
+                    <div class="if_state">
+                        <img class="icon_figma_conditional variation_icon" src="/img/variation.svg" alt="">
+                        <img class="icon_figma_conditional" src="/img/var.svg" alt="">
+                        <p>Set</p>
+                        <div class="name_option">
+                            <span class="has_option">report/errorMessage</span>
+                            <span class="or_to">to</span>
+                            <span class="or_to">true</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="else">
+                    <p>else</p>
+                    <div class="if_state else_stetament">
+                        <img class="icon_figma_conditional variation_icon" src="/img/variation.svg" alt="">
+                        <p class="action_color">Add action</p>
+                    </div>
+                </div>
+            </div>
+            <!-- blocks gerados pelo JS -->
+        </div>
+
+        <div class="prototype">
+            <div class="big_screen">
+                <span class="title_screen">Central de ajuda</span>
+                <div class="content_screen">
+                    <div class="wrapper_progress">
+                        <div class="wrapper_head_progress">
+                            <label class="progress_bar_text">Progresso</label>
+                            <label class="progress_bar_text">100%</label>
+                        </div>
+                        <progress class="option_selected" value="60" max="100"></progress>
+                    </div>
+                    <div class="content_prototype">
+                        <div class="head_content">
+                            <span class="question_main">O que você deseja?</span>
+                            <span class="error_message">Selecione uma opção</span>
+                        </div>
+                        <div class="content_questions">
+                            <div class="form_options">
+                                <div class="item_position">
+                                    <input type="radio" id="error404" name="fav_language" value="error404">
+                                    <label class="text_question" for="error404">Erro 404</label>
+                                </div>
+                                <div class="item_position">
+                                    <input type="radio" id="batch" name="fav_language" value="batch">
+                                    <label class="text_question" for="batch">Processamento batch</label>
+                                </div>
+                                <div class="item_position">
+                                    <input type="radio" id="grafana" name="fav_language" value="grafana">
+                                    <label class="text_question" for="grafana">Diferença entre grafana e
+                                        opentelemetry</label>
+                                </div>
+                            </div>
+                            <div class="btn_next_back">
+                                <button class="btn_styled_lovelace blue_btn">Voltar</button>
+                                <button class="btn_styled_lovelace btn_yellow">Próximo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="lightbox" id="lightbox">
         <div class="lightbox_inner">

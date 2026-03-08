@@ -464,3 +464,6 @@ document.addEventListener('click', (e) => {
     transition.classList.remove('fade-out');
     setTimeout(() => { window.location.href = destination; }, 400);
 });
+
+
+
