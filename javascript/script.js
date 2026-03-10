@@ -466,4 +466,110 @@ document.addEventListener('click', (e) => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
 
+    let currentScreen = 0;
+
+    const screens = document.querySelectorAll(".screen_content");
+    const nextButtons = document.querySelectorAll(".next");
+    const backButtons = document.querySelectorAll(".back");
+
+    const progressFills = document.querySelectorAll(".progress-fill");
+    const progressTexts = document.querySelectorAll(".progress-percent");
+
+
+    function updateProgress() {
+
+        const percent = ((currentScreen + 1) / screens.length) * 100;
+
+        progressFills.forEach(bar => {
+            bar.style.width = percent + "%";
+        });
+
+        progressTexts.forEach(text => {
+            text.textContent = Math.round(percent) + "%";
+        });
+
+    }
+
+
+    function showScreen(index) {
+
+        screens.forEach(screen => screen.classList.remove("active"));
+        screens[index].classList.add("active");
+
+        updateProgress();
+
+    }
+
+
+    // NEXT
+    nextButtons.forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+            const current = screens[currentScreen];
+            const selected = current.querySelector('input[type="radio"]:checked');
+            const errorMsg = current.querySelector(".error_msg");
+
+            // valida se escolheu opção
+            if (!selected) {
+
+                errorMsg.classList.add("active");
+                return;
+
+            }
+
+            errorMsg.classList.remove("active");
+
+            if (currentScreen < screens.length - 1) {
+
+                currentScreen++;
+                showScreen(currentScreen);
+
+            }
+
+        });
+
+    });
+
+
+    // BACK
+    backButtons.forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+            if (currentScreen > 0) {
+
+                currentScreen--;
+                showScreen(currentScreen);
+
+            }
+
+        });
+
+    });
+
+
+    // UX bônus → remove erro quando selecionar opção
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    radios.forEach(radio => {
+
+        radio.addEventListener("change", () => {
+
+            const screen = radio.closest(".screen_content");
+            const errorMsg = screen.querySelector(".error_msg");
+
+            if (errorMsg) {
+                errorMsg.classList.remove("active");
+            }
+
+        });
+
+    });
+
+
+    updateProgress();
+
+});
