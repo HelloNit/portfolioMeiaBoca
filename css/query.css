@@ -315,10 +315,23 @@
 
     .item_logo_05 {
         grid-column: span 2;
-        /* sem borda */
     }
 
     /* handoff project */
+
+    .holder_scroll {
+        left: 100%;
+        bottom: 0%;
+        white-space: nowrap;
+        z-index: 999;
+    }
+
+
+    .scroll-container,
+    .scroller {
+        border: none;
+        background-color: rgba(136, 136, 136, 0.158);
+    }
 
     .sticky_column_right {
         display: flex;

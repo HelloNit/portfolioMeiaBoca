@@ -39,7 +39,7 @@
 
     /* Padding */
     --padding-mobile-small: 10px;
-    --padding-medium-mobile-small: 20px;
+    --padding-medium-mobile-small: 38px;
 
     /* Margin */
     --margin-mobile-small: 10px;
@@ -80,7 +80,7 @@ h6{
 .paragraph {
     font-size: 16px;
     font-weight: 300;
-    margin: 10px 0px 0px 0px;
+    margin: 16px 0px 0px 0px;
 
     color: #5f5f5f;
 }

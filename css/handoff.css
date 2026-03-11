@@ -2,10 +2,62 @@
     margin: 0;
     padding: 0;
     height: 100vh;
-    min-height: 100vh;
     max-height: 100vh;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
+}
+
+.holder_scroll {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 26px;
+    left: 38%;
+    z-index: 10;
+    mix-blend-mode: difference;
+}
+
+.scroll-container {
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 53px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.scroller {
+    width: 17px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    animation: scroller 2500ms ease-out infinite;
+}
+
+@keyframes scroller {
+    0% {
+        bottom: 34px;
+    }
+
+    5% {
+        top: 4px;
+    }
+
+    32% {
+        bottom: 4px;
+    }
+
+    66% {
+        top: 34px;
+        bottom: 4px;
+    }
+
+    100% {
+        top: 4px;
+        bottom: 34px;
+    }
 }
 
 .safe_eyes_overlay {
@@ -146,17 +198,16 @@ main {
     position: relative;
 }
 
-
 .sticky_column_right {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 64px;
 }
 
 .introduce_resume {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 24px;
 }
 
 .client_reveal {
@@ -171,7 +222,7 @@ main {
 
 .column_two {
     display: grid;
-    gap: 60px;
+    gap: 64px;
 }
 
 /* card da solução */
@@ -237,8 +288,9 @@ img {
 
 .slider_wrapper {
     position: relative;
-    width: 100%;
     overflow: hidden;
+    width: 100%;
+    margin-top: 28px;
 }
 
 .slider_container {
@@ -293,7 +345,7 @@ img {
 
 .title_slider_text {
     font-size: 1.3rem;
-    font-weight: 900;
+    font-weight: 300;
     color: var(--text-white);
 }
 
@@ -372,7 +424,7 @@ img {
 }
 
 .card_projects_considerations {
-    padding: 20px;
+    padding: 38px;
     border-radius: var(--border-radius-small);
     border: 1px solid var(--border-color-global);
     box-sizing: border-box;
@@ -606,7 +658,7 @@ ul {
     display: inline-block;
     width: 100%;
     cursor: alias;
-    margin-top: 10px;
+    margin-top: 28px;
 }
 
 .zoom_hint {
