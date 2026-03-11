@@ -18,7 +18,8 @@
         font-size: 1.6rem;
     }
 
-    .prototype_project_love {
+    .prototype_project_love,
+    .content_final_result {
         display: none;
     }
 
@@ -318,6 +319,10 @@
     }
 
     /* handoff project */
+
+    .content_final_result{
+        display: block;
+    }
 
     .holder_scroll {
         left: 100%;
