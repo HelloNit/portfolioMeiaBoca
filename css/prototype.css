@@ -1,18 +1,92 @@
 @media (min-width:1024px) {
 
+
+    .content_final_result {
+        /* remove o will-change: transform que estava lá */
+        /* mantém só o que já tinha */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        /* height: 100vh; */
+    }
+
+    .content_final {
+        text-align: center;
+    }
+
+    .onboarding {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        gap: 8px;
+        margin-top: 28px;
+    }
+
+    .icon_onboarding {
+        width: 18px;
+        padding: 8px;
+        background-color: #324BE9;
+        border-radius: 10%;
+    }
+
+    .questions_onbording {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .img_container {
+        overflow: hidden;
+    }
+
+    .ada_ref_img {
+        mix-blend-mode: hard-light;
+        transition:
+            transform 0.3s ease,
+            filter 0.3s ease,
+            image-rendering 0s;
+        image-rendering: auto;
+    }
+
+    .img_container.hover-active .ada_ref_img {
+        image-rendering: pixelated;
+        filter: contrast(4.5) saturate(1.8);
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .title_paragraph {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .warning_text {
+        font-size: 15px;
+        color: #696969;
+    }
+
+    .content_text_onboarding {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
     .prototype_project_love {
         display: flex;
         padding: 20px;
         background-color: #ffffff;
+        padding: 0;
     }
 
     .screen_main {
         width: 100%;
         height: 100%;
-        background-color: #f7f7f7;
+        background-color: #ffffff;
+        border: 1px solid #e6e6e6;
         border-radius: 20px;
-        padding: 20px;
+        padding: 28px;
         box-sizing: border-box;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
         display: flex;
         flex-direction: column;
@@ -42,7 +116,7 @@
     /* telas */
 
     .screen_content {
-        /* display: none; */
+        display: none;
         background: #ffffff;
         padding: 20px;
         flex-direction: column;
@@ -52,7 +126,7 @@
         flex: 1;
         box-sizing: border-box;
         border-radius: 10px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        box-shadow: rgb(181 181 181 / 20%) 0px 7px 29px 0px;
     }
 
     .screen_content.active {
@@ -87,9 +161,25 @@
     .progress-fill {
         width: 80%;
         height: 100%;
-        background: #324BE9;
         border-radius: 6px;
-        transition: width .3s ease;
+        background: linear-gradient(90deg,
+                #324BE9 0%,
+                #324BE9 40%,
+                #5a6ef5 50%,
+                #324BE9 60%,
+                #324BE9 100%);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite ease-in-out;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 100% 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
     }
 
     /* perguntas */
@@ -107,7 +197,7 @@
 
     .title_question {
         font-size: 26px;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     .wrapper_questions {
@@ -115,6 +205,15 @@
         flex-direction: column;
         gap: 8px;
         margin-top: 20px;
+    }
+
+    .final_content_center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0px 50px;
     }
 
     /* radio */
@@ -152,37 +251,410 @@
         padding: 10px 24px;
         border-radius: 6px;
         border: none;
-        background: #1f1f1f;
-        color: white;
+        background: #FCF800;
+        font-weight: 600;
+        color: #415DFA;
         cursor: pointer;
         font-size: 14px;
         transition: 0.2s;
+        text-transform: uppercase;
+    }
+
+    .back {
+        background-color: #EBF2FF;
+        color: #3D5AFF;
     }
 
     .btn_screen:hover {
         opacity: 0.85;
     }
 
-    /* mapping */
-    .mapping_figma_copy {
-        height: 70vh;
-        background-color: #000000;
-        padding: 20px;
-        border-radius: 14px;
-    }
-
-    .mapping_icon{
+    .mapping_icon {
         width: 32px;
     }
 
-    .title_mapping{
+    .title_mapping {
         display: flex;
         font-size: 16px;
     }
 
-    .link_styled{
+    .link_styled {
         color: #324BE9;
         text-decoration: underline;
         cursor: pointer;
     }
+
+    .final_text {
+        display: flex;
+        align-content: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 4px;
+    }
+
+    .title_thanks {
+        margin-top: 18px;
+        font-size: 20px;
+    }
+
+    .gif_check {
+        width: 100%;
+        height: auto;
+    }
+
+    .styled_paragraph {
+        color: #696969;
+        font-weight: 12px;
+    }
+
+    /* ─── CHECKMARK CIRCLE ─── */
+    .checkmark_circle {
+        position: relative;
+        /* contexto para os pseudo-elementos */
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        /* não encolhe dentro de flex */
+        align-self: center;
+        /* centraliza no eixo cruzado */
+    }
+
+    .checkmark_circle::before {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        background: conic-gradient(#415DFA 0%,
+                #394360 40%,
+                #7b93ff 70%,
+                #415DFA 100%);
+        animation: spin 3s linear infinite;
+        z-index: 0;
+    }
+
+    .checkmark_circle::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border-radius: 50%;
+        background: #ffffff;
+        /* troque pela cor de fundo do seu container */
+        z-index: 1;
+    }
+
+    .checkmark_inner {
+        position: absolute;
+        inset: 6px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #394360 0%, #415DFA 100%);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+            0 4px 20px rgba(65, 93, 250, 0.35),
+            inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    .checkmark_svg {
+        width: 26px;
+        height: 26px;
+        overflow: visible;
+    }
+
+    .checkmark_path {
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 30;
+        stroke-dashoffset: 30;
+        animation: drawCheck 0.4s ease 0.3s forwards;
+    }
+
+    /* Partículas decorativas */
+    .checkmark_particles {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #415DFA;
+        opacity: 0;
+        animation: burst 0.6s ease 0.4s forwards;
+    }
+
+    .particle:nth-child(1) {
+        top: 0%;
+        left: 50%;
+        --tx: 0px;
+        --ty: -18px;
+        background: #415DFA;
+    }
+
+    .particle:nth-child(2) {
+        top: 15%;
+        left: 85%;
+        --tx: 14px;
+        --ty: -12px;
+        background: #7b93ff;
+        width: 3px;
+        height: 3px;
+    }
+
+    .particle:nth-child(3) {
+        top: 50%;
+        left: 100%;
+        --tx: 18px;
+        --ty: 0px;
+        background: #394360;
+    }
+
+    .particle:nth-child(4) {
+        top: 85%;
+        left: 85%;
+        --tx: 12px;
+        --ty: 14px;
+        background: #415DFA;
+        width: 3px;
+        height: 3px;
+    }
+
+    .particle:nth-child(5) {
+        top: 100%;
+        left: 50%;
+        --tx: 0px;
+        --ty: 18px;
+        background: #7b93ff;
+    }
+
+    .particle:nth-child(6) {
+        top: 85%;
+        left: 15%;
+        --tx: -14px;
+        --ty: 12px;
+        background: #394360;
+        width: 3px;
+        height: 3px;
+    }
+
+    .particle:nth-child(7) {
+        top: 50%;
+        left: 0%;
+        --tx: -18px;
+        --ty: 0px;
+        background: #415DFA;
+    }
+
+    .particle:nth-child(8) {
+        top: 15%;
+        left: 15%;
+        --tx: -12px;
+        --ty: -14px;
+        background: #7b93ff;
+        width: 3px;
+        height: 3px;
+    }
+
+    /* ─── ANIMAÇÕES ─── */
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes popIn {
+        from {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes drawCheck {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes burst {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translate(var(--tx), var(--ty)) scale(0);
+        }
+    }
+
+    /* ─────────────────────────────────────────
+   MAPPING FIGMA VARIABLES — estilos do painel
+   ───────────────────────────────────────── */
+
+    .mapping_figma_copy {
+        min-height: 70vh;
+        background-color: #1e1e1e;
+        padding: 28px;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .title_mapping {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #a0a0a0;
+        font-family: 'JetBrains Mono', monospace;
+        border-bottom: 1px solid #2e2e2e;
+        padding-bottom: 10px;
+        margin-bottom: 4px;
+    }
+
+    .mapping_icon {
+        width: 18px;
+        opacity: 0.7;
+    }
+
+    /* ── Bloco de variável ── */
+    .map_block {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #2a2a2a;
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        width: fit-content;
+        min-width: 240px;
+    }
+
+    .map_block.is_active {
+        border-color: #415DFA;
+        background-color: #1a2040;
+        box-shadow: 0 0 16px rgba(65, 93, 250, 0.2);
+    }
+
+    .map_block.is_done {
+        border-color: #1e1e1e;
+        background-color: #101010;
+    }
+
+    /* ── Linha if ── */
+    .map_row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        color: #c9d1d9;
+        flex-wrap: wrap;
+    }
+
+    .map_keyword {
+        color: #79b8ff;
+        font-weight: 600;
+        font-size: 11px;
+    }
+
+    .map_keyword.set {
+        color: #c9d1d9;
+    }
+
+    .map_keyword.else {
+        color: #f97583;
+    }
+
+    .map_keyword.done {
+        color: #56d364;
+    }
+
+    /* ── Pill de variável ── */
+    .map_pill {
+        padding: 2px 8px;
+        border-radius: 5px;
+        border: 1px solid #3a3a3a;
+        background-color: #1e1e1e00;
+        color: #c9d1d9;
+        font-size: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .map_pill.active_pill {
+        background-color: #162044;
+        border-color: #415DFA;
+        color: #79b8ff;
+        box-shadow: 0 0 6px rgba(65, 93, 250, 0.35);
+    }
+
+    .map_pill.done_pill {
+        background-color: #10101000;
+        border-color: #636161;
+        color: #5b5b5b;
+    }
+
+    .map_muted {
+        color: #555;
+        font-size: 10px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Divisor entre blocos ── */
+    .map_connector {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding-left: 14px;
+    }
+
+    .map_connector_line {
+        width: 1px;
+        height: 14px;
+        background: #333;
+    }
+
+    .map_connector_label {
+        font-size: 9px;
+        font-family: 'JetBrains Mono', monospace;
+        color: #444;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* ── Ícones SVG inline ── */
+    .map_icon {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+        flex-shrink: 0;
+    }
+
+    .map_icon_sm {
+        width: 12px;
+        height: 12px;
+        opacity: 0.6;
+        flex-shrink: 0;
+    }
+
 }

@@ -466,6 +466,219 @@ document.addEventListener('click', (e) => {
 });
 
 
+// ─────────────────────────────────────────────────────────────
+//  MAPPING CONFIG
+// ─────────────────────────────────────────────────────────────
+
+const MAPPING_CONFIG = [
+    {
+        screenIndex: 1,
+        varName: "atuacao",
+        options: [
+            { value: "Back-end", varValue: "backend" },
+            { value: "Front-end", varValue: "frontend" },
+            { value: "Quality Assurance", varValue: "qa" },
+            { value: "UX Research", varValue: "ux" },
+        ],
+    },
+    {
+        screenIndex: 2,
+        varName: "trocarArea",
+        options: [
+            { value: "Sim", varValue: "true" },
+            { value: "Não", varValue: "false" },
+        ],
+    },
+    {
+        screenIndex: 3,
+        varName: "musica",
+        options: [
+            { value: "Rock", varValue: "rock" },
+            { value: "Samba", varValue: "samba" },
+            { value: "Axé", varValue: "axe" },
+            { value: "MPB", varValue: "mpb" },
+            { value: "Outro gênero músical", varValue: "outro" },
+        ],
+    },
+    {
+        screenIndex: 4,
+        varName: "pais",
+        options: [
+            { value: "Brasil", varValue: "br" },
+            { value: "Canadá", varValue: "ca" },
+            { value: "Noruega", varValue: "no" },
+            { value: "Suécia", varValue: "se" },
+        ],
+    },
+];
+
+// ─────────────────────────────────────────────────────────────
+//  SVGs inline
+// ─────────────────────────────────────────────────────────────
+
+const SVG_CONDITIONAL = `<svg class="map_icon" viewBox="0 0 24 24" fill="none" stroke="#79b8ff" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>`;
+const SVG_VAR = `<svg class="map_icon_sm" viewBox="0 0 24 24" fill="none" stroke="#c9d1d9" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`;
+const SVG_VARIATION = `<svg class="map_icon_sm" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
+const SVG_CHECK = `<svg class="map_icon" viewBox="0 0 24 24" fill="none" stroke="#56d364" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>`;
+
+// ─────────────────────────────────────────────────────────────
+//  BUILD BLOCK
+// ─────────────────────────────────────────────────────────────
+
+function buildBlock(cfg, blockId) {
+    const optionPills = cfg.options.map((opt, i) =>
+        `<span class="map_pill" id="pill_${blockId}_${i}">${opt.varValue}</span>${i < cfg.options.length - 1 ? `<span class="map_muted">or</span>` : ''}`
+    ).join('');
+
+    return `
+    <div class="map_block" id="block_${blockId}">
+        <div class="map_row">
+            ${SVG_CONDITIONAL}
+            <span class="map_keyword">if</span>
+            ${optionPills}
+        </div>
+        <div class="map_row" id="set_${blockId}">
+            ${SVG_VARIATION}
+            ${SVG_VAR}
+            <span class="map_keyword set">Set</span>
+            <span class="map_pill" id="setpill_${blockId}">report/${cfg.varName}</span>
+            <span class="map_muted">to</span>
+            <span class="map_pill" id="setval_${blockId}">—</span>
+        </div>
+        <div class="map_row" id="else_${blockId}">
+            <span class="map_keyword else">else</span>
+            ${SVG_VARIATION}
+            <span class="map_muted">Set errorMessage → true</span>
+        </div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  INIT PANEL
+// ─────────────────────────────────────────────────────────────
+
+function initMappingPanel() {
+    const panel = document.querySelector(".mapping_figma_copy");
+    if (!panel) return;
+
+    panel.querySelectorAll(".map_block, .map_connector").forEach(el => el.remove());
+
+    MAPPING_CONFIG.forEach((cfg, i) => {
+        if (i > 0) {
+            const connector = document.createElement("div");
+            connector.className = "map_connector";
+            connector.innerHTML = `<div class="map_connector_line"></div><span class="map_connector_label">next →</span>`;
+            panel.appendChild(connector);
+        }
+
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = buildBlock(cfg, i);
+        panel.appendChild(wrapper.firstElementChild);
+    });
+
+    // Bloco final submit
+    const connectorFinal = document.createElement("div");
+    connectorFinal.className = "map_connector";
+    connectorFinal.innerHTML = `<div class="map_connector_line"></div><span class="map_connector_label">next →</span>`;
+    panel.appendChild(connectorFinal);
+
+    const finalBlock = document.createElement("div");
+    finalBlock.className = "map_block";
+    finalBlock.id = "block_final";
+    finalBlock.innerHTML = `
+        <div class="map_row">
+            ${SVG_CHECK}
+            <span class="map_keyword done">Submit</span>
+            <span class="map_pill" id="pill_final">formComplete</span>
+        </div>`;
+    panel.appendChild(finalBlock);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  UPDATE MAPPING
+// ─────────────────────────────────────────────────────────────
+
+function updateMapping(screenIndex, selectedVarValue) {
+    const finalBlk = document.getElementById("block_final");
+    const finalPill = document.getElementById("pill_final");
+
+    MAPPING_CONFIG.forEach((cfg, i) => {
+        const block = document.getElementById(`block_${i}`);
+        const setVal = document.getElementById(`setval_${i}`);
+        const setpill = document.getElementById(`setpill_${i}`);
+        if (!block) return;
+
+        // Reseta pills
+        cfg.options.forEach((_, j) => {
+            const pill = document.getElementById(`pill_${i}_${j}`);
+            if (pill) pill.classList.remove("active_pill", "done_pill");
+        });
+        if (setpill) setpill.classList.remove("active_pill", "done_pill");
+        if (setVal) setVal.classList.remove("active_pill", "done_pill");
+
+        // Tela já concluída
+        if (screenIndex > cfg.screenIndex) {
+            block.classList.replace("is_active", "is_done") || block.classList.add("is_done");
+            const saved = block.dataset.savedValue;
+            if (saved) {
+                const idx = cfg.options.findIndex(o => o.varValue === saved);
+                const pill = document.getElementById(`pill_${i}_${idx}`);
+                if (pill) pill.classList.add("done_pill");
+                if (setVal) { setVal.textContent = saved; setVal.classList.add("done_pill"); }
+                if (setpill) setpill.classList.add("done_pill");
+            }
+            return;
+        }
+
+        // Tela futura
+        if (screenIndex < cfg.screenIndex) {
+            block.classList.remove("is_active", "is_done");
+            return;
+        }
+
+        // Tela atual
+        block.classList.add("is_active");
+        block.classList.remove("is_done");
+
+        if (selectedVarValue) {
+            const idx = cfg.options.findIndex(o => o.varValue === selectedVarValue);
+            const pill = document.getElementById(`pill_${i}_${idx}`);
+            if (pill) pill.classList.add("active_pill");
+            if (setVal) { setVal.textContent = selectedVarValue; setVal.classList.add("active_pill"); }
+            if (setpill) setpill.classList.add("active_pill");
+            block.dataset.savedValue = selectedVarValue;
+        } else {
+            if (setVal) setVal.textContent = "—";
+        }
+    });
+
+    // Bloco final
+    if (finalBlk && finalPill) {
+        if (screenIndex === 5) {
+            finalBlk.classList.add("is_active");
+            finalPill.classList.add("done_pill");
+        } else {
+            finalBlk.classList.remove("is_active");
+            finalPill.classList.remove("done_pill");
+        }
+    }
+}
+
+// ─────────────────────────────────────────────────────────────
+//  HELPER — resolve varValue a partir do label do radio
+// ─────────────────────────────────────────────────────────────
+
+function resolveVarValue(screenIndex, labelText) {
+    const cfg = MAPPING_CONFIG.find(c => c.screenIndex === screenIndex);
+    if (!cfg) return null;
+    const opt = cfg.options.find(o => o.value.trim() === labelText.trim());
+    return opt ? opt.varValue : null;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  PROTOTYPE LOGIC
+// ─────────────────────────────────────────────────────────────
+
 document.addEventListener("DOMContentLoaded", () => {
 
     let currentScreen = 0;
@@ -473,103 +686,142 @@ document.addEventListener("DOMContentLoaded", () => {
     const screens = document.querySelectorAll(".screen_content");
     const nextButtons = document.querySelectorAll(".next");
     const backButtons = document.querySelectorAll(".back");
-
     const progressFills = document.querySelectorAll(".progress-fill");
     const progressTexts = document.querySelectorAll(".progress-percent");
 
+    // Hover do #start ativa efeito pixelizado na imagem
+    const startBtn = document.getElementById("start");
+    const imgContainer = document.querySelector(".img_container");
 
+    startBtn.addEventListener("mouseenter", () => imgContainer.classList.add("hover-active"));
+    startBtn.addEventListener("mouseleave", () => imgContainer.classList.remove("hover-active"));
+
+    // ── Inicializa o painel de mapping ──
+    initMappingPanel();
+    updateMapping(0, null);
+
+    // ── Progress bar ──
     function updateProgress() {
-
         const percent = ((currentScreen + 1) / screens.length) * 100;
-
-        progressFills.forEach(bar => {
-            bar.style.width = percent + "%";
-        });
-
-        progressTexts.forEach(text => {
-            text.textContent = Math.round(percent) + "%";
-        });
-
+        progressFills.forEach(bar => { bar.style.width = percent + "%"; });
+        progressTexts.forEach(text => { text.textContent = Math.round(percent) + "%"; });
     }
 
-
+    // ── Troca de tela ──
     function showScreen(index) {
-
-        screens.forEach(screen => screen.classList.remove("active"));
+        screens.forEach(s => s.classList.remove("active"));
         screens[index].classList.add("active");
-
         updateProgress();
 
+        // Passa o valor já salvo no bloco (se existir) ao voltar para uma tela
+        const cfg = MAPPING_CONFIG.find(c => c.screenIndex === index);
+        const savedBlock = cfg ? document.getElementById(`block_${MAPPING_CONFIG.indexOf(cfg)}`) : null;
+        const savedValue = savedBlock ? savedBlock.dataset.savedValue || null : null;
+        updateMapping(index, savedValue);
     }
 
-
-    // NEXT
+    // ── Botão Iniciar ──
     nextButtons.forEach(btn => {
+        if (btn.id === "start") {
+            btn.addEventListener("click", () => {
+                currentScreen = 1;
+                showScreen(currentScreen);
+            });
+            return;
+        }
 
+        // ── Botões Próximo ──
         btn.addEventListener("click", () => {
-
             const current = screens[currentScreen];
             const selected = current.querySelector('input[type="radio"]:checked');
             const errorMsg = current.querySelector(".error_msg");
 
-            // valida se escolheu opção
             if (!selected) {
-
-                errorMsg.classList.add("active");
+                if (errorMsg) errorMsg.classList.add("active");
+                // Mapping: sem seleção → destaca else
+                updateMapping(currentScreen, null);
                 return;
-
             }
 
-            errorMsg.classList.remove("active");
+            if (errorMsg) errorMsg.classList.remove("active");
+
+            // Salva o varValue antes de avançar
+            const labelText = selected.closest("label")?.querySelector("span")?.textContent || "";
+            const varValue = resolveVarValue(currentScreen, labelText);
+            if (varValue) {
+                const cfgIdx = MAPPING_CONFIG.findIndex(c => c.screenIndex === currentScreen);
+                const blk = document.getElementById(`block_${cfgIdx}`);
+                if (blk) blk.dataset.savedValue = varValue;
+            }
 
             if (currentScreen < screens.length - 1) {
-
                 currentScreen++;
                 showScreen(currentScreen);
-
             }
-
         });
-
     });
 
-
-    // BACK
+    // ── Botões Voltar ──
     backButtons.forEach(btn => {
-
         btn.addEventListener("click", () => {
-
             if (currentScreen > 0) {
-
                 currentScreen--;
                 showScreen(currentScreen);
-
             }
-
         });
-
     });
 
-
-    // UX bônus → remove erro quando selecionar opção
+    // ── Radio change — atualiza mapping em tempo real ──
     const radios = document.querySelectorAll('input[type="radio"]');
-
     radios.forEach(radio => {
-
         radio.addEventListener("change", () => {
-
             const screen = radio.closest(".screen_content");
-            const errorMsg = screen.querySelector(".error_msg");
+            const errorMsg = screen?.querySelector(".error_msg");
+            if (errorMsg) errorMsg.classList.remove("active");
 
-            if (errorMsg) {
-                errorMsg.classList.remove("active");
-            }
-
+            const labelText = radio.closest("label")?.querySelector("span")?.textContent || "";
+            const varValue = resolveVarValue(currentScreen, labelText);
+            updateMapping(currentScreen, varValue);
         });
-
     });
-
 
     updateProgress();
-
 });
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.set(".content_final_result", { 
+  y: 120, 
+  opacity: 0, 
+  scale: 0.92
+});
+
+gsap.to(".content_final_result", {
+  y: 0,
+  opacity: 1,
+  scale: 1,
+  borderRadius: "0px",
+  duration: 3.2,
+  ease: "expo.out",
+  scrollTrigger: {
+    trigger: ".content_final_result",
+    start: "top 90%",
+    toggleActions: "play none none none",
+  }
+});
+
+gsap.fromTo(".content_final h2, .content_final p", 
+  { y: 30, opacity: 0 },
+  {
+    y: 0, opacity: 1,
+    duration: 0.9,
+    stagger: 0.15,
+    ease: "power3.out",
+    delay: 0.3,
+    scrollTrigger: {
+      trigger: ".content_final_result",
+      start: "top 90%",
+      toggleActions: "play none none none",
+    }
+  }
+);

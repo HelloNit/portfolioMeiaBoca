@@ -27,6 +27,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script>
     <script src="https://t.contentsquare.net/uxa/4ffe1fc46b157.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 </head>
 
@@ -457,200 +459,307 @@
         </div>
     </main>
 
-    <section class="prototype_project_love">
-        <div class="screen_main">
-            <span class="tittle_helper">Central de ajuda</span>
-            <div class="screen_content active" id="screen-1">
-                <!-- barra de progresso -->
-                <div class="progress_bar">
-                    <div class="heading_progress_bar">
-                        <span class="progress-title">Progresso</span>
-                        <span class="progress-percent">80%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                <!-- barra de progresso -->
-                <div class="questions">
-                    <div class="content_questions">
-                        <div class="wrapper_heading_question">
-                            <span class="title_question">O que você precisa?</span>
-                            <span class="error_msg">Seleciona uma opção</span>
-                        </div>
-                        <!-- button radio -->
-                        <div class="wrapper_questions">
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 1</span>
-                            </label>
-
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 2</span>
-                            </label>
-                        </div>
-                        <!-- button radio -->
-                    </div>
-                    <div class="wrapper_btn">
-                        <button class="btn_screen back">Voltar</button>
-                        <button class="btn_screen next">Próximo</button>
-                    </div>
-                </div>
-            </div>
-            <div class="screen_content" id="screen-2">
-                <!-- barra de progresso -->
-                <div class="progress_bar">
-                    <div class="heading_progress_bar">
-                        <span class="progress-title">Progresso</span>
-                        <span class="progress-percent">80%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                <!-- barra de progresso -->
-                <div class="questions">
-                    <div class="content_questions">
-                        <div class="wrapper_heading_question">
-                            <span class="title_question">O que você precisa?</span>
-                            <span class="error_msg">Seleciona uma opção</span>
-                        </div>
-                        <!-- button radio -->
-                        <div class="wrapper_questions">
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 1</span>
-                            </label>
-
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 2</span>
-                            </label>
-                        </div>
-                        <!-- button radio -->
-                    </div>
-                    <div class="wrapper_btn">
-                        <button class="btn_screen back">Voltar</button>
-                        <button class="btn_screen next">Próximo</button>
-                    </div>
-                </div>
-            </div>
-            <div class="screen_content" id="screen-3">
-                <!-- barra de progresso -->
-                <div class="progress_bar">
-                    <div class="heading_progress_bar">
-                        <span class="progress-title">Progresso</span>
-                        <span class="progress-percent">80%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                <!-- barra de progresso -->
-                <div class="questions">
-                    <div class="content_questions">
-                        <div class="wrapper_heading_question">
-                            <span class="title_question">O que você precisa?</span>
-                            <span class="error_msg">Seleciona uma opção</span>
-                        </div>
-                        <!-- button radio -->
-                        <div class="wrapper_questions">
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 1</span>
-                            </label>
-
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 2</span>
-                            </label>
-                        </div>
-                        <!-- button radio -->
-                    </div>
-                    <div class="wrapper_btn">
-                        <button class="btn_screen back">Voltar</button>
-                        <button class="btn_screen next">Próximo</button>
-                    </div>
-                </div>
-            </div>
-            <div class="screen_content" id="screen-4">
-                <!-- barra de progresso -->
-                <div class="progress_bar">
-                    <div class="heading_progress_bar">
-                        <span class="progress-title">Progresso</span>
-                        <span class="progress-percent">80%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                <!-- barra de progresso -->
-                <div class="questions">
-                    <div class="content_questions">
-                        <div class="wrapper_heading_question">
-                            <span class="title_question">O que você precisa?</span>
-                            <span class="error_msg">Seleciona uma opção</span>
-                        </div>
-                        <!-- button radio -->
-                        <div class="wrapper_questions">
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 1</span>
-                            </label>
-
-                            <label class="radio-option">
-                                <input type="radio" name="option">
-                                <span>Frase 2</span>
-                            </label>
-                        </div>
-                        <!-- button radio -->
-                    </div>
-                    <div class="wrapper_btn">
-                        <button class="btn_screen back">Voltar</button>
-                        <button class="btn_screen next">Próximo</button>
-                    </div>
-                </div>
-            </div>
-            <div class="screen_content" id="screen-5">
-                <!-- barra de progresso -->
-                <div class="progress_bar">
-                    <div class="heading_progress_bar">
-                        <span class="progress-title">Progresso</span>
-                        <span class="progress-percent">80%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-                <!-- barra de progresso -->
-                <div class="questions">
-                    <div class="content_questions">
-                        <!-- button radio -->
-                        <div class="wrapper_questions">
-                            <div class="final_text">
-                                <p>Obrigado, por responder todas as nossas perguntas.</p>
-                                <p>Para darmos continuidade em seu atendimento, abra um chamado
-                                    através desse link <span class="link_styled">abrir chamado</span>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- button radio -->
-                    </div>
-                    <div class="wrapper_btn">
-                        <!-- <button class="btn_screen back">Voltar</button> -->
-                        <button class="btn_screen next">Encerrar consulta</button>
-                    </div>
-                </div>
-            </div>
+    <section class="content_final_result">
+        <div class="content_final">
+            <h2><i>1</i> de muitos fluxos</h2>
+            <p>Faça o teste e acompanhe a entrada e saída de informações</p>
         </div>
+        <div class="prototype_project_love">
+            <div class="screen_main">
+                <span class="tittle_helper">Central de ajuda</span>
+                <div class="screen_content active" id="screen-1">
+                    <div class="questions">
+                        <div class="content_questions">
+                            <div class="wrapper_heading_question">
+                                <span class="title_question">Bem vindo a Lovelace</span>
+                            </div>
+                            <!-- button radio -->
+                            <div class="onboarding">
+                                <div class="content_text_onboarding">
+                                    <div class="questions_onbording">
+                                        <img class="icon_onboarding" src="/img/result.svg" alt="">
+                                        <span class="title_paragraph">Como funciona</span>
+                                    </div>
+                                    <p> Você seguira um roteiro estrturuado. A partir desse conjunto de perguntas
+                                        respondidas
+                                        nós retornaremos uma solução para você.
+                                    </p>
+                                    <div class="questions_onbording">
+                                        <img class="icon_onboarding" src="/img/timing.svg" alt="">
+                                        <span class="title_paragraph">Quanto tempo leva</span>
+                                    </div>
+                                    <p> Em média leva 3 minutos para obter o resultado
+                                    </p>
 
-        <div class="mapping_figma_copy">
-            <span class="title_mapping"><img class="mapping_icon" src="/img/figma.svg" alt="">Mapeamento &#x2015;
-                Variables</span>
+                                    <div class="questions_onbording">
+                                        <img class="icon_onboarding" src="/img/bar_chart.svg" alt="">
+                                        <span class="title_paragraph">Como funciona o resultado</span>
+                                    </div>
+                                    <p>
+                                        Depois de responder as perguntas, são gerados resultados diferentes, dependendo
+                                        de cada ocasião, cada área, ferramenta etc...
+                                    </p>
+                                    <p class="warning_text">
+                                        Lembre-se, isso aqui é apenas uma demo.
+                                    </p>
+                                    <div class="wrapper_btn">
+                                        <!-- <button class="btn_screen back">Voltar</button> -->
+                                        <button id="start" class="btn_screen next">Iniciar atendimento</button>
+                                    </div>
+                                </div>
+                                <div class="img_container">
+                                    <img class="ada_ref_img" src="/img/ada_reference.png" alt="">
+                                </div>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_content" id="screen-2">
+                    <!-- barra de progresso -->
+                    <div class="progress_bar">
+                        <div class="heading_progress_bar">
+                            <span class="progress-title">Progresso</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <!-- barra de progresso -->
+                    <div class="questions">
+                        <div class="content_questions">
+                            <div class="wrapper_heading_question">
+                                <span class="title_question">Você atua como:</span>
+                                <span class="error_msg">Seleciona uma opção</span>
+                            </div>
+                            <!-- button radio -->
+                            <div class="wrapper_questions">
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Back-end</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Front-end</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Quality Assurance</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>UX Research</span>
+                                </label>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                        <div class="wrapper_btn">
+                            <button class="btn_screen back">Voltar</button>
+                            <button class="btn_screen next">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_content" id="screen-3">
+                    <!-- barra de progresso -->
+                    <div class="progress_bar">
+                        <div class="heading_progress_bar">
+                            <span class="progress-title">Progresso</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <!-- barra de progresso -->
+                    <div class="questions">
+                        <div class="content_questions">
+                            <div class="wrapper_heading_question">
+                                <span class="title_question">Você já pensou em trocar de área?</span>
+                                <span class="error_msg">Seleciona uma opção</span>
+                            </div>
+                            <!-- button radio -->
+                            <div class="wrapper_questions">
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Sim</span>
+                                </label>
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Não</span>
+                                </label>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                        <div class="wrapper_btn">
+                            <button class="btn_screen back">Voltar</button>
+                            <button class="btn_screen next">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_content" id="screen-4">
+                    <!-- barra de progresso -->
+                    <div class="progress_bar">
+                        <div class="heading_progress_bar">
+                            <span class="progress-title">Progresso</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <!-- barra de progresso -->
+                    <div class="questions">
+                        <div class="content_questions">
+                            <div class="wrapper_heading_question">
+                                <span class="title_question">Qual música você gosta?</span>
+                                <span class="error_msg">Seleciona uma opção</span>
+                            </div>
+                            <!-- button radio -->
+                            <div class="wrapper_questions">
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Rock</span>
+                                </label>
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Samba</span>
+                                </label>
+
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Axé</span>
+                                </label>
+
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>MPB</span>
+                                </label>
+
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Outro gênero músical</span>
+                                </label>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                        <div class="wrapper_btn">
+                            <button class="btn_screen back">Voltar</button>
+                            <button class="btn_screen next">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_content" id="screen-5">
+                    <!-- barra de progresso -->
+                    <div class="progress_bar">
+                        <div class="heading_progress_bar">
+                            <span class="progress-title">Progresso</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <!-- barra de progresso -->
+                    <div class="questions">
+                        <div class="content_questions">
+                            <div class="wrapper_heading_question">
+                                <span class="title_question">Qual desses países você gostaria de morar?</span>
+                                <span class="error_msg">Seleciona uma opção</span>
+                            </div>
+                            <!-- button radio -->
+                            <div class="wrapper_questions">
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Brasil</span>
+                                </label>
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Canadá</span>
+                                </label>
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Noruega</span>
+                                </label>
+
+
+                                <label class="radio-option">
+                                    <input type="radio" name="option">
+                                    <span>Suécia</span>
+                                </label>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                        <div class="wrapper_btn">
+                            <button class="btn_screen back">Voltar</button>
+                            <button class="btn_screen next">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen_content" id="screen-6">
+                    <!-- barra de progresso -->
+                    <div class="progress_bar">
+                        <div class="heading_progress_bar">
+                            <span class="progress-title">Progresso</span>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <!-- barra de progresso -->
+                    <div class="questions">
+                        <div class="content_questions">
+                            <!-- button radio -->
+                            <div class="wrapper_questions final_content_center">
+                                <div class="final_text">
+                                    <div class="checkmark_circle">
+                                        <div class="checkmark_inner">
+                                            <svg class="checkmark_svg" viewBox="0 0 28 28">
+                                                <polyline class="checkmark_path" points="5,14 11,20 23,8" />
+                                            </svg>
+                                        </div>
+                                        <div class="checkmark_particles">
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                            <span class="particle"></span>
+                                        </div>
+                                    </div>
+                                    <span class="title_thanks">Obrigado por responder todas as nossas perguntas.</span>
+                                    <p class="styled_paragraph">Para darmos continuidade em seu atendimento, abra um
+                                        chamado
+                                        através desse link <span class="link_styled">abrir chamado</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- button radio -->
+                        </div>
+                        <div class="wrapper_btn">
+                            <!-- <button class="btn_screen back">Voltar</button> -->
+                            <button class="btn_screen next">Encerrar consulta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mapping_figma_copy">
+                <span class="title_mapping"><img class="mapping_icon" src="/img/figma.svg" alt="">Mapeamento &#x2015;
+                    Variables</span>
+            </div>
         </div>
     </section>
-
 
     <div class="lightbox" id="lightbox">
         <div class="lightbox_inner">
